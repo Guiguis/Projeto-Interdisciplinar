@@ -32,7 +32,6 @@ public class ManterProfessorController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pNome = request.getParameter("nome");
 		String pEmail = request.getParameter("email");
@@ -41,6 +40,7 @@ public class ManterProfessorController extends HttpServlet {
 		String pAdministrador = request.getParameter("administrador");
 		
 		if(pAdministrador == null || pAdministrador.isEmpty()) pAdministrador = "0";
+		if(pAdministrador.equals("on")) pAdministrador = "1";
 
 		// instanciar o javabean
 		Professor professor = new Professor(pEmail, pSenha);

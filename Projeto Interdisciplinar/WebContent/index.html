@@ -1,125 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Cadastro de Professor</title>
-	
-	<!-- Bootstrap -->
-	<link href="assets/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/style/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
-	
-	<!-- MAIN -->
-	<link href="assets/style/utils.css" rel="stylesheet" />
+
+<!-- Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>Cadastro de Professor</title>
+
+<!-- Bootstrap -->
+<link href="assets/style/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="assets/style/bootstrap/css/bootstrap-theme.min.css"
+	rel="stylesheet" />
+
+<!-- MAIN -->
+<link href="assets/style/utils.css" rel="stylesheet" />
 </head>
 <body>
 
- <!-- Barra superior com os menus de navegação -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <a class="navbar-brand" href="#">Inicio</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#"></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="professor.html">Cadastro de Professor</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Avaliacao Semanal</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Gerar Declarção</a>
-      </li>
-      
-    </ul>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Semestre
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">2018/01</a>
-          <a class="dropdown-item" href="#">2018/02</a>
-          <a class="dropdown-item" href="#">2019/01</a>
-        </div>
-      </li>
-    </ul>
+	<!-- Barra superior com os menus de navegação -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+		<a class="navbar-brand" href="#">Inicio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Alterna navegação">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#"></a></li>
+				<li class="nav-item"><a class="nav-link active"
+					href="professor.html">Cadastro de Professor</a></li>
+				<li class="nav-item"><a class="nav-link active" href="#">Avaliacao
+						Semanal</a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">Gerar
+						Declarção</a></li>
 
-  </div>
-</nav>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle " href="#"
+					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> Semestre </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">2018/01</a> <a
+							class="dropdown-item" href="#">2018/02</a> <a
+							class="dropdown-item" href="#">2019/01</a>
+					</div></li>
+			</ul>
+
+		</div>
+	</nav>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
-				<form action="ManterProfessorController" method="get" class="form-horizontal mt-30">
-					<fieldset>
+			<div class="col-lg-12  mt-30">
 
-						<!-- Título -->
-						<legend>Cadastro Professor</legend>
+				<!-- Título -->
+				<h1>Cadastro Professor</h1>
 
-						<!-- Nome -->
-						<div class="form-group">
-							<label class="col-md-4 control-label" for="nome">Nome</label>
-							<div class="col-md-4">
-								<input id="nome" name="nome" type="text"
-									class="form-control input-md" required>
-							</div>
+				<form action="ManterProfessorController" method="post"
+					class="form-horizontal">
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputName">Nome</label>
+							<input id="inputName" type="text"  
+								   class="form-control" name="nome" />
 						</div>
-
-						<!-- Email -->
-						<div class="form-group">
-							<label class="col-md-4 control-label" for="email">E-mail</label>
-							<div class="col-md-4">
-								<input id="email" name="email" type="email"
-									placeholder="Ex: paulo@usjt.com.br"
-									class="form-control input-md" required>
-							</div>
+						<div class="form-group col-md-4">
+							<label for="inputMatricula">Matrícula</label> 
+							<input id="inputMatricula" type="text" 
+							 	   class="form-control" name="matricula"
+							 	   placeholder="Ex: 8173511">
 						</div>
+					</div>
 
-						<!-- Senha -->
-						<div class="form-group">
-							<label class="col-md-4 control-label" for="senha">Senha</label>
-							<div class="col-md-4">
-								<input id="senha" name="senha" type="password"
-									class="form-control input-md" required>
-							</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputEmail4">E-mail</label>
+							<input id="inputEmail4" type="email"  
+								   class="form-control" name="email"
+								   placeholder="Ex: prof.usjt.com.br"/>
 						</div>
-
-						<!-- Matrícula -->
-						<div class="form-group">
-							<label class="col-md-4 control-label" for="matricula">Matrícula</label>
-							<div class="col-md-4">
-								<input id="matricula" name="matricula" type="number"
-									placeholder="Ex: 8122127" class="form-control input-md"
-									required>
-
-							</div>
+						<div class="form-group col-md-4">
+							<label for="inputPassword4">Senha</label> <input
+								id="inputPassword4" type="password" 
+								class="form-control" name="senha">
 						</div>
+					</div>
 
-						<!-- Administrador -->
-						<div class="form-group">
-							<label class="col-md-4 control-label" for="administrador">Administrador</label>
-							<div class="col-md-4">
-								<div class="checkbox">
-									<label for="administrador-0"> <input type="checkbox"
-										name="administrador" id="administrador-0" value="1"> É
-										administrador?
-									</label>
-								</div>
-							</div>
+					<div class="form-group">
+						<div class="custom-control custom-checkbox">
+							<input id="customControlAutosizing" type="checkbox" 
+								   name="administrador" class="custom-control-input"  /> 
+								<label class="custom-control-label" 
+									   for="customControlAutosizing">
+									Administrador?
+								</label>
 						</div>
-
-						<!-- Button -->
-						<div class="form-group">
-							<div class="col-md-8 text-right">
-								<button class="btn btn-primary" type="submit">Enviar</button>
-							</div>
-						</div>
-
-					</fieldset>
+					</div>
+					<button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
 			</div>
 		</div>
