@@ -20,8 +20,8 @@ public class ConnectionFactory {
         String servidor = "localhost";
         String porta = "3306";
         String database = "mydb";
-        String usuario = "admin";
-        String senha = "12345";
+        String usuario = "root";
+        String senha = "Positivoz1122";
         
         String connectionURL = "jdbc:mysql://" + servidor + ":" + porta + "/" + database + "?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=UTC";
         
