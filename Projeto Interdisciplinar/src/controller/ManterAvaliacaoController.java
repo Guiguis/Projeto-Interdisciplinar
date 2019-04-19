@@ -34,11 +34,11 @@ public class ManterAvaliacaoController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pNota = request.getParameter("notaTodos");
-		String pDescricao = request.getParameter("descricaoTodos");
+		String pComentarios = request.getParameter("comentariosTodos");
 		
 		Avaliacao avaliacao = new Avaliacao();
 		avaliacao.setNota(Double.parseDouble(pNota));
-		avaliacao.setComentarios(pDescricao);		
+		avaliacao.setComentarios(pComentarios);		
 
 		// instanciar o service
 		AvaliacaoService as = new AvaliacaoService();

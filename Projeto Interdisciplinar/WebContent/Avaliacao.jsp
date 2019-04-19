@@ -34,8 +34,8 @@
 						<label >${avaliacao.nota}</label>
 					</div>
 					<div class="form-group col-md-4">
-						<label for="inputName">Descricao: </label>
-						<label >${avaliacao.descricao}</label>
+						<label for="inputName">Comentarios: </label>
+						<label >${avaliacao.comentarios}</label>
 					</div>
 				</div>
 

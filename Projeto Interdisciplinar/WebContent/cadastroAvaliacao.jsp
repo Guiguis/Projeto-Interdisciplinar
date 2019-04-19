@@ -59,9 +59,9 @@
 							   class="form-control" name="nota1"  placeholder="Digite a nota" />
 					</div>
 					<div class="form-group col-md-5">
-						<label for="inputDescricao1">Descrição</label> 
-						<input id="inputDescricao1" type="text" 
-						 	   class="form-control" name="descricao1"/>
+						<label for="inputComentarios1">Descrição</label> 
+						<input id="inputComentarios1" type="text" 
+						 	   class="form-control" name="dcomentarios1"/>
 					</div>
 				</div>
 				
@@ -73,9 +73,9 @@
 							   class="form-control" name="nota2"  placeholder="Digite a nota" />
 					</div>
 					<div class="form-group col-md-5">
-						<label for="inputDescricao2">Descrição</label> 
-						<input id="inputDescricao2" type="text" 
-						 	   class="form-control" name="descricao2"/>
+						<label for="inputComentarios2">Descrição</label> 
+						<input id="inputComentarios2" type="text" 
+						 	   class="form-control" name="comentarios2"/>
 					</div>
 				</div>
 				
@@ -87,9 +87,9 @@
 							   class="form-control" name="nota3"  placeholder="Digite a nota" />
 					</div>
 					<div class="form-group col-md-5">
-						<label for="inputDescricao3">Descrição</label> 
-						<input id="inputDescricao3" type="text" 
-						 	   class="form-control" name="descricao3"/>
+						<label for="inputComentarios3">Descrição</label> 
+						<input id="inputComentarios3" type="text" 
+						 	   class="form-control" name="comentarios3"/>
 					</div>
 				</div>
 				
@@ -101,9 +101,9 @@
 							   class="form-control" name="notaTodos"  placeholder="Digite a nota" />
 					</div>
 					<div class="form-group col-md-5">
-						<label for="inputDescricaoTodos">Descrição</label> 
-						<input id="inputDescricaoTodos" type="text" 
-						 	   class="form-control" name="descricaoTodos"/>
+						<label for="inputComentariosTodos">Descrição</label> 
+						<input id="inputComentariosTodos" type="text" 
+						 	   class="form-control" name="dcomentariosTodos"/>
 					</div>
 				</div>
 				
