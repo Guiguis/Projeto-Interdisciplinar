@@ -12,8 +12,8 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#"></a></li>
 				<li class="nav-item"><a class="nav-link active"
-					href="professor.html">Cadastro de Professor</a></li>
-				<li class="nav-item"><a class="nav-link active" href="#">Avaliacao
+					href="cadastroProfessor.jsp">Cadastro de Professor</a></li>
+				<li class="nav-item"><a class="nav-link active" href="cadastroAvaliacao.jsp">Avaliacao
 						Semanal</a></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Gerar
 						Declarção</a></li>

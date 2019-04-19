@@ -21,14 +21,14 @@ public class ConnectionFactory {
         String porta = "3306";
         String database = "mydb";
         String usuario = "root";
-        String senha = "Positivoz1122";
+        String senha = "";
         
         String connectionURL = "jdbc:mysql://" + servidor + ":" + porta + "/" + database + "?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=UTC";
         
         try {
             return DriverManager.getConnection(connectionURL, usuario, senha);
         } catch (SQLException e) {
-        	JOptionPane.showMessageDialog(null, "Não foi possível conectar com o BD", "Error", JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel conectar com o BD", "Error", JOptionPane.ERROR_MESSAGE);
         	e.printStackTrace();
         	throw new RuntimeException(e);
         }
