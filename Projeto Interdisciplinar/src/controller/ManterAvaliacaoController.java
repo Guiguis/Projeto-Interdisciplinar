@@ -35,6 +35,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pNota = request.getParameter("notaTodos");
 		String pComentarios = request.getParameter("comentariosTodos");
+		//String pData = request.getParameter("data");
 		
 		Avaliacao avaliacao = new Avaliacao();
 		avaliacao.setNota(Double.parseDouble(pNota));

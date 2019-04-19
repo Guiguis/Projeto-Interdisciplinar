@@ -11,7 +11,6 @@ public class Avaliacao {
 	private int id;
 	private double nota;
 	private Entrega entrega;
-	private Grupo grupo;
 	private Date dataAvaliacao;
 	private String comentarios;
 	
@@ -24,9 +23,8 @@ public class Avaliacao {
 		this.comentarios = comentarios;
 	}
 	
-	public Avaliacao(Entrega entrega, Grupo grupo, int nota, Date dataAvaliacao, String comentarios) {
+	public Avaliacao(Entrega entrega, double nota, Date dataAvaliacao, String comentarios) {
 		this.entrega = entrega;
-		this.grupo = grupo;
 		this.nota = nota;
 		this.dataAvaliacao = dataAvaliacao;
 		this.comentarios = comentarios;
@@ -46,14 +44,6 @@ public class Avaliacao {
 	
 	public void setEntrega(Entrega entrega) {
 		this.entrega = entrega;
-	}
-	
-	public Grupo getGrupo() {
-		return grupo;
-	}
-	
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
 	}
 	
 	public double getNota() {

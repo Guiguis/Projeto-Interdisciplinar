@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 import connection.ConnectionFactory;
 import model.Avaliacao;
-import model.Banca;
 
 public class AvaliacaoDAO {
 	
@@ -19,12 +18,14 @@ public class AvaliacaoDAO {
 	public void createAvaliacao(Avaliacao avaliacao) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "INSERT INTO Avaliacao (nota,  comentarios) VALUES (?, ?)";
+		String sql = "INSERT INTO Avaliacao (nota, comentarios) VALUES (?, ?)";
+		//String sql = "INSERT INTO Avaliacao (nota, comentarios, dt_avaliacao, entrega_id) VALUES (?, ?, ?, ?)";
 		
-		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
+		try(PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 			stm.setDouble(1, avaliacao.getNota());
-			//stm.setDate(2, (java.sql.Date) avaliacao.getDataAvaliacao());
-			stm.setString(3, avaliacao.getComentarios());
+			stm.setString(2, avaliacao.getComentarios());
+			//stm.setDate(3, (java.sql.Date) avaliacao.getDataAvaliacao());
+			//stm.setInt(4, avaliacao.getEntrega().getId());			
 			
 			int affectedRows = stm.executeUpdate();
 
@@ -83,7 +84,7 @@ public class AvaliacaoDAO {
 		Avaliacao avaliacao = new Avaliacao();
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "SELECT nota, dt_avaliacao, comentario FROM avaliacao WHERE avaliacao.id = ?";
+		String sqlComand = "SELECT nota, comentario FROM avaliacao WHERE id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
@@ -92,7 +93,7 @@ public class AvaliacaoDAO {
 			
 			if(rs.next()) {
 				avaliacao.setNota(rs.getDouble("Nota"));
-				avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
+				//avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
 				avaliacao.setComentarios(rs.getString("Comentario"));
 			} 
 		
