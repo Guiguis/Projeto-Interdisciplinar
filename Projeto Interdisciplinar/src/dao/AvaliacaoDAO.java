@@ -19,22 +19,22 @@ public class AvaliacaoDAO {
 	public void createAvaliacao(Avaliacao avaliacao) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "INSERT INTO Banca (nota, data_avaliacao, comentarios) VALUES (?, ?, ?)";
+		String sqlComand = "INSERT INTO Avaliacao (nota,  comentarios) VALUES (?, ?)";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
 			stm.setDouble(1, avaliacao.getNota());
-			stm.setDate(2, (java.sql.Date) avaliacao.getDataAvaliacao());
+			//stm.setDate(2, (java.sql.Date) avaliacao.getDataAvaliacao());
 			stm.setString(3, avaliacao.getComentarios());
 			
 			int affectedRows = stm.executeUpdate();
 
 	        if (affectedRows == 0) {
-	            throw new SQLException("Criação de banca falhou. Nenhuma linha criada");
+	            throw new SQLException("Criaï¿½ï¿½o de banca falhou. Nenhuma linha criada");
 	        }
 
 	        try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
 	        	if (generatedKeys.next()) avaliacao.setId((int) generatedKeys.getLong(1));
-	        	else throw new SQLException("Criação de banca falhou. Nenhum id criado");
+	        	else throw new SQLException("Criaï¿½ï¿½o de banca falhou. Nenhum id criado");
 	        }
 	        
 		}catch (SQLException e) {

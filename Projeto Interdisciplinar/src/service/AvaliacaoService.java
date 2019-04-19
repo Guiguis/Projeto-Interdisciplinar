@@ -25,7 +25,7 @@ public class AvaliacaoService implements Serializable{
 		dao.deleteAvaliacao(avaliacao);
 	}
 	
-	public void loadAvaliacao(int id) {
-		dao.loadAvaliacao(id);
+	public Avaliacao loadAvaliacao(int id) {
+		return dao.loadAvaliacao(id);
 	}
 }

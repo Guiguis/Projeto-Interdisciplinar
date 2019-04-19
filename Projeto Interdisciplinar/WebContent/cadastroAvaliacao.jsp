@@ -33,7 +33,8 @@
 			<div class="col-md-4 offset-md-4">
 				<h1 class="">Avaliar Alunos</h1>
 			</div>
-			
+			<form action="ManterAvaliacaoController" method="post"
+				class="form-horizontal">
 			<!-- Data -->
 			<div class="form-group col-md-5 offset-md-4">
 				<div class="form-row">
@@ -49,8 +50,6 @@
 		
 		
 			<!-- Formulario para nota dos alunos -->
-			<form action="ManterAvaliacaoController" method="post"
-				class="form-horizontal offset-md-3">
 				
 				<!-- Formulario para nota do aluno 1 -->
 				<div class="form-row">
