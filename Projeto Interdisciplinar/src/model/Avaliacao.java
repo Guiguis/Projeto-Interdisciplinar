@@ -18,6 +18,12 @@ public class Avaliacao {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Avaliacao(int id, double nota, String comentarios) {
+		this.id = id;
+		this.nota = nota;
+		this.comentarios = comentarios;
+	}
+	
 	public Avaliacao(double nota, String comentarios) {
 		this.nota = nota;
 		this.comentarios = comentarios;

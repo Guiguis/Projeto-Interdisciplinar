@@ -13,8 +13,10 @@ public class AvaliacaoService implements Serializable{
 		dao = new AvaliacaoDAO();
 	}
 	
-	public void createAvaliacao(Avaliacao avaliacao) {
-		dao.createAvaliacao(avaliacao);
+	public void createAvaliacao(Avaliacao [] lstAvaliacao) {
+		for(int i = 0; i < lstAvaliacao.length; i++) {
+			dao.createAvaliacao(lstAvaliacao[i]);
+		}
 	}
 	
 	public void updateAvaliacao(Avaliacao avaliacao) {

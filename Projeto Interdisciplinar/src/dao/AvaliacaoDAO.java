@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,16 +16,20 @@ public class AvaliacaoDAO {
      * CRUD: Insere banca
      * @param conn: Connection
      */
+	
+	
+	
 	public void createAvaliacao(Avaliacao avaliacao) {
 		Connection conn = new ConnectionFactory().getConnection();
-		
+		//converte a data
+		//java.sql.Date data = new java.sql.Date(avaliacao.getDataAvaliacao().getTime());
+
 		String sql = "INSERT INTO Avaliacao (nota, comentarios) VALUES (?, ?)";
-		//String sql = "INSERT INTO Avaliacao (nota, comentarios, dt_avaliacao, entrega_id) VALUES (?, ?, ?, ?)";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 			stm.setDouble(1, avaliacao.getNota());
 			stm.setString(2, avaliacao.getComentarios());
-			//stm.setDate(3, (java.sql.Date) avaliacao.getDataAvaliacao());
+			//stm.setDate(3, data);
 			//stm.setInt(4, avaliacao.getEntrega().getId());			
 			
 			int affectedRows = stm.executeUpdate();
