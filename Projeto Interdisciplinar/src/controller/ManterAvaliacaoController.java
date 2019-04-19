@@ -58,8 +58,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		//String pData = request.getParameter("data");
 		String vazio = "";
 		
-		//Verifica se o campo todos foi preenchido
-		//se nao foi ele adiciona os 3 alunos manualmente
+		//Verifica se o campo todos foi preenchido, se nao foi ele adiciona os 3 alunos manualmente
 		if(pNotaTodos.equals(vazio)) {
 			Avaliacao [] lstAvaliacao = new Avaliacao[3];
 			
@@ -80,9 +79,10 @@ public class ManterAvaliacaoController extends HttpServlet {
 			
 			//carrega os objetos para mostrar na tela
 			for(int i = 0; i < lstAvaliacao.length; i++) {
-				lstAvaliacao[i] = as.loadAvaliacao(lstAvaliacao[i].getId());
+				Avaliacao avaliacao = lstAvaliacao[i];
+				lstAvaliacao[i] = as.loadAvaliacao(avaliacao.getId());
 				// enviar para o jsp
-				request.setAttribute("avaliacao", lstAvaliacao[i]);
+				request.setAttribute("avaliacao", avaliacao);
 			}
 
 			RequestDispatcher view = request.getRequestDispatcher("Avaliacao.jsp");

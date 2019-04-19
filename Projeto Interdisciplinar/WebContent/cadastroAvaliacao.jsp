@@ -61,7 +61,7 @@
 					<div class="form-group col-md-5">
 						<label for="inputComentarios1">Descrição</label> 
 						<input id="inputComentarios1" type="text" 
-						 	   class="form-control" name="dcomentarios1"/>
+						 	   class="form-control" name="comentarios1"/>
 					</div>
 				</div>
 				
@@ -103,7 +103,7 @@
 					<div class="form-group col-md-5">
 						<label for="inputComentariosTodos">Descrição</label> 
 						<input id="inputComentariosTodos" type="text" 
-						 	   class="form-control" name="dcomentariosTodos"/>
+						 	   class="form-control" name="comentariosTodos"/>
 					</div>
 				</div>
 				
