@@ -24,11 +24,13 @@ public class AvaliacaoDAO {
 		//converte a data
 		//java.sql.Date data = new java.sql.Date(avaliacao.getDataAvaliacao().getTime());
 
-		String sql = "INSERT INTO Avaliacao (nota, comentarios) VALUES (?, ?)";
+		String sql = "INSERT INTO Avaliacao (entrega_id, turma_aluno_id, nota, comentarios) VALUES (?, ?, ?, ?)";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-			stm.setDouble(1, avaliacao.getNota());
-			stm.setString(2, avaliacao.getComentarios());
+			stm.setInt(1, 2);
+			stm.setInt(2, avaliacao.getTurmaAluno());
+			stm.setDouble(3, avaliacao.getNota());
+			stm.setString(4, avaliacao.getComentarios());
 			//stm.setDate(3, data);
 			//stm.setInt(4, avaliacao.getEntrega().getId());			
 			

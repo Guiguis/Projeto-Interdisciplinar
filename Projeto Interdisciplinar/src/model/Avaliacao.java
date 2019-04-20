@@ -13,27 +13,55 @@ public class Avaliacao {
 	private Entrega entrega;
 	private Date dataAvaliacao;
 	private String comentarios;
+	private int turmaAluno;
 	
 	public Avaliacao() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Avaliacao(int id, double nota, String comentarios) {
+	public Avaliacao(int id, double nota, int turmaAluno, String comentarios) {
 		this.id = id;
 		this.nota = nota;
+		this.turmaAluno = turmaAluno;
 		this.comentarios = comentarios;
 	}
 	
-	public Avaliacao(double nota, String comentarios) {
+	public Avaliacao(double nota, int turmaAluno, String comentarios) {
 		this.nota = nota;
+		this.turmaAluno = turmaAluno;
 		this.comentarios = comentarios;
 	}
 	
-	public Avaliacao(Entrega entrega, double nota, Date dataAvaliacao, String comentarios) {
+	public Avaliacao(int id, Entrega entrega, double nota, int turmaAluno, String comentarios) {
+		this.id = id;
 		this.entrega = entrega;
 		this.nota = nota;
-		this.dataAvaliacao = dataAvaliacao;
+		this.turmaAluno = turmaAluno;
 		this.comentarios = comentarios;
+	}
+	
+	public Avaliacao(Entrega entrega, double nota, int turmaAluno, String comentarios) {
+		this.entrega = entrega;
+		this.nota = nota;
+		this.turmaAluno = turmaAluno;
+		this.comentarios = comentarios;
+	}
+	
+	public Avaliacao(int id, Date dataAvaliacao, Entrega entrega, double nota, int turmaAluno, String comentarios) {
+		this.dataAvaliacao = dataAvaliacao;
+		this.id = id;
+		this.entrega = entrega;
+		this.nota = nota;
+		this.turmaAluno = turmaAluno;
+		this.comentarios = comentarios;
+	}
+	
+	public int getTurmaAluno() {
+		return turmaAluno;
+	}
+	
+	public void setTurmaAluno(int turmaAluno) {
+		this.turmaAluno = turmaAluno;
 	}
 	
 	public int getId() {

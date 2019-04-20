@@ -70,6 +70,8 @@ public class ManterAvaliacaoController extends HttpServlet {
 				Avaliacao avaliacao = new Avaliacao();
 				avaliacao.setNota(Double.parseDouble(pNota));
 				avaliacao.setComentarios(pComentarios);	
+				int turma = i+1;
+				avaliacao.setTurmaAluno(turma);
 				lstAvaliacao[i] = avaliacao;
 			}
 			
@@ -94,12 +96,14 @@ public class ManterAvaliacaoController extends HttpServlet {
 			//pega as informacoes do formulario
 			Avaliacao avaliacao = new Avaliacao();
 			avaliacao.setNota(Double.parseDouble(pNotaTodos));
-			avaliacao.setComentarios(pComentariosTodos);	
+			avaliacao.setComentarios(pComentariosTodos);
 			//avaliacao.setDataAvaliacao(conventer(pData));
 			
 			//adiciona os objetos a lista
 			Avaliacao [] lstAvaliacao = new Avaliacao[3];
 			for(int i = 0; i < lstAvaliacao.length; i++) {
+				int turma = i+1;
+				avaliacao.setTurmaAluno(turma);
 				lstAvaliacao[i] = avaliacao;
 			}
 
