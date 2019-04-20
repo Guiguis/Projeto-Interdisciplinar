@@ -26,8 +26,6 @@
 	
 <%Avaliacao avaliacao = (Avaliacao)request.getAttribute("avaliacao"); %>
 
-
-
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12  mt-30">
@@ -37,8 +35,8 @@
 			</div>
 			
 			<div class="form-group col-md-4">
-				<label for="inputName">Data: </label>
-				<label ><fmt:formatDate value="${avaliacao.dataAvaliacao.time}" pattern="dd/MM/yyyy" /></label>
+				<label for="inputName">Data da avaliacao: </label>
+				<label ><fmt:formatDate pattern="dd/MM/yyyy" value="${avaliacao.dataAvaliacao}" /></label>
 			</div>
 		
 			<div class="form-row">

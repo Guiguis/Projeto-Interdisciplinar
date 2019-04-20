@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
 *
@@ -19,41 +19,11 @@ public class Avaliacao {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Avaliacao(int id, double nota, int turmaAluno, String comentarios) {
-		this.id = id;
-		this.nota = nota;
+	public Avaliacao(int turmaAluno, double nota, String comentarios, Date dataAvaliacao) {
 		this.turmaAluno = turmaAluno;
-		this.comentarios = comentarios;
-	}
-	
-	public Avaliacao(double nota, int turmaAluno, String comentarios) {
 		this.nota = nota;
-		this.turmaAluno = turmaAluno;
 		this.comentarios = comentarios;
-	}
-	
-	public Avaliacao(int id, Entrega entrega, double nota, int turmaAluno, String comentarios) {
-		this.id = id;
-		this.entrega = entrega;
-		this.nota = nota;
-		this.turmaAluno = turmaAluno;
-		this.comentarios = comentarios;
-	}
-	
-	public Avaliacao(Entrega entrega, double nota, int turmaAluno, String comentarios) {
-		this.entrega = entrega;
-		this.nota = nota;
-		this.turmaAluno = turmaAluno;
-		this.comentarios = comentarios;
-	}
-	
-	public Avaliacao(int id, Date dataAvaliacao, Entrega entrega, double nota, int turmaAluno, String comentarios) {
 		this.dataAvaliacao = dataAvaliacao;
-		this.id = id;
-		this.entrega = entrega;
-		this.nota = nota;
-		this.turmaAluno = turmaAluno;
-		this.comentarios = comentarios;
 	}
 	
 	public int getTurmaAluno() {

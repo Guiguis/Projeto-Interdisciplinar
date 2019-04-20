@@ -3,7 +3,7 @@ package controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,16 +35,26 @@ public class ManterAvaliacaoController extends HttpServlet {
 	 *      response)
 	 */	
 	
+	public static Date formataData(String pData) {
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		java.util.Date dataUtil = null;
+		try {
+			dataUtil = formato.parse(pData);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
+		return dataSql;
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		String pNotaTodos = request.getParameter("notaTodos");
 		String pComentariosTodos = request.getParameter("comentariosTodos");
-		//String pData = request.getParameter("data");
-		String vazio = "";
+		String pData = request.getParameter("data");
 		
 		//Verifica se o campo "todos" foi preenchido, se nao foi ele adiciona os 3 alunos manualmente
-		if(pNotaTodos.equals(vazio)) {
+		if(pNotaTodos.equals("")) {
 			Avaliacao [] lstAvaliacao = new Avaliacao[3];
 			
 			//pegar as informacoes do formulario para criar o objeto, logo em seguida joga o mesmo para dentro de uma lista
@@ -55,6 +65,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 				Avaliacao avaliacao = new Avaliacao();
 				avaliacao.setNota(Double.parseDouble(pNota));
 				avaliacao.setComentarios(pComentarios);	
+				avaliacao.setDataAvaliacao(formataData(pData));
 				int turma = i+1;
 				avaliacao.setTurmaAluno(turma);
 				lstAvaliacao[i] = avaliacao;
@@ -81,7 +92,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 			Avaliacao avaliacao = new Avaliacao();
 			avaliacao.setNota(Double.parseDouble(pNotaTodos));
 			avaliacao.setComentarios(pComentariosTodos);
-			//avaliacao.setDataAvaliacao(conventer(pData));
+			avaliacao.setDataAvaliacao(formataData(pData));
 			
 			//adiciona os objetos a lista
 			Avaliacao [] lstAvaliacao = new Avaliacao[3];

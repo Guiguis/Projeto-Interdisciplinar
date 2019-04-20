@@ -21,16 +21,14 @@ public class AvaliacaoDAO {
 	
 	public void createAvaliacao(Avaliacao avaliacao) {
 		Connection conn = new ConnectionFactory().getConnection();
-		//converte a data
-		//java.sql.Date data = new java.sql.Date(avaliacao.getDataAvaliacao().getTime());
-
-		String sql = "INSERT INTO Avaliacao (entrega_id, turma_aluno_id, nota, comentarios) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Avaliacao (entrega_id, turma_aluno_id, nota, comentarios, dt_avaliacao) VALUES (?, ?, ?, ?, ?)";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 			stm.setInt(1, 2);
 			stm.setInt(2, avaliacao.getTurmaAluno());
 			stm.setDouble(3, avaliacao.getNota());
 			stm.setString(4, avaliacao.getComentarios());
+			stm.setDate(5, avaliacao.getDataAvaliacao());
 			
 			int affectedRows = stm.executeUpdate();
 
@@ -89,7 +87,7 @@ public class AvaliacaoDAO {
 		Avaliacao avaliacao = new Avaliacao();
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "SELECT nota, comentario FROM avaliacao WHERE id = ?";
+		String sqlComand = "SELECT nota, comentario, dt_avaliacao FROM avaliacao WHERE id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
@@ -98,7 +96,7 @@ public class AvaliacaoDAO {
 			
 			if(rs.next()) {
 				avaliacao.setNota(rs.getDouble("Nota"));
-				//avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
+				avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
 				avaliacao.setComentarios(rs.getString("Comentario"));
 			} 
 		
