@@ -33,22 +33,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
-	 */
-	
-	/*
-	public static Date conventer(String pData) {
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		Date data;
-		try {
-			data = formato.parse(pData);
-		} catch (ParseException e) {
-			data = null;
-		}
-		return data;
-		
-	}
-	 */
-	
+	 */	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -58,7 +43,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		//String pData = request.getParameter("data");
 		String vazio = "";
 		
-		//Verifica se o campo todos foi preenchido, se nao foi ele adiciona os 3 alunos manualmente
+		//Verifica se o campo "todos" foi preenchido, se nao foi ele adiciona os 3 alunos manualmente
 		if(pNotaTodos.equals(vazio)) {
 			Avaliacao [] lstAvaliacao = new Avaliacao[3];
 			
@@ -91,7 +76,6 @@ public class ManterAvaliacaoController extends HttpServlet {
 			view.forward(request, response);
 			
 		}
-		//senao ele define a mesma nota para todos
 		else{
 			//pega as informacoes do formulario
 			Avaliacao avaliacao = new Avaliacao();

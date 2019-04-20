@@ -31,8 +31,6 @@ public class AvaliacaoDAO {
 			stm.setInt(2, avaliacao.getTurmaAluno());
 			stm.setDouble(3, avaliacao.getNota());
 			stm.setString(4, avaliacao.getComentarios());
-			//stm.setDate(3, data);
-			//stm.setInt(4, avaliacao.getEntrega().getId());			
 			
 			int affectedRows = stm.executeUpdate();
 
