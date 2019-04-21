@@ -1,9 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,7 +58,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		
 		//Verifica se o campo "todos" foi preenchido, se nao foi ele adiciona os 3 alunos manualmente
 		if(pNotaTodos.equals("")) {
-			Avaliacao [] lstAvaliacao = new Avaliacao[3];
+			ArrayList<Avaliacao>lstAvaliacao = new ArrayList<Avaliacao>();
 			
 			//pegar as informacoes do formulario para criar o objeto, logo em seguida joga o mesmo para dentro de uma lista
 			for(int i = 0; i < 3; i++) {
@@ -70,7 +71,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 				avaliacao.setDataAvaliacao(formataData(pData));
 				int turma = i+1;
 				avaliacao.setTurmaAluno(turma);
-				lstAvaliacao[i] = avaliacao;
+				lstAvaliacao.add(avaliacao);
 			}
 			
 			// instanciar o service e cria os objetos(avaliacao) no banco
@@ -78,9 +79,9 @@ public class ManterAvaliacaoController extends HttpServlet {
 			as.createAvaliacao(lstAvaliacao);
 			
 			//carrega os objetos para mostrar na tela
-			for(int i = 0; i < lstAvaliacao.length; i++) {
-				Avaliacao avaliacao = lstAvaliacao[i];
-				lstAvaliacao[i] = as.loadAvaliacao(avaliacao.getId());
+			for(int i = 0; i < lstAvaliacao.size(); i++) {
+				Avaliacao avaliacao = lstAvaliacao.get(i);
+				lstAvaliacao.set(i, as.loadAvaliacao(avaliacao.getId()));
 				// enviar para o jsp
 				request.setAttribute("avaliacao", avaliacao);
 			}
@@ -91,9 +92,9 @@ public class ManterAvaliacaoController extends HttpServlet {
 		}
 		else{
 			//adiciona os objetos a lista
-			Avaliacao [] lstAvaliacao = new Avaliacao[3];
+			ArrayList<Avaliacao>lstAvaliacao = new ArrayList<Avaliacao>();
 			
-			for(int i = 0; i < lstAvaliacao.length; i++) {
+			for(int i = 0; i < 3; i++) {
 				//pega as informacoes do formulario
 				Avaliacao avaliacao = new Avaliacao();
 				avaliacao.setNota(Double.parseDouble(pNotaTodos));
@@ -101,7 +102,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 				avaliacao.setDataAvaliacao(formataData(pData));
 				int turma = i+1;
 				avaliacao.setTurmaAluno(turma);
-				lstAvaliacao[i] = avaliacao;
+				lstAvaliacao.add(avaliacao);
 			}
 
 			// instanciar o service e cria os objetos(avaliacao) no banco
@@ -109,9 +110,9 @@ public class ManterAvaliacaoController extends HttpServlet {
 			as.createAvaliacao(lstAvaliacao);
 			
 			//carrega os objetos para mostrar na tela
-			for(int i = 0; i < lstAvaliacao.length; i++) {
-				Avaliacao avaliacao = lstAvaliacao[i];
-				lstAvaliacao[i] = as.loadAvaliacao(avaliacao.getId());
+			for(int i = 0; i < lstAvaliacao.size(); i++) {
+				Avaliacao avaliacao = lstAvaliacao.get(i);
+				lstAvaliacao.set(i, as.loadAvaliacao(avaliacao.getId()));
 				// enviar para o jsp
 				request.setAttribute("avaliacao", avaliacao);
 			}

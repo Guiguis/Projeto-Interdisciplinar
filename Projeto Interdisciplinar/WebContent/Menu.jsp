@@ -10,7 +10,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="#"></a></li>
+				<li class="nav-item"><a class="nav-link" href="index.jsp"></a></li>
 				<li class="nav-item"><a class="nav-link active"
 					href="cadastroProfessor.jsp">Cadastro de Professor</a></li>
 				<li class="nav-item"><a class="nav-link active" href="cadastroAvaliacao.jsp">Avaliacao

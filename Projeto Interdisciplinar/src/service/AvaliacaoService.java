@@ -1,9 +1,10 @@
 package service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-import model.Avaliacao;
 import dao.AvaliacaoDAO;
+import model.Avaliacao;
 
 public class AvaliacaoService implements Serializable{
 
@@ -13,9 +14,9 @@ public class AvaliacaoService implements Serializable{
 		dao = new AvaliacaoDAO();
 	}
 	
-	public void createAvaliacao(Avaliacao [] lstAvaliacao) {
-		for(int i = 0; i < lstAvaliacao.length; i++) {
-			dao.createAvaliacao(lstAvaliacao[i]);
+	public void createAvaliacao(ArrayList<Avaliacao> lstAvaliacao) {
+		for(int i = 0; i < lstAvaliacao.size(); i++) {
+			dao.createAvaliacao(lstAvaliacao.get(i));
 		}
 	}
 	
