@@ -37,11 +37,13 @@ public class ManterAvaliacaoController extends HttpServlet {
 	
 	public static Date formataData(String pData) {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		java.util.Date dataUtil = null;
+		java.util.Date dataUtil;
+		Date data = new Date(System.currentTimeMillis());
 		try {
 			dataUtil = formato.parse(pData);
 		} catch (ParseException e) {
 			e.printStackTrace();
+			dataUtil = data;
 		}
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 		return dataSql;
@@ -88,15 +90,15 @@ public class ManterAvaliacaoController extends HttpServlet {
 			
 		}
 		else{
-			//pega as informacoes do formulario
-			Avaliacao avaliacao = new Avaliacao();
-			avaliacao.setNota(Double.parseDouble(pNotaTodos));
-			avaliacao.setComentarios(pComentariosTodos);
-			avaliacao.setDataAvaliacao(formataData(pData));
-			
 			//adiciona os objetos a lista
 			Avaliacao [] lstAvaliacao = new Avaliacao[3];
+			
 			for(int i = 0; i < lstAvaliacao.length; i++) {
+				//pega as informacoes do formulario
+				Avaliacao avaliacao = new Avaliacao();
+				avaliacao.setNota(Double.parseDouble(pNotaTodos));
+				avaliacao.setComentarios(pComentariosTodos);
+				avaliacao.setDataAvaliacao(formataData(pData));
 				int turma = i+1;
 				avaliacao.setTurmaAluno(turma);
 				lstAvaliacao[i] = avaliacao;
@@ -108,6 +110,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 			
 			//carrega os objetos para mostrar na tela
 			for(int i = 0; i < lstAvaliacao.length; i++) {
+				Avaliacao avaliacao = lstAvaliacao[i];
 				lstAvaliacao[i] = as.loadAvaliacao(avaliacao.getId());
 				// enviar para o jsp
 				request.setAttribute("avaliacao", avaliacao);

@@ -19,7 +19,7 @@ public class ConnectionFactory {
     public Connection getConnection() {
         String servidor = "localhost";
         String porta = "3306";
-        String database = "teste";
+        String database = "mydb";
         String usuario = "root";
         String senha = "";
         
