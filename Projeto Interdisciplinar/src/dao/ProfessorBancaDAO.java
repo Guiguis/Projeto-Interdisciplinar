@@ -24,12 +24,12 @@ public class ProfessorBancaDAO {
 			int affectedRows = stm.executeUpdate();
 
 	        if (affectedRows == 0) {
-	            throw new SQLException("Criação de ProfessorBanca falhou. Nenhuma linha criada");
+	            throw new SQLException("Criaï¿½ï¿½o de ProfessorBanca falhou. Nenhuma linha criada");
 	        }
 
 	        try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
 	        	if (generatedKeys.next()) professorBanca.setId((int) generatedKeys.getLong(1));
-	        	else throw new SQLException("Criação de ProfessorBanca falhou. Nenhum id criado");
+	        	else throw new SQLException("Criaï¿½ï¿½o de ProfessorBanca falhou. Nenhum id criado");
 	        }
 	        
 		}catch (SQLException e) {
@@ -88,13 +88,13 @@ public class ProfessorBancaDAO {
 
 		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
 
-			stm.setInt(1, professorBanca.getId());
+			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
 
 			if(rs.next()) {
 				professorBanca.setAvaliacao(rs.getDouble("Avaliacao"));
-				professorBanca.setBanca(bancaDAO.loadBanca(professorBanca.getBanca().getId()));
-				professorBanca.setProfessor(professorDAO.load(professorBanca.getProfessor().getId()));
+				professorBanca.setBanca(bancaDAO.loadBanca(rs.getInt("banca")));
+				professorBanca.setProfessor(professorDAO.load(rs.getInt("professor")));
 			}
 
 		}catch(SQLException e) {
