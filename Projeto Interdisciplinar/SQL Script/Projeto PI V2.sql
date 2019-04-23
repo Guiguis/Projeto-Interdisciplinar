@@ -260,7 +260,6 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
--- ------------------------------------ USUARIO -----------------------------
 INSERT INTO `usuario` VALUES 
 
 (1,'Pedro Quessada','pedro.quessada@usjt.br','aluno123'),
@@ -313,54 +312,89 @@ INSERT INTO `professor` VALUES
 (3,1,2018,'SIN-MCA1',1);
 
  -- ---------------------------- GRUPO ---------------------------------------------
- INSERT INTO `grupo` VALUES 
-(1,8,1,'Pedro Quessada'),
-(2,8,1,'Karen Beth'),
-(3,8,1,'Arthur Agostinho'),
-(4,8,1,'Jamal Mirando'),
-(5,8,1,'Guilherme Bodelon'),
-(6,9,2,'Gustavo Xinzao'),
-(7,9,2,'Yara Faria'),
-(8,9,2,'Jaqueline Pereira'),
-(9,9,2,'Bruno Nascimento'),
-(10,9,2,'Paloma Pereira');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (1,8,1,'Grupo 1');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (2,8,1,'Grupo 1');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (3,8,1,'Grupo 1');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (4,8,1,'Grupo 1');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (5,8,1,'Grupo 1');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (6,9,2,'Grupo 2');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (7,9,2,'Grupo 2');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (8,9,2,'Grupo 2');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (9,9,2,'Grupo 2');
+INSERT INTO `grupo` (`id`,`orientador_id`,`numero`,`nome`) VALUES (10,9,2,'Grupo 2');
 
  -- --------------------------- TURMA_ALUNO ---------------------------------------
- INSERT INTO `turma_aluno` VALUES 
-(1,3,1,1),
-(2,3,1,2),
-(3,3,1,3),
-(4,3,1,4),
-(6,3,1,5),
-(5,3,2,6),
-(10,3,2,7),
-(11,3,2,8),
-(12,3,2,9),
-(13,3,2,10),
-(1,1,1,11),
-(2,1,1,12),
-(3,1,1,13),
-(4,1,1,14),
-(6,1,1,15),
-(5,2,2,16),
-(10,2,2,17),
-(11,2,2,18),
-(12,2,2,19),
-(13,2,2,20);
+
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (1,3,1,1);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (2,3,2,2);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (3,3,3,3);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (4,3,4,4);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (6,3,5,5);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (5,3,6,6);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (10,3,7,7);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (11,3,8,8);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (12,3,9,9);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (13,3,10,10);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (1,1,1,11);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (2,1,2,12);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (3,1,3,13);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (4,1,4,14);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (6,1,5,15);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (5,2,6,16);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (10,2,7,17);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (11,2,8,18);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (12,2,9,19);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (13,2,10,20);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (5,1,6,21);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (10,1,7,22);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (11,1,8,23);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (12,1,9,24);
+INSERT INTO `turma_aluno` (`Aluno_id`,`turma_id`,`grupo_id`,`id`) VALUES (13,1,10,25);
 
 -- ----------------------------- BANCA ----------------------------------------
-INSERT INTO `banca` VALUES
- (1,1,'2019-05-20 00:00:00','102A'),
- (2,2,'2019-06-01 00:00:00','103E');
+
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (1,1,'2019-05-20 00:00:00','102A');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (2,2,'2019-05-20 00:00:00','102A');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (3,3,'2019-05-20 00:00:00','102A');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (4,4,'2019-05-20 00:00:00','102A');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (5,5,'2019-05-20 00:00:00','102A');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (6,6,'2019-06-01 00:00:00','103E');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (7,7,'2019-06-01 00:00:00','103E');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (8,8,'2019-06-01 00:00:00','103E');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (9,9,'2019-06-01 00:00:00','103E');
+INSERT INTO `banca` (`id`,`grupo_id`,`data`,`sala`) VALUES (10,10,'2019-06-01 00:00:00','103E');
  
 -- ----------------------------- PROFESSOR_BANCA ------------------------------
-INSERT INTO `professores_banca` VALUES 
-(1,7,1,80.00),
-(1,8,2,75.00),
-(1,9,3,90.00),
-(2,8,4,70.00),
-(2,14,5,95.00),
-(2,15,6,80.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (1,7,1,80.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (2,7,2,80.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (3,7,3,80.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (4,7,4,80.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (5,7,5,80.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (1,8,6,75.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (2,8,7,75.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (3,8,8,75.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (4,8,9,75.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (5,8,10,75.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (1,9,11,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (2,9,12,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (3,9,13,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (4,9,14,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (5,9,15,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (6,7,16,95.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (7,7,17,95.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (8,7,18,95.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (9,7,19,95.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (10,7,20,95.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (6,14,21,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (7,14,22,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (8,14,23,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (9,14,24,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (10,14,25,90.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (6,15,26,93.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (7,15,27,93.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (8,15,28,93.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (9,15,29,93.00);
+INSERT INTO `professores_banca` (`banca_id`,`Professor_id`,`id`,`avaliacao`) VALUES (10,15,30,93.00);
 
 -- ----------------------------- ATIVIDADE -----------------------------------
 INSERT INTO `atividade` VALUES 
