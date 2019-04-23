@@ -15,6 +15,22 @@ public class Turma {
 	private String sigla;
 	private ArrayList<Aluno> lstAlunos;
 	
+	public Turma() {
+		
+	}
+	
+	public Turma(int semestreLetivo, int anoLetivo) {
+		this.semestreLetivo = semestreLetivo;
+		this.anoLetivo = anoLetivo;
+	}
+	
+	public Turma(int id, int semestreLetivo, int anoLetivo, String sigla) {
+		this.id = id;
+		this.semestreLetivo = semestreLetivo;
+		this.anoLetivo = anoLetivo;
+		this.sigla = sigla;
+	}
+	
 	public int getId() {
 		return id;
 	}

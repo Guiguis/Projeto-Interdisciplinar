@@ -23,8 +23,6 @@
 <title>Professor</title>
 </head>
 <body>
-	
-<%Avaliacao avaliacao = (Avaliacao)request.getAttribute("avaliacao"); %>
 
 <div class="container">
 	<div class="row">
@@ -36,41 +34,22 @@
 			
 			<div class="form-group col-md-4">
 				<label for="inputName">Data da avaliacao: </label>
-				<label ><fmt:formatDate pattern="dd/MM/yyyy" value="${avaliacao.dataAvaliacao}" /></label>
+				<% // <fmt:formatDate pattern="dd/MM/yyyy" value="${lstAvaliacao[0].dataAvaliacao.parameterName}"/>%>
+				<label ></label>
 			</div>
-		
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="inputName">Aluno 1: </label>
-					<label >${avaliacao.nota}</label>
+
+			<c:forEach var="avaliacao" items="${lstAvaliacao}">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="inputName">Aluno 1: </label>
+						<label >${avaliacao.nota}</label>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputName">Comentarios: </label>
+						<label >${avaliacao.comentarios}</label>
+					</div>
 				</div>
-				<div class="form-group col-md-4">
-					<label for="inputName">Comentarios: </label>
-					<label >${avaliacao.comentarios}</label>
-				</div>
-			</div>
-			
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="inputName">Aluno 2: </label>
-					<label >${avaliacao.nota}</label>
-				</div>
-				<div class="form-group col-md-4">
-					<label for="inputName">Comentarios: </label>
-					<label >${avaliacao.comentarios}</label>
-				</div>
-			</div>
-			
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="inputName">Aluno 3: </label>
-					<label >${avaliacao.nota}</label>
-				</div>
-				<div class="form-group col-md-4">
-					<label for="inputName">Comentarios: </label>
-					<label >${avaliacao.comentarios}</label>
-				</div>
-			</div>
+			</c:forEach>
 
 		</div>
 	</div>

@@ -83,9 +83,10 @@ public class ManterAvaliacaoController extends HttpServlet {
 				Avaliacao avaliacao = lstAvaliacao.get(i);
 				lstAvaliacao.set(i, as.loadAvaliacao(avaliacao.getId()));
 				// enviar para o jsp
-				request.setAttribute("avaliacao", avaliacao);
+				
 			}
 
+			request.setAttribute("lstAvaliacao", lstAvaliacao);
 			RequestDispatcher view = request.getRequestDispatcher("Avaliacao.jsp");
 			view.forward(request, response);
 			
@@ -109,14 +110,15 @@ public class ManterAvaliacaoController extends HttpServlet {
 			AvaliacaoService as = new AvaliacaoService();
 			as.createAvaliacao(lstAvaliacao);
 			
+			ArrayList<Avaliacao> lista = new ArrayList<>();
 			//carrega os objetos para mostrar na tela
 			for(int i = 0; i < lstAvaliacao.size(); i++) {
 				Avaliacao avaliacao = lstAvaliacao.get(i);
 				lstAvaliacao.set(i, as.loadAvaliacao(avaliacao.getId()));
-				// enviar para o jsp
-				request.setAttribute("avaliacao", avaliacao);
+				lista.add(avaliacao);
 			}
 
+			request.setAttribute("lstAvaliacao", lista);
 			RequestDispatcher view = request.getRequestDispatcher("Avaliacao.jsp");
 			view.forward(request, response);	
 				
