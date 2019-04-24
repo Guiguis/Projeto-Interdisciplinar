@@ -70,7 +70,7 @@ public class AtividadeDAO {
     */
 	public Atividade load(int id) { // retorna uma atividade com base no ID dela
 		Connection conn = new ConnectionFactory().getConnection();
-
+		TemaDAO dao = new TemaDAO();
 		String sqlComand = "SELECT * from atividade where id=?";
 
 		Atividade atividade = new Atividade();
@@ -89,6 +89,7 @@ public class AtividadeDAO {
 				atividade.setFormatoEntrega(rs.getString("formato_entrega"));
 				atividade.setDtInicio((rs.getDate("dt_inicio")));
 				atividade.setDtFim((rs.getDate("dt_fim")));
+				atividade.setTema(dao.loadTema(rs.getInt("tema_id")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

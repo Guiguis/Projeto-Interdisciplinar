@@ -1,10 +1,12 @@
 package service;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import dao.AvaliacaoDAO;
 import model.Avaliacao;
+import model.Grupo;
 
 public class AvaliacaoService implements Serializable{
 
@@ -28,7 +30,15 @@ public class AvaliacaoService implements Serializable{
 		dao.deleteAvaliacao(avaliacao);
 	}
 	
-	public Avaliacao loadAvaliacao(int id) {
-		return dao.loadAvaliacao(id);
+	public Avaliacao load(int id) {
+		return dao.load(id);
+	}
+	
+	public ArrayList<Date> loadDatas(Grupo grupo) {
+		return dao.loadDatas(grupo);
+	}
+	
+	public ArrayList<Avaliacao> loadAvaliacoes(Date data) {
+		return dao.loadAvaliacoes(data);
 	}
 }

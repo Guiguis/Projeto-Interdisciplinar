@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import connection.ConnectionFactory;
 import model.Avaliacao;
+import model.Grupo;
 
 public class AvaliacaoDAO {
 	
@@ -83,7 +85,7 @@ public class AvaliacaoDAO {
 		}
 	}
 
-	public Avaliacao loadAvaliacao(int id) {
+	public Avaliacao load(int id) {
 		Avaliacao avaliacao = new Avaliacao();
 		Connection conn = new ConnectionFactory().getConnection();
 		
@@ -105,4 +107,60 @@ public class AvaliacaoDAO {
 		}
 		return avaliacao;
 	}
+	
+	//Carrega todas as datas em que um grupo foi avalido
+	public ArrayList<Date> loadDatas(Grupo grupo) {
+		Connection conn = new ConnectionFactory().getConnection();
+		ArrayList<Date> lista = new ArrayList<>();
+		
+		String sqlComand = 
+				"SELECT DISTINCT dt_avaliacao FROM Avaliacao " + 
+				"JOIN turma_aluno t " + 
+				"ON avaliacao.turma_aluno_id = t.id " + 
+				"WHERE t.grupo_id = ?";		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setInt(1,grupo.getId());
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				Date data = rs.getDate("dt_avaliacao");
+				lista.add(data);
+			} 
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	//Carrega uma avaliacao com base na data
+	public ArrayList<Avaliacao> loadAvaliacoes(Date data) {
+		Connection conn = new ConnectionFactory().getConnection();
+		ArrayList<Avaliacao> lista = new ArrayList<>();
+		EntregaDAO dao = new EntregaDAO();
+		
+		String sqlComand = 	"SELECT * FROM avaliacao WHERE dt_avaliacao = ?";
+				
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setDate(1, data);
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				Avaliacao avaliacao = new Avaliacao();
+				avaliacao.setComentarios(rs.getString("comentarios"));
+				avaliacao.setEntrega(dao.loadEntrega(rs.getInt("entrega_id")));
+				avaliacao.setNota(rs.getInt("nota"));
+				lista.add(avaliacao);
+			} 
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	
+	
 }

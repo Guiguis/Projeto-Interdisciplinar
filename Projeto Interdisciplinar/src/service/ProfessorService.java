@@ -1,9 +1,12 @@
 package service;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import dao.ProfessorDAO;
 import model.Professor;
 
-public class ProfessorService {
+public class ProfessorService implements Serializable{
 
 	ProfessorDAO dao;
 	
@@ -25,5 +28,9 @@ public class ProfessorService {
 	
 	public Professor load(int id) {
 		return dao.load(id);
+	}
+	
+	public ArrayList<Professor> getProfessores(){
+		return dao.getProfessores();
 	}
 }

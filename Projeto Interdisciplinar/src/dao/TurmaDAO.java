@@ -11,40 +11,6 @@ import model.Turma;
 
 
 public class TurmaDAO {
-	public Turma load(int id) { // retorna uma Grupo com base no ID dela
-		Connection conn = new ConnectionFactory().getConnection();
-
-		String sqlComand = "SELECT * FROM turma WHERE id=?";
-
-		Turma turma = null;
-
-		try (PreparedStatement stm = conn.prepareStatement(sqlComand)) {
-			stm.setInt(1, id);
-
-			ResultSet rs = stm.executeQuery();
-
-			if (rs.next()) {
-				turma = new Turma();
-				TemaDAO temaDAO = new TemaDAO();
-
-				turma.setId((rs.getInt("id")));
-				turma.setSemestreLetivo((rs.getInt("semestre_letivo")));
-				turma.setAnoLetivo((rs.getInt("ano_letivo")));
-				turma.setSigla((rs.getString("sigla")));
-				turma.setTema(temaDAO.loadTema(rs.getInt("tema_id")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return turma;
-	}
 	
 	//Carrega Todos os anos/semestres -------------------------------------------------------------------------
 	public ArrayList<Turma> mostrarAno() {
@@ -71,7 +37,7 @@ public class TurmaDAO {
 		return lista;
 	}
 	
-	//Carrega todas as siglas de uma turma baseada no ano e semestre-------------------------------------------
+	//Carrega todas as turmas baseada no ano e semestre------------------------------------------
 	public ArrayList<Turma> mostrarSigla(Turma turma) {
 		ArrayList<Turma> lista = new ArrayList<>();
 
@@ -81,7 +47,7 @@ public class TurmaDAO {
 
 		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
 			stm.setInt(1, turma.getSemestreLetivo());
-			stm.setInt(2, turma.getAnoLetivo());
+			stm.setInt(2, turma.getAno());
 			ResultSet rs = stm.executeQuery();
 
 			while(rs.next()) {
@@ -98,6 +64,5 @@ public class TurmaDAO {
 		}
 		return lista;
 	}
-
 
 }

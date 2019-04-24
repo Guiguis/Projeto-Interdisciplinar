@@ -18,7 +18,8 @@ public class Grupo {
 		
 	}
 	
-	public Grupo(int numero, String nome, Professor orientador) {
+	public Grupo(int id, int numero, String nome, Professor orientador) {
+		this.id = id;
 		this.orientador = orientador;
 		this.numero = numero;
 		this.nome = nome;

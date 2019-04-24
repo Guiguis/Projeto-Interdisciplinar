@@ -1,10 +1,11 @@
 package dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import connection.ConnectionFactory;
 import model.Professor;
 import model.Usuario;
@@ -138,4 +139,63 @@ public class ProfessorDAO extends UsuarioDAO{
 		
 		deleteUsuario(id);
 	}
+	
+	/**
+     * CRUD: Carrega dados de todos os professores
+     * @param conn: Connection
+     */
+	public ArrayList<Professor> getProfessores() {
+		Connection conn = new ConnectionFactory().getConnection();
+		
+		String sqlComand = "SELECT id, nome, email, senha, administrador, matricula "
+				    + "FROM usuario JOIN professor p ON usuario.id = p.professor_id";
+		
+		ArrayList<Professor> lista = new ArrayList<Professor>();
+		Professor professor = null;
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			ResultSet rs = stm.executeQuery();
+			
+            while(rs.next()) {  
+            	int id = rs.getInt("id");
+            	String nome = rs.getString("nome");
+            	String senha = rs.getString("senha");
+            	String email = rs.getString("email");
+            	String matricula = rs.getString("matricula");
+            	int administrador = rs.getInt("administrador");
+            	professor = new Professor(id, nome, email, senha, matricula, administrador);
+            	lista.add(professor);
+            }
+            
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lista;
+	}
+	
+	
+	public static void main(String [] args) {
+		ProfessorDAO dao = new ProfessorDAO();
+		ArrayList<Professor> lista = dao.getProfessores();
+		for(int i = 0; i < lista.size(); i++) {
+			System.out.print("Id: " + lista.get(i).getId());
+			System.out.print(" Nome: " + lista.get(i).getNome());
+			System.out.print(" E-mail: " + lista.get(i).getEmail());
+			System.out.print(" Senha: " + lista.get(i).getSenha());
+			System.out.print(" Matricula: " + lista.get(i).getMatricula());
+			System.out.println(" Administrador: " + lista.get(i).getAdministrador());
+			System.out.println();
+		}
+		
+		
+	}
+	
 }

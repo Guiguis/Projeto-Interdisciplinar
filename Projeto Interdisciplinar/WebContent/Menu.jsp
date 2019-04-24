@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="model.Turma" %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 		<a class="navbar-brand" href="#">Inicio</a>
@@ -17,19 +21,22 @@
 						Semanal</a></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Gerar
 						Declarção</a></li>
+				<li class="nav-item active"><a class="nav-link" href="Grupo.jsp">Grupo
+						</a></li>
 
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle " href="#"
-					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> Semestre </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">2018/01</a> <a
-							class="dropdown-item" href="#">2018/02</a> <a
-							class="dropdown-item" href="#">2019/01</a>
-					</div></li>
+				<li class="nav-item dropdown">
+					<select class="form-control" id="exampleFormControlSelect1">
+      					<c:forEach var="turma" items="${lista}">
+							<option>${turma.ano}</option>
+					    </c:forEach>
+  				    </select></li>
+				
 			</ul>
-
+			
+			
 		</div>
 	</nav>
+
+

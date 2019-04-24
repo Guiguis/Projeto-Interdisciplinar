@@ -17,6 +17,12 @@ public class Professor extends Usuario {
 	public Professor(String email, String senha) {
 		super(email, senha);
 	}
+	
+	public Professor(int id, String nome, String email, String senha, String matricula, int administrador) {
+		super(id, nome, email, senha);
+		this.matricula = matricula;
+		this.administrador = administrador;
+	}
 
 	public int getAdministrador() {
 		return administrador;
@@ -33,34 +39,6 @@ public class Professor extends Usuario {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-
-	public ArrayList<Grupo> getLstGrupos() {
-		return lstGrupos;
-	}
-
-	public void setLstGrupos(ArrayList<Grupo> lstGrupos) {
-		this.lstGrupos = lstGrupos;
-	}
-	
-	public void create() {
-		ProfessorDAO dao = new ProfessorDAO();
-		dao.create(this);
-	}
-	
-	public void load() {
-		ProfessorDAO dao = new ProfessorDAO();
-		dao.load(this.getId());
-	}
-	
-	public void update() {
-		ProfessorDAO dao = new ProfessorDAO();		
-		dao.update(this);
-	}
-
-	public void delete() {
-		ProfessorDAO dao = new ProfessorDAO();		
-		dao.delete(this.getId());
-	}	
 	
 	@Override
 	public String toString() {

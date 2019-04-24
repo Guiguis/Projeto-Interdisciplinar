@@ -19,6 +19,7 @@ public class Avaliacao {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	public Avaliacao(int turmaAluno, double nota, String comentarios, Date dataAvaliacao) {
 		this.turmaAluno = turmaAluno;
 		this.nota = nota;

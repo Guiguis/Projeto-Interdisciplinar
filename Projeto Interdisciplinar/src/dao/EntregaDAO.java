@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import connection.ConnectionFactory;
+import model.Atividade;
 import model.Entrega;
+import model.Grupo;
+import dao.AtividadeDAO;
 
 public class EntregaDAO {
 
@@ -29,6 +33,34 @@ public class EntregaDAO {
 			e.printStackTrace();
 		}
 		return entrega;
+	}
+	
+	public ArrayList<Entrega> loadTodos(Grupo grupo){
+		ArrayList<Entrega> listaEntrega= new ArrayList<Entrega>();
+		AtividadeDAO dao = new AtividadeDAO();
+		GrupoDAO grupoDAO = new GrupoDAO();
+		Connection conn = new ConnectionFactory().getConnection();
+		
+		String sqlComand = "SELECT * FROM entrega WHERE grupo_id = ?";
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setInt(1,grupo.getId());
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				Entrega entrega = new Entrega();
+				entrega.setId(rs.getInt("id"));
+				entrega.setDtCadastro(rs.getDate("dt_cadastro"));
+				entrega.setAtividade(dao.load(rs.getInt("atividade_id")));
+				entrega.setGrupo(grupoDAO.load(rs.getInt("grupo_id")));
+				listaEntrega.add(entrega);
+			} 
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return listaEntrega;
 	}
 	
 }

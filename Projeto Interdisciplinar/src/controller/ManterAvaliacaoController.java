@@ -77,18 +77,19 @@ public class ManterAvaliacaoController extends HttpServlet {
 			// instanciar o service e cria os objetos(avaliacao) no banco
 			AvaliacaoService as = new AvaliacaoService();
 			as.createAvaliacao(lstAvaliacao);
-			
+		
+			ArrayList<Avaliacao> lista = new ArrayList<>();
 			//carrega os objetos para mostrar na tela
 			for(int i = 0; i < lstAvaliacao.size(); i++) {
 				Avaliacao avaliacao = lstAvaliacao.get(i);
-				lstAvaliacao.set(i, as.loadAvaliacao(avaliacao.getId()));
-				// enviar para o jsp
-				
+				lstAvaliacao.set(i, as.load(avaliacao.getId()));
+				lista.add(avaliacao);
 			}
-
-			request.setAttribute("lstAvaliacao", lstAvaliacao);
+			
+			// enviar para o jsp
+			request.setAttribute("lstAvaliacao", lista);
 			RequestDispatcher view = request.getRequestDispatcher("Avaliacao.jsp");
-			view.forward(request, response);
+			view.forward(request, response);	
 			
 		}
 		else{
@@ -114,10 +115,11 @@ public class ManterAvaliacaoController extends HttpServlet {
 			//carrega os objetos para mostrar na tela
 			for(int i = 0; i < lstAvaliacao.size(); i++) {
 				Avaliacao avaliacao = lstAvaliacao.get(i);
-				lstAvaliacao.set(i, as.loadAvaliacao(avaliacao.getId()));
+				lstAvaliacao.set(i, as.load(avaliacao.getId()));
 				lista.add(avaliacao);
 			}
-
+			
+			// enviar para o jsp
 			request.setAttribute("lstAvaliacao", lista);
 			RequestDispatcher view = request.getRequestDispatcher("Avaliacao.jsp");
 			view.forward(request, response);	

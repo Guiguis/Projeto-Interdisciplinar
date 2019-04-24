@@ -10,7 +10,7 @@ public class Turma {
 	
 	private int  id;
 	private int  semestreLetivo;
-	private int  anoLetivo;
+	private int  ano;
 	private Tema tema;
 	private String sigla;
 	private ArrayList<Aluno> lstAlunos;
@@ -19,15 +19,15 @@ public class Turma {
 		
 	}
 	
-	public Turma(int semestreLetivo, int anoLetivo) {
+	public Turma(int semestreLetivo, int ano) {
 		this.semestreLetivo = semestreLetivo;
-		this.anoLetivo = anoLetivo;
+		this.ano = ano;
 	}
 	
-	public Turma(int id, int semestreLetivo, int anoLetivo, String sigla) {
+	public Turma(int id, int semestreLetivo, int ano, String sigla) {
 		this.id = id;
 		this.semestreLetivo = semestreLetivo;
-		this.anoLetivo = anoLetivo;
+		this.ano = ano;
 		this.sigla = sigla;
 	}
 	
@@ -55,12 +55,12 @@ public class Turma {
 		this.semestreLetivo = semestreLetivo;
 	}
 	
-	public int getAnoLetivo() {
-		return anoLetivo;
+	public int getAno() {
+		return ano;
 	}
 	
-	public void setAnoLetivo(int anoLetivo) {
-		this.anoLetivo = anoLetivo;
+	public void setAno(int ano) {
+		this.ano = ano;
 	}
 	
 	public String getSigla() {
