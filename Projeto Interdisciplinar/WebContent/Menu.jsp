@@ -23,18 +23,18 @@
 						Declarção</a></li>
 				<li class="nav-item active"><a class="nav-link" href="Grupo.jsp">Grupo
 						</a></li>
+				<li class="nav-item active"><a class="nav-link" href="ListarProfessor">Professores
+						</a></li>
 
-			</ul>
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown">
-					<select class="form-control" id="exampleFormControlSelect1">
-      					<c:forEach var="turma" items="${lista}">
-							<option>${turma.ano}</option>
-					    </c:forEach>
-  				    </select></li>
-				
-			</ul>
+			</ul>	
 			
+			<ul class="navbar-nav ml-auto" >
+				<select name="semestre" id="semestre">
+					<c:forEach var="s" items="${listaSemestre }">
+		          		<option value="${s.ano}">${s.ano}/${s.semestreLetivo}</option>
+		          </c:forEach>
+				</select>
+			</ul>
 			
 		</div>
 	</nav>

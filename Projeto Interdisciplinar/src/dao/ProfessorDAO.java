@@ -182,20 +182,4 @@ public class ProfessorDAO extends UsuarioDAO{
 	}
 	
 	
-	public static void main(String [] args) {
-		ProfessorDAO dao = new ProfessorDAO();
-		ArrayList<Professor> lista = dao.getProfessores();
-		for(int i = 0; i < lista.size(); i++) {
-			System.out.print("Id: " + lista.get(i).getId());
-			System.out.print(" Nome: " + lista.get(i).getNome());
-			System.out.print(" E-mail: " + lista.get(i).getEmail());
-			System.out.print(" Senha: " + lista.get(i).getSenha());
-			System.out.print(" Matricula: " + lista.get(i).getMatricula());
-			System.out.println(" Administrador: " + lista.get(i).getAdministrador());
-			System.out.println();
-		}
-		
-		
-	}
-	
 }
