@@ -29,7 +29,7 @@
      <form action="ListarProfessor" method="post">
          <div id="top" class="row">
              <div class="col-md-11">
-                 <h2>Clientes</h2>
+                 <h2>Professores</h2>
              </div>
 
              <div class="col-md-6">
