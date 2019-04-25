@@ -16,7 +16,7 @@ public class GrupoDAO {
 	public Grupo load(int id) { 
 		Connection conn = new ConnectionFactory().getConnection();
 
-		String sqlComand = "SELECT * FROM atividade WHERE id=?";
+		String sqlComand = "SELECT * FROM grupo WHERE id=?";
 		ProfessorDAO professorDAO = new ProfessorDAO();
 		Grupo grupo = new Grupo();
 
@@ -44,7 +44,7 @@ public class GrupoDAO {
 	}
 	
 	//Carrega todos os grupos baseado na sigla de uma turma ---------------------------------------------------------------
-	public ArrayList<Grupo> carregaGrupos(Turma turma) {
+	public ArrayList<Grupo> carregaPorSigla(Turma turma) {
 		ArrayList<Grupo> lista = new ArrayList<>();
 		ProfessorDAO professorDAO = new ProfessorDAO();
 		Connection conn = new ConnectionFactory().getConnection();
@@ -73,6 +73,11 @@ public class GrupoDAO {
 		return lista;
 	}
 	
+	
+	/***
+	 * 
+	 * @return Carrega todos os grupos
+	 */
 	public ArrayList<Grupo> carrega() {
 		ArrayList<Grupo> lista = new ArrayList<>();
 		ProfessorDAO professorDAO = new ProfessorDAO();

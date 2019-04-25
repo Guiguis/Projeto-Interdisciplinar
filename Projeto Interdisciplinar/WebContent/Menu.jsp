@@ -18,7 +18,7 @@
 				<li class="nav-item active"><a class="nav-link active" href="ListarProfessor?acao=reiniciar">CRUD professor</a></li>
 				<li class="nav-item active"><a class="nav-link active" href="cadastroAvaliacao.jsp">Avaliacao Semanal</a></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Gerar Declarção</a></li>
-				<li class="nav-item active"><a class="nav-link" href="Grupo.jsp">Grupo </a></li>
+				<li class="nav-item active"><a class="nav-link"href="ListarGrupo?acao=reiniciar">Grupo </a></li>
 			</ul>	
 			
 			

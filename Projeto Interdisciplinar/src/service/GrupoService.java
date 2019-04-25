@@ -19,7 +19,7 @@ public class GrupoService {
 	}
 	
 	public ArrayList<Grupo> carregaGrupos(Turma turma) {
-		return dao.carregaGrupos(turma);
+		return dao.carregaPorSigla(turma);
 	}
 	
 	public ArrayList<Grupo> carrega() {

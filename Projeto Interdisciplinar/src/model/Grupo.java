@@ -18,6 +18,12 @@ public class Grupo {
 		
 	}
 	
+	public Grupo(int id, int numero, String nome) {
+		this.id = id;
+		this.numero = numero;
+		this.nome = nome;
+	}
+	
 	public Grupo(int id, int numero, String nome, Professor orientador) {
 		this.id = id;
 		this.orientador = orientador;
@@ -25,7 +31,7 @@ public class Grupo {
 		this.nome = nome;
 	}
 	
-	public Grupo(int id,int numero, String nome, Professor orientador, ArrayList<Aluno> lstAlunos) {
+	public Grupo(int id, int numero, String nome, Professor orientador, ArrayList<Aluno> lstAlunos) {
 		this.id = id;
 		this.orientador = orientador;
 		this.numero = numero;

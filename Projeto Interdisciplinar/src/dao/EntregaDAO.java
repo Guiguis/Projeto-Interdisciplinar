@@ -35,7 +35,12 @@ public class EntregaDAO {
 		return entrega;
 	}
 	
-	public ArrayList<Entrega> loadTodos(Grupo grupo){
+	/***
+	 * 
+	 * @param grupo
+	 * @return returna todas as entregas de um grupo
+	 */
+	public ArrayList<Entrega> loadTodos(int id){
 		ArrayList<Entrega> listaEntrega= new ArrayList<Entrega>();
 		AtividadeDAO dao = new AtividadeDAO();
 		GrupoDAO grupoDAO = new GrupoDAO();
@@ -45,7 +50,7 @@ public class EntregaDAO {
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
-			stm.setInt(1,grupo.getId());
+			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
