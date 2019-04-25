@@ -33,8 +33,7 @@
 			<!-- Título -->
 			<h1>Cadastro Professor</h1>
 
-			<form action="ManterProfessorController" method="post"
-				class="form-horizontal">
+			<form action="ManterProfessorController" method="post" class="form-horizontal">
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
@@ -74,7 +73,8 @@
 							</label>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary">Enviar</button>
+				<button type="submit" class="btn btn-primary" name="acao" value="Criar">Enviar</button>
+				<a href="index.jsp" class="btn btn-default">Cancelar</a>
 			</form>
 		</div>
 	</div>

@@ -23,6 +23,12 @@ public class Professor extends Usuario {
 		this.matricula = matricula;
 		this.administrador = administrador;
 	}
+	
+	public Professor(int id, String nome, String email, String matricula, int administrador) {
+		super(id, nome, email);
+		this.matricula = matricula;
+		this.administrador = administrador;
+	}
 
 	public int getAdministrador() {
 		return administrador;

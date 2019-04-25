@@ -25,8 +25,6 @@
 <body>
 
 <!-- Buscar Professor -->
-
-<!-- Container Principal -->
  <div id="main" class="container">
      <form action="ListarProfessor" method="post">
          <div id="top" class="row">
@@ -47,7 +45,7 @@
 			 <div class="col-md-3"></div>
              
              <div class="col-md-3">
-                 <a href="cadastroProfessor" class="btn btn-success pull-right h2">Novo Professor</a>
+                 <a href="cadastroProfessor.jsp" class="btn btn-success pull-right h2">Criar Professor</a>
              </div>
          </div>
 	</form>
@@ -56,38 +54,51 @@
 <div id="list" class="row">
    <div class="table-responsive col-md-12">
       <table class="table table-striped" cellspacing="0" cellpadding="0">
-            <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Nome</th>
-                  <th>Matricula</th>
-                  <th>E-Mail</th>
-                  <th class="actions">Ações</th>
-              </tr>
+        <thead>
+          <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Matricula</th>
+              <th>E-Mail</th>
+              <th>Administrador</th>
+              <th class="actions">Ações</th>
+          </tr>
 
-	  <tbody>
-		<c:forEach var="p" items="${lista }">
-		  <tr>
-		    <td>${p.id }</td>
-		    <td>${p.nome }</td>
-		    <td>${p.matricula }</td>
-		    <td> ${p.email }</td>
-		    <!-- Botoes -->
-		    <td class="actions">
-		        <a class="btn btn-info btn-xs" href="ManterProfessorController?acao=Visualizar&id=${p.id }">Visualizar</a>
-		        <a class="btn btn-warning btn-xs" href="ManterProfessorController?acao=Editar&id=${p.id }">Editar</a>
-		        <button id="btn${p.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" 
-		        		data-target="#delete-modal" data-cliente="${cliente.id }">Excluir</button>
-		    </td>
-		  </tr>
-		</c:forEach>
-	  </tbody> 
-    </table>
-  </div>
+		  <tbody>
+			<c:forEach var="professor" items="${lista }">
+			  <tr>
+			    <td>${professor.id }</td>
+			    <td>${professor.nome }</td>
+			    <td>${professor.matricula }</td>
+			    <td> ${professor.email }</td>
+			    <c:if test="${professor.administrador == 1 }">
+			    	<td>SIM</td>
+			    </c:if>
+			    <c:if test="${professor.administrador == 0 }">
+			    	<td>NÃO</td>
+			    </c:if>
+			    <!-- Botoes -->
+			    <td class="actions">
+			        <a class="btn btn-info btn-xs" href="ManterProfessorController?acao=Visualizar&id=${professor.id }">Visualizar</a>
+			        <a class="btn btn-warning btn-xs" href="ManterProfessorController?acao=Editar&id=${professor.id }">Editar</a>
+			        <a class="btn btn-danger btn-xs" href="ManterProfessorController?acao=Excluir&id=${professor.id }">Excluir</a>
+			    </td>
+			  </tr>
+			</c:forEach>
+		  </tbody> 
+    	</table>
+ 	 </div>
+   </div>
 </div>
 
+  <!-- /#main -->
+<script type="text/javascript">
+    $("#delete-modal").on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); //botao que disparou a modal
+        var recipient = button.data('professor');
+        $("#id_excluir").val(recipient);
+    });
+</script>
 
-
-</div>
 </body>
 </html>
