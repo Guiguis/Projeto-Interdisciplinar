@@ -181,5 +181,46 @@ public class ProfessorDAO extends UsuarioDAO{
 		return lista;
 	}
 	
+	/**
+     * CRUD: Carrega dados de um professor procurando pelo nome
+     * @param conn: Connection
+     */
+	public ArrayList<Professor> buscarProfessor(String busca) {
+		Connection conn = new ConnectionFactory().getConnection();
+		
+		String sqlComand = "SELECT id, nome, email, senha, administrador, matricula "
+				    + "FROM usuario JOIN professor p ON usuario.id = p.professor_id "
+				    + "WHERE UPPER(nome) like ?";
+		
+		ArrayList<Professor> lista = new ArrayList<Professor>();
+		Professor professor = null;
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			stm.setString(1, "%" + busca.toUpperCase() + "%");
+			ResultSet rs = stm.executeQuery();
+			
+            while(rs.next()) {  
+            	int id = rs.getInt("id");
+            	String nome = rs.getString("nome");
+            	String senha = rs.getString("senha");
+            	String email = rs.getString("email");
+            	String matricula = rs.getString("matricula");
+            	int administrador = rs.getInt("administrador");
+            	professor = new Professor(id, nome, email, senha, matricula, administrador);
+            	lista.add(professor);
+            }
+            
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lista;
+	}
 	
 }
