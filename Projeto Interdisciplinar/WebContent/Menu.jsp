@@ -19,10 +19,17 @@
 			<li class="nav-item active"><a class="nav-link active" href="cadastroAvaliacao.jsp">Avaliacao Semanal</a></li>
 			<li class="nav-item active"><a class="nav-link" href="#">Gerar Declarção</a></li>
 			<li class="nav-item active"><a class="nav-link"href="ListarGrupo?acao=reiniciar">Grupo </a></li>
-		</ul>	
-		
-		
-		
+			<li class="nav-item">
+				<form method="post" action="Menu">
+					<select class="custom-select">
+						<option selected>Semestre / Ano</option>
+						<c:forEach var="semestre" items="${lstTurma}">
+							<option>${semestre}</option>
+						</c:forEach>
+					</select>
+				</form>
+      		</li>
+		</ul>
 	</div>
 	
 </nav>

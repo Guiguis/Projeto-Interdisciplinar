@@ -18,8 +18,7 @@ public class TurmaDAO {
 		ArrayList<Turma> lista = new ArrayList<Turma>();
 
 		Connection conn = new ConnectionFactory().getConnection();
-		String sqlInsert = 
-				"SELECT DISTINCT ano_letivo, semestre_letivo FROM turma ORDER BY ano_letivo DESC";
+		String sqlInsert = "SELECT DISTINCT ano_letivo, semestre_letivo FROM turma ORDER BY ano_letivo ASC";
 
 		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
 			ResultSet rs = stm.executeQuery();
