@@ -37,7 +37,17 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (6,'806395712'),(4,'80802347'),(5,'808137324'),(2,'81813245'),(1,'818149040'),(3,'818246244'),(11,'844638549'),(10,'846139536'),(12,'857638068'),(13,'986046147');
+INSERT INTO `aluno` VALUES 
+(6,'806395712'),
+(4,'80802347'),
+(5,'808137324'),
+(2,'81813245'),
+(1,'818149040'),
+(3,'818246244'),
+(11,'844638549'),
+(10,'846139536'),
+(12,'857638068'),
+(13,'986046147');
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +78,17 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
-INSERT INTO `atividade` VALUES (1,1,1,'Deve ser feito um sistema de cadastro','Presencial','2018-03-01 00:00:00','2018-04-01 00:00:00'),(2,1,2,'Deve ser feito um sistema de login','Presencial ','2018-04-02 00:00:00','2018-05-10 00:00:00'),(3,2,1,'Deve ser eleborado um site','E-mail	','2018-09-08 00:00:00','2018-10-01 00:00:00'),(4,2,2,'Deve se criar um site responsivo utilizado Bootstrap','GitHub','2018-10-05 00:00:00','2018-11-25 00:00:00'),(5,3,1,'Deve ser feito um site que possua sistema de login','Presencial','2019-03-10 00:00:00','2019-03-16 00:00:00'),(6,3,2,'Deve ser feito um sistema de cadastro de professores','GitHub','2019-03-17 00:00:00','2019-03-23 00:00:00'),(7,3,3,'Entrega Banco de Dados','E-mail	','2019-03-24 00:00:00','2019-03-30 00:00:00'),(8,3,4,'Deve ser feito um sistema de verificacao de plagio','GitHub','2019-03-31 00:00:00','2019-04-06 00:00:00'),(9,3,5,'Refatoracao do codigo','Presencial','2019-04-07 00:00:00','2019-04-13 00:00:00'),(10,3,6,'Correcao de erros projeto finalizado','GitHub','2019-04-14 00:00:00','2019-04-20 00:00:00');
+INSERT INTO `atividade` VALUES 
+(1,1,1,'Sistema de cadastro','Presencial','2018-03-01 00:00:00','2018-04-01 00:00:00'),
+(2,1,2,'Sistema de login','Presencial ','2018-04-02 00:00:00','2018-05-10 00:00:00'),
+(3,2,1,'Deve ser eleborado um site','E-mail	','2018-09-08 00:00:00','2018-10-01 00:00:00'),
+(4,2,2,'Criar um site responsivo utilizado Bootstrap','GitHub','2018-10-05 00:00:00','2018-11-25 00:00:00'),
+(5,3,1,'Criar o banco do site','Presencial','2019-03-10 00:00:00','2019-03-16 00:00:00'),
+(6,3,2,'Sistema de cadastro de professores','GitHub','2019-03-17 00:00:00','2019-03-23 00:00:00'),
+(7,3,3,'Entrega Banco de Dados','E-mail	','2019-03-24 00:00:00','2019-03-30 00:00:00'),
+(8,3,4,'Sistema de verificacao de plagio','GitHub','2019-03-31 00:00:00','2019-04-06 00:00:00'),
+(9,3,5,'Refatoracao do codigo','Presencial','2019-04-07 00:00:00','2019-04-13 00:00:00'),
+(10,3,6,'Projeto finalizado','GitHub','2019-04-14 00:00:00','2019-04-20 00:00:00');
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +120,37 @@ CREATE TABLE `avaliacao` (
 
 LOCK TABLES `avaliacao` WRITE;
 /*!40000 ALTER TABLE `avaliacao` DISABLE KEYS */;
-INSERT INTO `avaliacao` VALUES (1,6,1,90.00,'2019-04-14 00:00:00','boa apresentação'),(2,6,2,90.00,'2019-04-14 00:00:00','boa apresentação '),(3,6,3,90.00,'2019-04-14 00:00:00','boa apresentação '),(4,6,4,90.00,'2019-04-14 00:00:00','boa apresentação '),(5,6,5,90.00,'2019-04-14 00:00:00','boa apresentação '),(6,9,6,80.00,'2019-03-31 00:00:00','faltou informações'),(7,9,7,80.00,'2019-03-31 00:00:00','faltou informações'),(8,9,8,80.00,'2019-03-31 00:00:00','faltou informações'),(9,9,9,80.00,'2019-03-31 00:00:00','faltou informações'),(10,9,10,80.00,'2019-03-31 00:00:00','faltou informações'),(11,11,1,75.00,'2018-05-09 00:00:00','faltou uma entrega'),(12,11,2,80.00,'2018-05-09 00:00:00','Boa apresentacao'),(13,11,3,85.00,'2018-05-09 00:00:00','Boa apresentacao'),(14,11,4,90.00,'2018-05-09 00:00:00','Boa apresentacao'),(15,11,5,70.00,'2018-05-09 00:00:00','faltou na apresentacao'),(16,14,6,90.00,'2018-11-20 00:00:00','Boa apresentaçao'),(17,14,7,80.00,'2018-11-20 00:00:00','faltou na apresentacao'),(18,14,8,70.00,'2018-11-20 00:00:00','faltou na apresentacao'),(19,14,9,85.00,'2018-11-20 00:00:00','Nao sabia parte do conteudo'),(20,14,10,95.00,'2018-11-20 00:00:00','Boa apresentacao'),(22,2,2,80.00,'2019-04-23 00:00:00','bom'),(23,2,3,80.00,'2019-04-23 00:00:00','bom'),(25,2,2,99.00,'2019-04-23 00:00:00','excelente'),(26,2,3,57.00,'2019-04-23 00:00:00','pessimo'),(106,1,1,12.00,'2019-04-26 00:00:00','sd'),(107,1,2,34.00,'2019-04-26 00:00:00','sd'),(108,1,3,54.00,'2019-04-26 00:00:00','sd'),(109,1,4,65.00,'2019-04-26 00:00:00','sd'),(110,1,5,78.00,'2019-04-26 00:00:00','vd');
+INSERT INTO `avaliacao` VALUES 
+(1,6,1,90.00,'2019-04-14 00:00:00','boa apresentação'),
+(2,6,2,90.00,'2019-04-14 00:00:00','boa apresentação '),
+(3,6,3,90.00,'2019-04-14 00:00:00','boa apresentação '),
+(4,6,4,90.00,'2019-04-14 00:00:00','boa apresentação '),
+(5,6,5,90.00,'2019-04-14 00:00:00','boa apresentação '),
+(6,9,6,80.00,'2019-03-31 00:00:00','faltou informações'),
+(7,9,7,80.00,'2019-03-31 00:00:00','faltou informações'),
+(8,9,8,80.00,'2019-03-31 00:00:00','faltou informações'),
+(9,9,9,80.00,'2019-03-31 00:00:00','faltou informações'),
+(10,9,10,80.00,'2019-03-31 00:00:00','faltou informações'),
+(11,11,1,75.00,'2018-05-09 00:00:00','faltou uma entrega'),
+(12,11,2,80.00,'2018-05-09 00:00:00','Boa apresentacao'),
+(13,11,3,85.00,'2018-05-09 00:00:00','Boa apresentacao'),
+(14,11,4,90.00,'2018-05-09 00:00:00','Boa apresentacao'),
+(15,11,5,70.00,'2018-05-09 00:00:00','faltou na apresentacao'),
+(16,14,6,90.00,'2018-11-20 00:00:00','Boa apresentaçao'),
+(17,14,7,80.00,'2018-11-20 00:00:00','faltou na apresentacao'),
+(18,14,8,70.00,'2018-11-20 00:00:00','faltou na apresentacao'),
+(19,14,9,85.00,'2018-11-20 00:00:00','Nao sabia parte do conteudo'),
+(20,14,10,95.00,'2018-11-20 00:00:00','Boa apresentacao'),
+(22,2,2,80.00,'2019-04-23 00:00:00','bom'),
+(23,2,3,80.00,'2019-04-23 00:00:00','bom'),
+(25,2,2,99.00,'2019-04-23 00:00:00','excelente'),
+(26,2,3,57.00,'2019-04-23 00:00:00','pessimo'),
+(106,1,1,12.00,'2019-04-26 00:00:00','sd'),
+(107,1,2,34.00,'2019-04-26 00:00:00','sd'),
+(108,1,3,54.00,'2019-04-26 00:00:00','sd'),
+(109,1,4,65.00,'2019-04-26 00:00:00','sd'),
+(110,1,5,78.00,'2019-04-26 00:00:00','vd');
+
 /*!40000 ALTER TABLE `avaliacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +178,9 @@ CREATE TABLE `banca` (
 
 LOCK TABLES `banca` WRITE;
 /*!40000 ALTER TABLE `banca` DISABLE KEYS */;
-INSERT INTO `banca` VALUES (1,1,'2019-05-20 00:00:00','102A'),(6,6,'2019-06-01 00:00:00','103E');
+INSERT INTO `banca` VALUES
+ (1,1,'2019-05-20 00:00:00','102A'),
+ (6,6,'2019-06-01 00:00:00','103E');
 /*!40000 ALTER TABLE `banca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +211,21 @@ CREATE TABLE `entrega` (
 
 LOCK TABLES `entrega` WRITE;
 /*!40000 ALTER TABLE `entrega` DISABLE KEYS */;
-INSERT INTO `entrega` VALUES (1,5,1,'2019-03-15 00:00:00'),(1,6,2,'2019-03-22 00:00:00'),(1,7,3,'2019-03-30 00:00:00'),(1,8,4,'2019-04-06 00:00:00'),(1,9,5,'2019-04-10 00:00:00'),(1,10,6,'2019-04-14 00:00:00'),(6,5,7,'2019-03-14 00:00:00'),(6,6,8,'2019-03-21 00:00:00'),(6,7,9,'2019-03-31 00:00:00'),(1,1,10,'2018-03-28 00:00:00'),(1,2,11,'2018-05-09 00:00:00'),(1,3,12,'2018-09-08 00:00:00'),(6,3,13,'2018-10-01 00:00:00'),(6,4,14,'2018-11-20 00:00:00');
+INSERT INTO `entrega` VALUES 
+(1,5,1,'2019-03-15 00:00:00'),
+(1,6,2,'2019-03-22 00:00:00'),
+(1,7,3,'2019-03-30 00:00:00'),
+(1,8,4,'2019-04-06 00:00:00'),
+(1,9,5,'2019-04-10 00:00:00'),
+(1,10,6,'2019-04-14 00:00:00'),
+(6,5,7,'2019-03-14 00:00:00'),
+(6,6,8,'2019-03-21 00:00:00'),
+(6,7,9,'2019-03-31 00:00:00'),
+(1,1,10,'2018-03-28 00:00:00'),
+(1,2,11,'2018-05-09 00:00:00'),
+(1,3,12,'2018-09-08 00:00:00'),
+(6,3,13,'2018-10-01 00:00:00'),
+(6,4,14,'2018-11-20 00:00:00');
 /*!40000 ALTER TABLE `entrega` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +253,13 @@ CREATE TABLE `grupo` (
 
 LOCK TABLES `grupo` WRITE;
 /*!40000 ALTER TABLE `grupo` DISABLE KEYS */;
-INSERT INTO `grupo` VALUES (1,8,1,'Grupo 1'),(2,7,2,'Grupo 2'),(3,14,3,'Grupo 3'),(4,15,4,'Grupo 4'),(5,8,5,'Grupo 5'),(6,9,6,'Grupo 6');
+INSERT INTO `grupo` VALUES 
+(1,8,1,'Grupo 1'),
+(2,7,2,'Grupo 2'),
+(3,14,3,'Grupo 3'),
+(4,15,4,'Grupo 4'),
+(5,8,5,'Grupo 5'),
+(6,9,6,'Grupo 6');
 /*!40000 ALTER TABLE `grupo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,7 +287,13 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (7,1,'2018Ulife'),(8,0,'2005usjt3374'),(9,0,'2000anima8234'),(14,1,'2010anima8364'),(15,1,'2012usjt7356'),(16,0,'973894092');
+INSERT INTO `professor` VALUES 
+(7,1,'2018Ulife'),
+(8,0,'2005usjt3374'),
+(9,0,'2000anima8234'),
+(14,1,'2010anima8364'),
+(15,1,'2012usjt7356'),
+(16,0,'973894092');
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +324,13 @@ CREATE TABLE `professores_banca` (
 
 LOCK TABLES `professores_banca` WRITE;
 /*!40000 ALTER TABLE `professores_banca` DISABLE KEYS */;
-INSERT INTO `professores_banca` VALUES (1,7,1,80.00),(1,8,6,75.00),(1,9,11,90.00),(6,7,16,95.00),(6,14,25,90.00),(6,15,26,93.00);
+INSERT INTO `professores_banca` VALUES 
+(1,7,1,80.00),
+(1,8,6,75.00),
+(1,9,11,90.00),
+(6,7,16,95.00),
+(6,14,25,90.00),
+(6,15,26,93.00);
 /*!40000 ALTER TABLE `professores_banca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +357,10 @@ CREATE TABLE `tema` (
 
 LOCK TABLES `tema` WRITE;
 /*!40000 ALTER TABLE `tema` DISABLE KEYS */;
-INSERT INTO `tema` VALUES (1,'2018-02-15 00:00:00','Java','Introducao a Java Orientado a Objetos','Logica de Programacao'),(2,'2018-08-22 00:00:00','HTML','Introducao a HTML e CSS','Sem conhecimentos necessarios'),(3,'2019-03-02 00:00:00','Java Web','Elaboracao de projeto utilizando Java e HTML','Java e HTML');
+INSERT INTO `tema` VALUES 
+(1,'2018-02-15 00:00:00','Java','Introducao a Java Orientado a Objetos','Logica de Programacao'),
+(2,'2018-08-22 00:00:00','HTML','Introducao a HTML e CSS','Sem conhecimentos necessarios'),
+(3,'2019-03-02 00:00:00','Java Web','Elaboracao de projeto utilizando Java e HTML','Java e HTML');
 /*!40000 ALTER TABLE `tema` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +390,10 @@ CREATE TABLE `turma` (
 
 LOCK TABLES `turma` WRITE;
 /*!40000 ALTER TABLE `turma` DISABLE KEYS */;
-INSERT INTO `turma` VALUES (1,1,2019,'SIN-MCA3',3),(2,2,2018,'SIN-MCA2',2),(3,1,2018,'SIN-MCA1',1);
+INSERT INTO `turma` VALUES 
+(1,1,2019,'SIN-MCA3',3),
+(2,2,2018,'SIN-MCA2',2),
+(3,1,2018,'SIN-MCA1',1);
 /*!40000 ALTER TABLE `turma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,7 +426,32 @@ CREATE TABLE `turma_aluno` (
 
 LOCK TABLES `turma_aluno` WRITE;
 /*!40000 ALTER TABLE `turma_aluno` DISABLE KEYS */;
-INSERT INTO `turma_aluno` VALUES (1,3,1,1),(2,3,1,2),(3,3,1,3),(4,3,1,4),(6,3,1,5),(5,3,6,6),(10,3,6,7),(11,3,6,8),(12,3,6,9),(13,3,6,10),(1,1,2,11),(2,1,2,12),(3,1,2,13),(4,1,2,14),(6,1,2,15),(5,2,3,16),(10,2,3,17),(11,2,3,18),(12,2,3,19),(13,2,3,20),(5,1,4,21),(10,1,4,22),(11,1,4,23),(12,1,4,24),(13,1,4,25);
+INSERT INTO `turma_aluno` VALUES 
+(1,3,1,1),
+(2,3,1,2),
+(3,3,1,3),
+(4,3,1,4),
+(6,3,1,5),
+(5,3,6,6),
+(10,3,6,7),
+(11,3,6,8),
+(12,3,6,9),
+(13,3,6,10),
+(1,1,2,11),
+(2,1,2,12),
+(3,1,2,13),
+(4,1,2,14),
+(6,1,2,15),
+(5,2,3,16),
+(10,2,3,17),
+(11,2,3,18),
+(12,2,3,19),
+(13,2,3,20),
+(5,1,4,21),
+(10,1,4,22),
+(11,1,4,23),
+(12,1,4,24),
+(13,1,4,25);
 /*!40000 ALTER TABLE `turma_aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -363,7 +478,25 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Pedro Quessada','pedro.quessada@usjt.br','aluno123'),(2,'Jamal Miranda','jamal.miranda@gmail.com.br','aluno123'),(3,'Arthur Agostinho','arthur.agostinho@outlook.com','aluno123'),(4,'Karen Beth','karen.beth@hotmail.com','aluno123'),(5,'Gustavo Xinzao','gustavoxinzao@hotmail.com','aluno123'),(6,'Guilherme Bodelon','guigui.bo@usjt.com','aluno123'),(7,'Jose Fonseca ','fonseca.alonso@gmail.com.br','prof123'),(8,'Zezinho da Silva','silva.zeze@hotmail.com','prof123'),(9,'Maria Aparecida','maria.aparecida@outlook.com','prof123'),(10,'Yara Faria','yara.faria@yahoo.com.br','aluno123'),(11,'Jaqueline Pereira','jaque.pereira@gmail.com','aluno123'),(12,'Bruno Nascimento','bruno.nascimento@gmail.com','aluno123'),(13,'Paloma Pereira','paloma.pereira@hotmail.com','aluno123'),(14,'Napoleao','napoleao@usjt.com','prof123'),(15,'Ayrton Sena','seninha@gmail.com','admin123'),(16,'Pedro','prof.pedro@saoUlife.com','prof123');
+
+INSERT INTO `usuario` VALUES 
+(1,'Pedro Quessada','pedro.quessada@usjt.br','aluno123'),
+(2,'Jamal Miranda','jamal.miranda@gmail.com.br','aluno123'),
+(3,'Arthur Agostinho','arthur.agostinho@outlook.com','aluno123'),
+(4,'Karen Beth','karen.beth@hotmail.com','aluno123'),
+(5,'Gustavo Xinzao','gustavoxinzao@hotmail.com','aluno123'),
+(6,'Guilherme Bodelon','guigui.bo@usjt.com','aluno123'),
+(7,'Jose Fonseca ','fonseca.alonso@gmail.com.br','prof123'),
+(8,'Zezinho da Silva','silva.zeze@hotmail.com','prof123'),
+(9,'Maria Aparecida','maria.aparecida@outlook.com','prof123'),
+(10,'Yara Faria','yara.faria@yahoo.com.br','aluno123'),
+(11,'Jaqueline Pereira','jaque.pereira@gmail.com','aluno123'),
+(12,'Bruno Nascimento','bruno.nascimento@gmail.com','aluno123'),
+(13,'Paloma Pereira','paloma.pereira@hotmail.com','aluno123'),
+(14,'Napoleao','napoleao@usjt.com','prof123'),
+(15,'Ayrton Sena','seninha@gmail.com','admin123'),
+(16,'Pedro','prof.pedro@saoUlife.com','prof123');
+
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
