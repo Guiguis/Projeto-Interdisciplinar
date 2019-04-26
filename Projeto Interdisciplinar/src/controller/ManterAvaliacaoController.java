@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Aluno;
 import model.Avaliacao;
+import model.Professor;
 import service.AlunoService;
 import service.AvaliacaoService;
 import service.EntregaService;
@@ -60,17 +61,45 @@ public class ManterAvaliacaoController extends HttpServlet {
 		AlunoService AlunoService = new AlunoService();
 		ArrayList<Aluno> listaAluno = AlunoService.grupoAlunos(idGrupo);
 		
+		RequestDispatcher view = null;
+		HttpSession session = request.getSession();
+		
+		
+		
 		if(acao.equals("Criar")) {
 			// enviar para o jsp
 			request.setAttribute("idGrupo", idGrupo);
 			request.setAttribute("idEntrega", idEntrega);
 			request.setAttribute("listaAluno", listaAluno);
-			RequestDispatcher view = request.getRequestDispatcher("cadastroAvaliacao.jsp");
+			view = request.getRequestDispatcher("cadastroAvaliacao.jsp");
 			view.forward(request, response);	
 		}
-		
-		
-		
+		else if (acao.equals("Apagar")){
+			AvaliacaoService as = new AvaliacaoService();
+			as.deleteAvaliacao(idGrupo, listaAluno, idEntrega);
+			ArrayList<Avaliacao> lista = (ArrayList<Avaliacao>)session.getAttribute("lista");
+			session.setAttribute("lista", lista);
+			view = request.getRequestDispatcher("ListarEntregas.jsp");	
+			
+		}
+		else if(acao.equals("Excluir")) {
+			// enviar para o jsp
+			AvaliacaoService as = new AvaliacaoService();
+			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			request.setAttribute("listaAvaliacao", listaAvaliacao);
+			request.setAttribute("listaAluno", listaAluno);
+			view = request.getRequestDispatcher("ExcluirAvaliacao.jsp");
+			view.forward(request, response);	
+		}
+		else if(acao.equals("Visualizar")) {
+			// enviar para o jsp
+			AvaliacaoService as = new AvaliacaoService();
+			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			request.setAttribute("listaAvaliacao", listaAvaliacao);
+			request.setAttribute("listaAluno", listaAluno);
+			view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
+			view.forward(request, response);	
+		}
 		
 		
 		else if(acao.equals("Enviar")) {
@@ -103,13 +132,14 @@ public class ManterAvaliacaoController extends HttpServlet {
 				//carrega os objetos para mostrar na tela
 				for(int i = 0; i < lstAvaliacao.size(); i++) {
 					Avaliacao avaliacao = lstAvaliacao.get(i);
-					lstAvaliacao.set(i, as.load(avaliacao.getId()));
+					lstAvaliacao.set(i, as.loadPorId(avaliacao.getId()));
 					lista.add(avaliacao);
 				}
 				
 				// enviar para o jsp
-				request.setAttribute("lstAvaliacao", lista);
-				RequestDispatcher view = request.getRequestDispatcher("Avaliacao.jsp");
+				request.setAttribute("listaAluno", listaAluno);
+				request.setAttribute("listaAvaliacao", lista);
+				view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
 				view.forward(request, response);	
 				
 			}
@@ -136,13 +166,14 @@ public class ManterAvaliacaoController extends HttpServlet {
 				//carrega os objetos para mostrar na tela
 				for(int i = 0; i < lstAvaliacao.size(); i++) {
 					Avaliacao avaliacao = lstAvaliacao.get(i);
-					lstAvaliacao.set(i, as.load(avaliacao.getId()));
+					lstAvaliacao.set(i, as.loadPorId(avaliacao.getId()));
 					lista.add(avaliacao);
 				}
 				
 				// enviar para o jsp
-				request.setAttribute("lstAvaliacao", lista);
-				RequestDispatcher view = request.getRequestDispatcher("Avaliacao.jsp");
+				request.setAttribute("listaAluno", listaAluno);
+				request.setAttribute("listaAvaliacao", lista);
+				view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
 				view.forward(request, response);	
 					
 			}
@@ -169,5 +200,6 @@ public class ManterAvaliacaoController extends HttpServlet {
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 		return dataSql;
 	}
+	
 
 }

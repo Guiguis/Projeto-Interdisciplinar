@@ -74,22 +74,23 @@ public class AvaliacaoDAO {
 	}
 	
 	/**
-     * CRUD: Deleta Banca
+     * CRUD: Deleta avaliacao
      * @param conn: Connection
      */
-	public void deleteAvaliacao(Avaliacao avaliacao) {
+	public void deleteAvaliacao(int turmaAluno, int entregaId) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "DELETE FROM avaliacao WHERE Id = ?";
+		String sqlComand = "SELECT * FROM avaliacao WHERE turma_aluno_id = ? AND entrega_id = ?;";
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
-			stm.setInt(1, avaliacao.getId());
+			stm.setInt(1, turmaAluno);
+			stm.setInt(2, entregaId);
 			stm.executeUpdate();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public Avaliacao load(int id) {
+	public Avaliacao loadPorId(int id) {
 		Avaliacao avaliacao = new Avaliacao();
 		Connection conn = new ConnectionFactory().getConnection();
 		
@@ -98,6 +99,30 @@ public class AvaliacaoDAO {
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
 			stm.setInt(1,id);
+			ResultSet rs = stm.executeQuery();
+			
+			if(rs.next()) {
+				avaliacao.setNota(rs.getDouble("Nota"));
+				avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
+				avaliacao.setComentarios(rs.getString("Comentario"));
+			} 
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return avaliacao;
+	}
+	
+	public Avaliacao load(int entrega, int turmaAluno) {
+		Avaliacao avaliacao = new Avaliacao();
+		Connection conn = new ConnectionFactory().getConnection();
+		
+		String sqlComand = "SELECT nota, comentarios, dt_avaliacao FROM avaliacao WHERE entrega_id = ? AND turma_aluno_id = ?";
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setInt(1,entrega);
+			stm.setInt(2,turmaAluno);
 			ResultSet rs = stm.executeQuery();
 			
 			if(rs.next()) {

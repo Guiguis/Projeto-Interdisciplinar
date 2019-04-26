@@ -202,14 +202,5 @@ public class AlunoDAO extends UsuarioDAO {
 		return lista;
 	}
 	
-	public static void main(String [] args) {
-		
-		AlunoDAO a = new AlunoDAO();
-		ArrayList<Aluno> listaAluno = a.grupoAlunos(1);
-		ArrayList<Integer> lista = a.turmaAluno(1, listaAluno);
-		for(int i = 0; i <lista.size(); i++) {
-			System.out.println(lista.get(i));
-		}
-	}
 
 }

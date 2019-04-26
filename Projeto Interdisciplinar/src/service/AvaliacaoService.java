@@ -32,12 +32,26 @@ public class AvaliacaoService implements Serializable{
 		dao.updateAvaliacao(avaliacao);
 	}
 	
-	public void deleteAvaliacao(Avaliacao avaliacao) {
-		dao.deleteAvaliacao(avaliacao);
+	public void deleteAvaliacao(int idGrupo, ArrayList<Aluno> listaAluno, int entregaId) {
+		AlunoDAO alunoDAO = new AlunoDAO();
+		ArrayList<Integer> lista = alunoDAO.turmaAluno(idGrupo, listaAluno);
+		for(int i = 0; i < lista.size(); i++) {
+			dao.deleteAvaliacao(lista.get(i), entregaId);
+		}
 	}
 	
-	public Avaliacao load(int id) {
-		return dao.load(id);
+	public ArrayList<Avaliacao> load(int idEntrega, int idGrupo, ArrayList<Aluno> listaAluno) {
+		AlunoDAO AlunoDAO = new AlunoDAO();
+		ArrayList<Integer> lista = AlunoDAO.turmaAluno(idGrupo, listaAluno);
+		ArrayList<Avaliacao> listaAvaliacao = new ArrayList<Avaliacao>();
+		for(int i = 0; i < lista.size(); i++) {
+			listaAvaliacao.add(dao.load(idEntrega, lista.get(i)));
+		}
+		return listaAvaliacao;
+	}
+	
+	public Avaliacao loadPorId(int id) {
+		return dao.loadPorId(id);
 	}
 	
 	public ArrayList<Date> loadDatas(Grupo grupo) {
@@ -47,4 +61,5 @@ public class AvaliacaoService implements Serializable{
 	public ArrayList<Avaliacao> loadAvaliacoes(Date data) {
 		return dao.loadAvaliacoes(data);
 	}
+	
 }

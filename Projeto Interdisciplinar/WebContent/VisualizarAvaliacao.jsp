@@ -26,25 +26,35 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-12  mt-30">
+	
+		<div class="col-md-4 offset-md-4">
+			<h1 class="">Avaliar Alunos</h1>
+		</div>
 		
-			<div class="col-md-4 offset-md-4">
-				<h1 class="">Avaliar Alunos</h1>
-			</div>
-			
-			<div class="form-group col-md-4">
-				<label for="inputName">Data da avaliacao: </label>
-				<% // <fmt:formatDate pattern="dd/MM/yyyy" value="${lstAvaliacao[0].dataAvaliacao.parameterName}"/>%>
-				<label ></label>
-			</div>
+		<div class="form-group col-md-4">
+			<label for="inputName">Data da avaliacao: </label>
+			<% // <fmt:formatDate pattern="dd/MM/yyyy" value="${lstAvaliacao[0].dataAvaliacao.parameterName}"/>%>
+			<label ></label>
+		</div>
+	
+	
+		<div class="col-lg-12  mt-30">
 
-			<c:forEach var="avaliacao" items="${lstAvaliacao}">
+			<c:forEach var="aluno" items="${listaAluno}">
 				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="inputName">Aluno 1: </label>
+					<div class="form-group">
+						<label >${aluno.nome}</label>
+					</div>
+				</div>
+			</c:forEach>
+
+			<c:forEach var="avaliacao" items="${listaAvaliacao}">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="inputName">Nota: </label>
 						<label >${avaliacao.nota}</label>
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group">
 						<label for="inputName">Comentarios: </label>
 						<label >${avaliacao.comentarios}</label>
 					</div>
