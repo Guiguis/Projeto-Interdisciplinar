@@ -164,35 +164,59 @@ public class AvaliacaoDAO {
 		return lista;
 	}
 	
-	//Carrega uma avaliacao com base na data
-	public ArrayList<Avaliacao> loadAvaliacoes(Date data) {
+	//Passando um idEntrega e idGrupo ele verifica se essa entrega ja foi avaliada
+	public int verrifica(int idEntrega, int idGrupo) {
 		Connection conn = new ConnectionFactory().getConnection();
-		ArrayList<Avaliacao> lista = new ArrayList<>();
-		EntregaDAO dao = new EntregaDAO();
+		int i = -1;
 		
-		String sqlComand = 	"SELECT * FROM avaliacao WHERE dt_avaliacao = ?";
+		String sqlComand = 	"SELECT DISTINCT g.numero FROM grupo g "
+							+ "JOIN entrega e ON g.id = e.grupo_id "
+							+ "JOIN avaliacao a on a.entrega_id = e.id "
+							+ "WHERE e.id = ? AND g.id = ?";
 				
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
-			stm.setDate(1, data);
+			stm.setInt(1, idEntrega);
+			stm.setInt(2, idGrupo);
 			ResultSet rs = stm.executeQuery();
 			
-			while(rs.next()) {
-				Avaliacao avaliacao = new Avaliacao();
-				avaliacao.setComentarios(rs.getString("comentarios"));
-				avaliacao.setEntrega(dao.loadEntrega(rs.getInt("entrega_id")));
-				avaliacao.setNota(rs.getInt("nota"));
-				lista.add(avaliacao);
+			if(rs.next()) {
+				i = rs.getInt("numero");
 			} 
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return lista;
+		return i;
 	}
 	
 
-	
+	//Carrega uma avaliacao com base na data
+		public ArrayList<Avaliacao> loadAvaliacoes(Date data) {
+			Connection conn = new ConnectionFactory().getConnection();
+			ArrayList<Avaliacao> lista = new ArrayList<>();
+			EntregaDAO dao = new EntregaDAO();
+			
+			String sqlComand = 	"SELECT * FROM avaliacao WHERE dt_avaliacao = ?";
+					
+			try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+				
+				stm.setDate(1, data);
+				ResultSet rs = stm.executeQuery();
+				
+				while(rs.next()) {
+					Avaliacao avaliacao = new Avaliacao();
+					avaliacao.setComentarios(rs.getString("comentarios"));
+					avaliacao.setEntrega(dao.loadEntrega(rs.getInt("entrega_id")));
+					avaliacao.setNota(rs.getInt("nota"));
+					lista.add(avaliacao);
+				} 
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return lista;
+		}
 	
 	
 	

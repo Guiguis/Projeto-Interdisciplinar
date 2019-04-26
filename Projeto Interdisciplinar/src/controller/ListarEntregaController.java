@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Entrega;
+import service.AvaliacaoService;
 import service.EntregaService;
 
 /**
@@ -43,6 +44,7 @@ public class ListarEntregaController extends HttpServlet {
 		String pId = request.getParameter("id");
 		HttpSession session = request.getSession();
 		
+		
 		int id = -1;
 		try {
 			id = Integer.parseInt(pId);
@@ -51,10 +53,32 @@ public class ListarEntregaController extends HttpServlet {
 		
 		if(acao.equals("busca")) {
 			lista = es.loadTodos(id);
+			
+			AvaliacaoService as = new AvaliacaoService();
+			ArrayList<Integer> listaEntregaId = new ArrayList<>();
+			ArrayList<Integer> avaliado = new ArrayList<>();
+			
+			for(int i = 0; i < lista.size(); i++) {
+				listaEntregaId.add(lista.get(i).getId());
+			}
+			
+			avaliado = as.verrifica(listaEntregaId, id);
+			session.setAttribute("listaAvaliado", avaliado);
+			
 			session.setAttribute("lista", lista);
 			
 		} else if(acao.equals("reiniciar")) {
+			AvaliacaoService as = new AvaliacaoService();
 			lista = es.loadTodos(id);
+			ArrayList<Integer> listaEntregaId = new ArrayList<>();
+			ArrayList<Integer> avaliado = new ArrayList<>();
+			
+			for(int i = 0; i < lista.size(); i++) {
+				listaEntregaId.add(lista.get(i).getId());
+			}
+			
+			avaliado = as.verrifica(listaEntregaId, id);
+			session.setAttribute("listaAvaliado", avaliado);
 			session.setAttribute("lista", lista);
 			
 		}

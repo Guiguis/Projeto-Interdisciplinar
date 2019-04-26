@@ -65,4 +65,14 @@ public class AvaliacaoService implements Serializable{
 		return dao.loadAvaliacoes(data);
 	}
 	
+	public ArrayList<Integer> verrifica(ArrayList<Integer> idEntrega, int idGrupo) {
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		
+		for(int i = 0; i < idEntrega.size(); i++) {
+			lista.add(dao.verrifica(idEntrega.get(i), idGrupo));
+		}
+		
+		return lista;
+	}
+	
 }
