@@ -28,8 +28,11 @@ public class AvaliacaoService implements Serializable{
 		}
 	}
 	
-	public void updateAvaliacao(Avaliacao avaliacao) {
-		dao.updateAvaliacao(avaliacao);
+	public void updateAvaliacao(ArrayList<Avaliacao> listaAvaliacao) {
+		for(int i = 0; i < listaAvaliacao.size(); i++) {
+			dao.updateAvaliacao(listaAvaliacao.get(i));
+		}
+		
 	}
 	
 	public void deleteAvaliacao(int idGrupo, ArrayList<Aluno> listaAluno, int entregaId) {

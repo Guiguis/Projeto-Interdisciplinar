@@ -31,6 +31,13 @@ public class Avaliacao {
 		this.dataAvaliacao = dataAvaliacao;
 	}
 	
+	public Avaliacao(int id, double nota, String comentarios, Date dataAvaliacao) {
+		this.id = id;
+		this.nota = nota;
+		this.comentarios = comentarios;
+		this.dataAvaliacao = dataAvaliacao;
+	}
+	
 	public int getId() {
 		return id;
 	}

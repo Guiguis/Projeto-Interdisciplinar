@@ -63,8 +63,9 @@ public class AvaliacaoDAO {
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
 			stm.setDouble(1, avaliacao.getNota());
-			stm.setDate(2, (java.sql.Date) avaliacao.getDataAvaliacao());
+			stm.setDate(2, avaliacao.getDataAvaliacao());
 			stm.setString(3, avaliacao.getComentarios());
+			stm.setInt(4, avaliacao.getId());
 			
 			stm.executeUpdate();
 		}catch (SQLException e) {

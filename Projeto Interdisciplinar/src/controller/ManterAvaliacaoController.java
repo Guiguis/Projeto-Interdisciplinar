@@ -100,7 +100,25 @@ public class ManterAvaliacaoController extends HttpServlet {
 			view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
 			view.forward(request, response);	
 		}
+		else if(acao.equals("Editar")) {
+			// enviar para o jsp
+			AvaliacaoService as = new AvaliacaoService();
+			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			request.setAttribute("listaAvaliacao", listaAvaliacao);
+			request.setAttribute("listaAluno", listaAluno);
+			view = request.getRequestDispatcher("AlterarAvaliacao.jsp");
+			view.forward(request, response);
+		}
 		
+		else if(acao.equals("Atualizar")) {
+			// enviar para o jsp
+			AvaliacaoService as = new AvaliacaoService();
+			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			request.setAttribute("listaAvaliacao", listaAvaliacao);
+			request.setAttribute("listaAluno", listaAluno);
+			view = request.getRequestDispatcher("ListarEntregas.jsp");
+			view.forward(request, response);
+		}
 		
 		else if(acao.equals("Enviar")) {
 		
