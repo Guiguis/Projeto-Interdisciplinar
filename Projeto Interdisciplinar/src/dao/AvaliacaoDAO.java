@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import connection.ConnectionFactory;
+import model.Aluno;
 import model.Avaliacao;
 import model.Grupo;
 
@@ -21,16 +22,19 @@ public class AvaliacaoDAO {
 	
 	
 	
-	public void createAvaliacao(Avaliacao avaliacao) {
+	public void createAvaliacao(Avaliacao avaliacao, int idGrupo, int id) {
 		Connection conn = new ConnectionFactory().getConnection();
+	
 		String sql = "INSERT INTO Avaliacao (entrega_id, turma_aluno_id, nota, comentarios, dt_avaliacao) VALUES (?, ?, ?, ?, ?)";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-			stm.setInt(1, 2);
-			stm.setInt(2, avaliacao.getTurmaAluno());
-			stm.setDouble(3, avaliacao.getNota());
-			stm.setString(4, avaliacao.getComentarios());
-			stm.setDate(5, avaliacao.getDataAvaliacao());
+
+				stm.setInt(1, avaliacao.getEntrega().getId());
+				stm.setInt(2,id);
+				stm.setDouble(3, avaliacao.getNota());
+				stm.setString(4, avaliacao.getComentarios());
+				stm.setDate(5, avaliacao.getDataAvaliacao());	
+			
 			
 			int affectedRows = stm.executeUpdate();
 
@@ -160,6 +164,10 @@ public class AvaliacaoDAO {
 		}
 		return lista;
 	}
+	
+
+	
+	
 	
 	
 	

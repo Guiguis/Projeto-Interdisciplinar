@@ -27,13 +27,14 @@
 	
 <div class="container">
 	<div class="row">
-		<div class="col-lg-12 mt-30">
+		<div class="col-lg-12">
 		
 		<!-- Título -->
 			<div class="col-md-4 offset-md-4">
 				<h1 class="">Avaliar Alunos</h1>
+				
 			</div>
-			<form action="ManterAvaliacaoController" method="post"
+			<form action="ManterAvaliacaoController?idGrupo=${idGrupo}&idEntrega=${idEntrega}" method="post"
 				class="form-horizontal">
 			<!-- Data -->
 			<div class="form-group col-md-5 offset-md-4">
@@ -51,47 +52,23 @@
 		
 			<!-- Formulario para nota dos alunos -->
 				
-				<!-- Formulario para nota do aluno 1 -->
+				<!-- Formulario para nota do aluno individual -->
 				<div class="form-row">
-					<div class="form-group col-md-3">
-						<label for="inputNota1">Aluno 1</label>
-						<input id="inputNota1" type="text"  
-							   class="form-control" name="nota1"  placeholder="Digite a nota" />
+				   <c:forEach var="aluno" items="${listaAluno }">
+				   		<div class="form-group col-md-2">
+						<label for="nota${aluno.id }">${aluno.nome}</label>
+						<input id="nota${aluno.id }" type="text"  
+							   class="form-control" name="nota${aluno.id }"  placeholder="Digite a nota" />
 					</div>
 					<div class="form-group col-md-5">
-						<label for="inputComentarios1">Descrição</label> 
-						<input id="inputComentarios1" type="text" 
-						 	   class="form-control" name="comentarios1"/>
+						<label for="com${aluno.id }">Comentario</label> 
+						<input id="com${aluno.id }" type="text" 
+						 	   class="form-control" name="com${aluno.id }"/>
 					</div>
+					<div class="col-md-4"></div>
+				   </c:forEach>	
 				</div>
-				
-				<!-- Formulario para nota do aluno 2 -->
-				<div class="form-row">
-					<div class="form-group col-md-3">
-						<label for="inputNota2">Aluno 2</label>
-						<input id="inputNota2" type="text"  
-							   class="form-control" name="nota2"  placeholder="Digite a nota" />
-					</div>
-					<div class="form-group col-md-5">
-						<label for="inputComentarios2">Descrição</label> 
-						<input id="inputComentarios2" type="text" 
-						 	   class="form-control" name="comentarios2"/>
-					</div>
-				</div>
-				
-				<!-- Formulario para nota do aluno 3 -->
-				<div class="form-row">
-					<div class="form-group col-md-3">
-						<label for="inputNota3">Aluno 3</label>
-						<input id="inputNota3" type="text"  
-							   class="form-control" name="nota3"  placeholder="Digite a nota" />
-					</div>
-					<div class="form-group col-md-5">
-						<label for="inputComentarios3">Descrição</label> 
-						<input id="inputComentarios3" type="text" 
-						 	   class="form-control" name="comentarios3"/>
-					</div>
-				</div>
+			
 				
 				<!-- Formulario para nota de todos os alunos -->
 				<div class="form-row">
@@ -101,14 +78,14 @@
 							   class="form-control" name="notaTodos"  placeholder="Digite a nota" />
 					</div>
 					<div class="form-group col-md-5">
-						<label for="inputComentariosTodos">Descrição</label> 
+						<label for="inputComentariosTodos">Comentario</label> 
 						<input id="inputComentariosTodos" type="text" 
 						 	   class="form-control" name="comentariosTodos"/>
 					</div>
 				</div>
 				
 				
-				<button type="submit" class="btn btn-primary">Enviar</button>
+				<button type="submit" class="btn btn-primary" name="acao" value="Enviar">Enviar</button>
 				
 				
 			</form>

@@ -17,7 +17,7 @@ public class Banca {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Banca(String grupoId, int numero, String nome ,int id, Date data, String sala) {
+	public Banca(int id, Date data, String sala) {
 		this.id = id;
 		this.data = data;
 		this.sala = sala;

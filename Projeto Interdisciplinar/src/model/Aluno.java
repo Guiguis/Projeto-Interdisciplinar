@@ -15,6 +15,11 @@ public class Aluno extends Usuario {
     public Aluno(String email, String senha) {
         super(email, senha);
     }
+    
+    public Aluno(int id, String nome, String email, String senha, String ra) {
+        super(id, nome, email, senha);
+        this.ra = ra;
+    }
 
     public String getRa() {
         return this.ra;

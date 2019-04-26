@@ -1,12 +1,15 @@
 package dao;
 
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import connection.ConnectionFactory;
 import model.Aluno;
+import model.Avaliacao;
 import model.Usuario;
 
 public class AlunoDAO extends UsuarioDAO {
@@ -131,6 +134,82 @@ public class AlunoDAO extends UsuarioDAO {
 			}
 		}
 		deleteUsuario(id);
+	}
+	
+	
+	
+	
+	//passando um grupo id ele retorna a lista de alunos que pertence ao mesmo
+	public ArrayList<Aluno> grupoAlunos(int id) {
+		Connection conn = new ConnectionFactory().getConnection();
+		ArrayList<Aluno> lista = new ArrayList<>();
+		Aluno aluno = null;
+		
+		String sqlComand = 	"SELECT u.id, u.nome, u.email, u.senha, a.ra FROM grupo g "
+								+ "JOIN turma_aluno t ON g.id = t.grupo_id "
+								+ "JOIN aluno a ON t.aluno_id = a.aluno_id "
+								+ "JOIN usuario u ON a.aluno_id = u.id WHERE g.id = ?";
+				
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				int idAluno = rs.getInt("id");
+				String nome = rs.getString("nome");
+				String email = rs.getString("email");
+				String senha = rs.getString("senha");
+				String ra = rs.getString("ra");
+				aluno = new Aluno(idAluno, nome, email, senha, ra);
+				lista.add(aluno);
+			} 
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	//retorna o id de turma_aluno de um aluno passando seu grupo e id do aluno
+	public ArrayList<Integer> turmaAluno(int idGrupo, ArrayList<Aluno> listaAluno) {
+		Connection conn = new ConnectionFactory().getConnection();
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		
+		String sqlComand = 	"SELECT t.id FROM grupo g "
+							+ "JOIN turma_aluno t ON g.id = t.grupo_id "
+							+ "JOIN aluno a ON t.aluno_id = a.aluno_id "
+							+ "WHERE g.id = ? and a.aluno_id = ?";
+				
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			for(int i = 0; i < listaAluno.size(); i++) {
+				stm.setInt(1, idGrupo);
+				stm.setInt(2, listaAluno.get(i).getId());
+				ResultSet rs = stm.executeQuery();
+				
+				if(rs.next()) {
+					int id = rs.getInt("id");
+					lista.add(id);
+				} 
+			}
+			
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public static void main(String [] args) {
+		
+		AlunoDAO a = new AlunoDAO();
+		ArrayList<Aluno> listaAluno = a.grupoAlunos(1);
+		ArrayList<Integer> lista = a.turmaAluno(1, listaAluno);
+		for(int i = 0; i <lista.size(); i++) {
+			System.out.println(lista.get(i));
+		}
 	}
 
 }

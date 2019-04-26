@@ -1,16 +1,14 @@
 package dao;
 
 import java.sql.Connection;
-
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import connection.ConnectionFactory;
 import model.Banca;
-import model.Usuario;
 
 public class BancaDAO {
 
@@ -106,5 +104,6 @@ public class BancaDAO {
 		}
 		return banca;
 	}
+	
 	
 }

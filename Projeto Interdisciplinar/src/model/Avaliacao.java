@@ -13,26 +13,22 @@ public class Avaliacao {
 	private Entrega entrega;
 	private Date dataAvaliacao;
 	private String comentarios;
-	private int turmaAluno;
 	
 	public Avaliacao() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	public Avaliacao(int turmaAluno, double nota, String comentarios, Date dataAvaliacao) {
-		this.turmaAluno = turmaAluno;
+	public Avaliacao(Entrega entrega, double nota, String comentarios, Date dataAvaliacao) {
+		this.entrega = entrega;
 		this.nota = nota;
 		this.comentarios = comentarios;
 		this.dataAvaliacao = dataAvaliacao;
 	}
 	
-	public int getTurmaAluno() {
-		return turmaAluno;
-	}
-	
-	public void setTurmaAluno(int turmaAluno) {
-		this.turmaAluno = turmaAluno;
+	public Avaliacao(double nota, String comentarios, Date dataAvaliacao) {
+		this.nota = nota;
+		this.comentarios = comentarios;
+		this.dataAvaliacao = dataAvaliacao;
 	}
 	
 	public int getId() {

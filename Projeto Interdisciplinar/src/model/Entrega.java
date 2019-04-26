@@ -17,9 +17,8 @@ public class Entrega {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Entrega(Atividade atividade, int id, Date dtCadastro) {
+	public Entrega(int id, Date dtCadastro) {
 		this.id = id;
-		this.atividade = atividade;
 		this.dataCadastro = dtCadastro;
 	}
 		

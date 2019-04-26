@@ -50,22 +50,27 @@
       <table class="table table-striped" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-              <th>Id</th>
+              <th>idEntrega</th>
+              <th>idGrupo</th>
               <th>data</th>
               <th class="actions">Ações</th>
-          </tr>
-
-		  <tbody>
+          </tr>		  
+		  
 			<c:forEach var="entrega" items="${lista }">
 			  <tr>
-			    <td>${entrega.id }</td>
-			    <td>${entrega.dtCadastro}</td>
+			  	<td>${entrega.id }</td>
+			  	<td>${entrega.grupo.id }</td>
+			    <td>${entrega.dtCadastro}</td>	  
 			    <!-- Botoes -->
 			    <td class="actions">
-			        <a class="btn btn-primary btn-xs" href="#">Visualizar Avaliacoes</a>
+			        <a class="btn btn-success btn-xs" href="ManterAvaliacaoController?acao=Criar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Criar Avaliacao</a>
+			        <a class="btn btn-info btn-xs" href="ManterAvaliacaoController?acao=Visualizar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Visualizar Avaliacao</a>
+			        <a class="btn btn-warning btn-xs" href="ManterAvaliacaoController?acao=Editar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Editar</a>
+			        <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Excluir&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Excluir</a>
 			    </td>
 			  </tr>
 			</c:forEach>
+			
 		  </tbody> 
     	</table>
  	 </div>

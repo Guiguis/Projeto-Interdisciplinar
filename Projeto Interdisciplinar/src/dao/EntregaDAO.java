@@ -18,7 +18,7 @@ public class EntregaDAO {
 		Entrega entrega= new Entrega();
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "SELECT data_cadastro FROM entrega WHERE entrega.id = ?";
+		String sqlComand = "SELECT id, dt_cadastro FROM entrega WHERE entrega.id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
@@ -26,7 +26,8 @@ public class EntregaDAO {
 			ResultSet rs = stm.executeQuery();
 			
 			if(rs.next()) {
-				entrega.setDtCadastro(rs.getDate("DataCadastro"));
+				entrega.setId(rs.getInt("id"));
+				entrega.setDtCadastro(rs.getDate("dt_cadastro"));
 			} 
 		
 		}catch(SQLException e) {
