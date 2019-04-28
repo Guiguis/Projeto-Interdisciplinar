@@ -33,7 +33,7 @@
 		<div class="col-md-12" id="ComposLogin">
 		<div id="User">
 		<!-- Campos Usuario -->
-				<form action="LoginManter" method="post" class="form-horizontal">
+				<form action="LoginManter" method="get" class="form-horizontal">
 					<div class="form-row">
 						<div class="form-group col-md-12" align="Center">
 							<label for="inputUser" align="Center" id="LabelUser" name="user">Usuario:</label>
@@ -43,6 +43,7 @@
 								   </div>	  
 						</div>
 						</div>
+						<button type="submit" class="btn btn-primary">Login</button>
 				</form>
 			</div>
 		</div>

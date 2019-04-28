@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Turma;
 import service.TurmaService;
@@ -15,7 +16,7 @@ import service.TurmaService;
 /**
  * Servlet implementation class MenuController
  */
-@WebServlet("/Menu")
+@WebServlet("/LoginManter")
 public class MenuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,14 +32,19 @@ public class MenuController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
 		TurmaService ts = new TurmaService();
 		
-		ArrayList<Turma> lstTurma = ts.mostrarAno();
+		ArrayList<Turma> lstSemestre = ts.mostrarAno();
+		request.setAttribute("lstSemestre", lstSemestre);
+		session.setAttribute("lstSemestre", lstSemestre);
 		
-		lstTurma.add(new Turma(2019, 1));
+		String semestreSelected = request.getParameter("semestre");
 		
-		request.setAttribute("lstTurma", lstTurma);
-		request.getRequestDispatcher("Menu.jsp").forward(request, response);
+		session.setAttribute("escholhido", semestreSelected);
+		
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	/**

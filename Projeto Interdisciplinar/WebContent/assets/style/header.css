@@ -1,0 +1,19 @@
+.header{
+	padding: 10px 0 0 0;
+}
+
+.menu-flex{
+	display: flex;
+	justify-content: space-around; 
+	flex-flow: row wrap;
+	display: flex;
+	align-items: center;
+}
+
+.navbar-nav.menu-flex .nav-link{
+	padding: 10px 25px !important;
+}
+
+.form-semestre-anoletivo {
+	margin: 0;
+}
