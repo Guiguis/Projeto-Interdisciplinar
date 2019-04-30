@@ -39,7 +39,7 @@ pageEncoding="ISO-8859-1"%>
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="ListarGrupoDeclaracao?acao=reiniciar">
 								Gerar Declarção
 							</a>
 						</li>

@@ -18,7 +18,7 @@ public class TurmaDAO {
 		ArrayList<Turma> lista = new ArrayList<Turma>();
 
 		Connection conn = new ConnectionFactory().getConnection();
-		String sqlInsert = "SELECT DISTINCT ano_letivo, semestre_letivo FROM turma ORDER BY ano_letivo ASC";
+		String sqlInsert = "SELECT DISTINCT ano_letivo, semestre_letivo FROM turma ORDER BY ano_letivo DESC";
 
 		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
 			ResultSet rs = stm.executeQuery();
@@ -34,7 +34,7 @@ public class TurmaDAO {
 			e.printStackTrace();
 		}
 		return lista;
-	}
+	}	
 	
 	//Carrega todas as turmas baseada no ano e semestre------------------------------------------
 	public ArrayList<Turma> mostrarSigla(Turma turma) {

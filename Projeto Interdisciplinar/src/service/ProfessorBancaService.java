@@ -1,9 +1,13 @@
 package service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-import model.ProfessorBanca;
 import dao.ProfessorBancaDAO;
+import model.Aluno;
+import model.Banca;
+import model.Professor;
+import model.ProfessorBanca;
 
 public class ProfessorBancaService implements Serializable{
 
@@ -27,6 +31,29 @@ public class ProfessorBancaService implements Serializable{
 	
 	public ProfessorBanca loadProfessorBanca(int id) {
 		return dao.loadProfessorBanca(id);
+	}
+	
+	//----
+	public String loadTemaGrupo(int idGrupo) {
+		return dao.loadTemaGrupo(idGrupo);
+	}
+	
+	//--
+	public ArrayList<Aluno> loadAlunosGrupoBanca(int idGrupo) {
+		return dao.loadAlunosGrupoBanca(idGrupo);
+	}
+	
+	//--
+	public Professor loadOrientadorGrupo(int idGrupo) {
+		return dao.loadOrientadorGrupo(idGrupo);
+	}
+	
+	public Banca loadBancaGrupo(int idGrupo) {
+		return dao.loadBancaGrupo(idGrupo);
+	}
+	
+	public ArrayList<Professor> loadProfessoresBanca(int idBanca) {
+		return dao.loadProfessoresBanca(idBanca);
 	}
 	
 }
