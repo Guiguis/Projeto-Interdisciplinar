@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import connection.ConnectionFactory;
-import model.Aluno;
 import model.Avaliacao;
-import model.Grupo;
+import model.Entrega;
 
 public class AvaliacaoDAO {
 	
@@ -56,20 +54,23 @@ public class AvaliacaoDAO {
      * CRUD: Atualiza banca
      * @param conn: Connection
      */
-	public void updateAvaliacao(Avaliacao avaliacao) {
+	public void updateAvaliacao(ArrayList<Avaliacao> listaAvaliacao) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "UPDATE Avaliacao SET nota = ?, data_avaliacao = ?, comentarios = ?, WHERE id = ?";
+		String sqlComand = "UPDATE Avaliacao SET nota = ?, comentarios = ? WHERE id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
-			stm.setDouble(1, avaliacao.getNota());
-			stm.setDate(2, avaliacao.getDataAvaliacao());
-			stm.setString(3, avaliacao.getComentarios());
-			stm.setInt(4, avaliacao.getId());
-			
-			stm.executeUpdate();
+			for(int i = 0; i < listaAvaliacao.size(); i++) {
+				System.out.println("ATUALIAZANDO DAO " + listaAvaliacao.get(i).getNota());
+				stm.setDouble(1, listaAvaliacao.get(i).getNota());
+				stm.setString(2, listaAvaliacao.get(i).getComentarios());
+				stm.setInt(3, listaAvaliacao.get(i).getId());
+				stm.executeUpdate();
+			}	
+			System.out.println("Alterado com sucesso");
 		}catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Erro ao alterar: " + e);
 		}
 		
 	}
@@ -78,13 +79,12 @@ public class AvaliacaoDAO {
      * CRUD: Deleta avaliacao
      * @param conn: Connection
      */
-	public void deleteAvaliacao(int turmaAluno, int entregaId) {
+	public void deleteAvaliacao(int entregaId) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "SELECT * FROM avaliacao WHERE turma_aluno_id = ? AND entrega_id = ?;";
+		String sqlComand = "DELETE FROM avaliacao WHERE entrega_id = ?";
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
-			stm.setInt(1, turmaAluno);
-			stm.setInt(2, entregaId);
+			stm.setInt(1, entregaId);
 			stm.executeUpdate();
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -114,74 +114,56 @@ public class AvaliacaoDAO {
 		return avaliacao;
 	}
 	
-	public Avaliacao load(int entrega, int turmaAluno) {
-		Avaliacao avaliacao = new Avaliacao();
+	public ArrayList<Avaliacao> loadEntregaId(int entrega) {
+		AlunoDAO alunoDAO = new AlunoDAO();
+		EntregaDAO entregaDAO = new EntregaDAO();
+		ArrayList<Avaliacao> lista = new ArrayList<Avaliacao>();
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "SELECT nota, comentarios, dt_avaliacao FROM avaliacao WHERE entrega_id = ? AND turma_aluno_id = ?";
+		String sqlComand = "SELECT * FROM avaliacao WHERE entrega_id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
 			stm.setInt(1,entrega);
-			stm.setInt(2,turmaAluno);
-			ResultSet rs = stm.executeQuery();
-			
-			if(rs.next()) {
-				avaliacao.setNota(rs.getDouble("Nota"));
-				avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
-				avaliacao.setComentarios(rs.getString("Comentario"));
-			} 
-		
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return avaliacao;
-	}
-	
-	//Carrega todas as datas em que um grupo foi avalido
-	public ArrayList<Date> loadDatas(Grupo grupo) {
-		Connection conn = new ConnectionFactory().getConnection();
-		ArrayList<Date> lista = new ArrayList<>();
-		
-		String sqlComand = 
-				"SELECT DISTINCT dt_avaliacao FROM Avaliacao " + 
-				"JOIN turma_aluno t " + 
-				"ON avaliacao.turma_aluno_id = t.id " + 
-				"WHERE t.grupo_id = ?";		
-		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
-			
-			stm.setInt(1,grupo.getId());
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				Date data = rs.getDate("dt_avaliacao");
-				lista.add(data);
+				Avaliacao avaliacao = new Avaliacao();
+				avaliacao.setId(rs.getInt("id"));
+				avaliacao.setNota(rs.getDouble("Nota"));
+				avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
+				avaliacao.setComentarios(rs.getString("comentarios"));
+				avaliacao.setAluno(alunoDAO.loadTurmaAluno(rs.getInt("turma_aluno_id")));
+				avaliacao.setEntrega(entregaDAO.loadEntrega(rs.getInt("entrega_id")));
+				lista.add(avaliacao);
 			} 
-		
+
+			System.out.println("Dados carregados com sucesso");
 		}catch(SQLException e) {
 			e.printStackTrace();
+			System.out.println("Dados carregados SEM sucesso erro: " + e);
 		}
 		return lista;
 	}
 	
+	
 	//Passando um idEntrega e idGrupo ele verifica se essa entrega ja foi avaliada
-	public int verrifica(int idEntrega, int idGrupo) {
+	public int verrifica(Entrega entrega) {
 		Connection conn = new ConnectionFactory().getConnection();
-		int i = -1;
+		int i = 0;
 		
-		String sqlComand = 	"SELECT DISTINCT g.numero FROM grupo g "
-							+ "JOIN entrega e ON g.id = e.grupo_id "
-							+ "JOIN avaliacao a on a.entrega_id = e.id "
-							+ "WHERE e.id = ? AND g.id = ?";
+		String sqlComand = 	"SELECT * from avaliacao WHERE entrega_id = ?";
 				
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
-			stm.setInt(1, idEntrega);
-			stm.setInt(2, idGrupo);
+			stm.setInt(1, entrega.getId());
 			ResultSet rs = stm.executeQuery();
 			
-			if(rs.next()) {
-				i = rs.getInt("numero");
+			while(rs.next()) {
+				int resp = rs.getInt("id");
+				if(resp > 0) {
+					i = 1;
+				}
 			} 
 		
 		}catch(SQLException e) {
@@ -189,35 +171,6 @@ public class AvaliacaoDAO {
 		}
 		return i;
 	}
-	
-
-	//Carrega uma avaliacao com base na data
-		public ArrayList<Avaliacao> loadAvaliacoes(Date data) {
-			Connection conn = new ConnectionFactory().getConnection();
-			ArrayList<Avaliacao> lista = new ArrayList<>();
-			EntregaDAO dao = new EntregaDAO();
-			
-			String sqlComand = 	"SELECT * FROM avaliacao WHERE dt_avaliacao = ?";
-					
-			try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
-				
-				stm.setDate(1, data);
-				ResultSet rs = stm.executeQuery();
-				
-				while(rs.next()) {
-					Avaliacao avaliacao = new Avaliacao();
-					avaliacao.setComentarios(rs.getString("comentarios"));
-					avaliacao.setEntrega(dao.loadEntrega(rs.getInt("entrega_id")));
-					avaliacao.setNota(rs.getInt("nota"));
-					lista.add(avaliacao);
-				} 
-			
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-			return lista;
-		}
-	
 	
 	
 	

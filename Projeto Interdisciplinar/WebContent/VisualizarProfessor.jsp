@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="model.Professor" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,9 +20,8 @@
 <body>
 
 <!-- Barra superior com os menus de navegação -->
-	<c:import url ="Menu.jsp"/>	
+	<c:import url ="Header.jsp"/>	
 	
-	<%Professor professor = (Professor)request.getAttribute("professor"); %>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12  mt-30">
@@ -58,6 +57,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="btn btn-primary btn-xs" href="ListarProfessores.jsp">Voltar</a>
 	</div>			
 
 	<script src="assets/scripts/jquery.min.js"></script>

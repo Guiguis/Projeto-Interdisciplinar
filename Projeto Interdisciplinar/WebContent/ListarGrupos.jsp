@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="Menu.jsp"/>
+<c:import url="Header.jsp"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,16 +31,6 @@
              <div class="col-md-11">
                  <h2>Grupos</h2>
              </div>
-
-             <div class="col-md-6">
-                 <div class="input-group mb-3">
-                     <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Grupo">
-                     <div class="col-md-1"></div>
-                     <span class="input-group-btn">
-                          <input  class="btn btn-outline-primary" type="submit" name="acao" value="buscar">
-                     </span>
-                 </div>
-             </div>
          </div>
 	</form>
 	
@@ -50,16 +40,16 @@
       <table class="table table-striped" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-              <th>Id</th>
               <th>Nome</th>
               <th>Numero</th>
               <th class="actions">Ações</th>
+              
           </tr>
 
 		  <tbody>
 			<c:forEach var="grupo" items="${lista }">
 			  <tr>
-			    <td>${grupo.id }</td>
+			  	<p hidden>${grupo.id }</p>
 			    <td>${grupo.nome }</td>
 			    <td>${grupo.numero }</td>
 			    <!-- Botoes -->

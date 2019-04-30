@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="Menu.jsp"/>
+<c:import url="Header.jsp"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,16 +31,6 @@
              <div class="col-md-11">
                  <h2>Entregas</h2>
              </div>
-
-             <div class="col-md-6">
-                 <div class="input-group mb-3">
-                     <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar entrega">
-                     <div class="col-md-1"></div>
-                     <span class="input-group-btn">
-                          <input  class="btn btn-outline-primary" type="submit" name="acao" value="buscar">
-                     </span>
-                 </div>
-             </div>
          </div>
 	</form>
 	
@@ -50,46 +40,33 @@
       <table class="table table-striped" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-              <th>idEntrega</th>
-              <th>idGrupo</th>
+              <th>Tema</th>
               <th>data</th>
-              
-              
               <th class="actions">Ações</th>
           </tr>		  
 		  
 			<c:forEach var="entrega" items="${lista }">
 			  <tr>
-			  	<td>${entrega.id }</td>
-			  	<td>${entrega.grupo.id }</td>
-			    <td>${entrega.dtCadastro}</td>	
+			  	<p hidden name="entregaId">${lista[1].id }</p>
+			  	<td>${entrega.atividade.tema.titulo}</td>
+			  	<td><fmt:formatDate pattern="dd/MM/yyyy" value="${entrega.dtCadastro}"/></td>
 				<!-- Botoes -->
-			     <c:if test="${listaAvaliado[1] > 0 }">
-			    	<td class="actions">
-			        <a class="btn btn-info btn-xs" href="ManterAvaliacaoController?acao=Visualizar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Visualizar Avaliacao</a>
-			        <a class="btn btn-warning btn-xs" href="ManterAvaliacaoController?acao=Editar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Editar</a>
-			        <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Excluir&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Excluir</a>
-			    	</td>
-			    </c:if>
-			    <c:if test="${listaAvaliado[1] < 1 }">
-			    <td class="actions">
-			    	<a class="btn btn-success btn-xs" href="ManterAvaliacaoController?acao=Criar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Criar Avaliacao</a>
-			    </td>
-			    </c:if>
-			    
-			    
-			    
-			    
-			   
-			   
-			    
-			    
-			    
-			    
+		    	<td class="actions">
+		    		<a class="btn btn-success btn-xs" href="ManterAvaliacaoController?acao=Criar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Criar Avaliacao</a>
+		    		 <a class="btn btn-warning btn-xs" href="ManterAvaliacaoController?acao=Editar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Editar</a>
+			        <a class="btn btn-info btn-xs" href="ManterAvaliacaoController?acao=Visualizar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Visualizar Avaliacao</a>
+			        <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Excluir&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Excluir</a>
+		    	</td>
 			  </tr>
 			</c:forEach>
+			
 		  </thead>	
     	</table>
+    	
+    	
+
+    	
+    	
     	 
     	
  	 </div>

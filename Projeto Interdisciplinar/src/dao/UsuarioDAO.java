@@ -51,17 +51,20 @@ public class UsuarioDAO {
 	public Usuario updateUsuario(Usuario usuario) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "UPDATE Usuario SET nome = ? email = ?, senha = ? WHERE id = ?";
+		String sqlComand = "UPDATE Usuario SET nome = ?, email = ?, senha = ? WHERE id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
-			stm.setString(2, usuario.getNome());
+			stm.setString(1, usuario.getNome());
 			stm.setString(2, usuario.getEmail());
 			stm.setString(3, usuario.getSenha());
 			stm.setInt(4, usuario.getId());
 			
 			stm.executeUpdate();
+			
+			System.out.println("Atualizado usuario com sucesso");
 		}catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Usuario nao atualizado, erro: " + e);
 		}
 		
 		return usuario;

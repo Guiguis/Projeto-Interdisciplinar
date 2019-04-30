@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="Menu.jsp"/>
+<c:import url="Header.jsp"/>
 <%@page import="model.Avaliacao" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,20 +34,14 @@
 			
 			<div class="form-group col-md-4">
 				<label for="inputName">Data da avaliacao: </label>
-				<% // <fmt:formatDate pattern="dd/MM/yyyy" value="${lstAvaliacao[0].dataAvaliacao.parameterName}"/>%>
-				<label ></label>
+				<label ><fmt:formatDate pattern="dd/MM/yyyy" value="${listaAvaliacao[1].dataAvaliacao}"/></label>
 			</div>
-
-			<c:forEach var="aluno" items="${listaAluno}">
-				<div class="form-row">
-					<div class="form-group col-md-4">
-						<label >${aluno.nome}</label>
-					</div>
-				</div>
-			</c:forEach>
 
 			<c:forEach var="avaliacao" items="${listaAvaliacao}">
 				<div class="form-row">
+					<div class="form-group col-md-3">
+						<label >${avaliacao.aluno.nome}</label>
+					</div>
 					<div class="form-group col-md-3">
 						<label for="inputName">Nota:  </label>
 						<label >${avaliacao.nota}</label>
@@ -57,8 +51,10 @@
 						<label >${avaliacao.comentarios}</label>
 					</div>
 				</div>
+				<p hidden name="entregaId">${listaAvaliacao[1].entrega.id}</p>
 			</c:forEach>
-		  <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Apagar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Excluir</a>
+		  <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Apagar&idEntrega=${listaAvaliacao[1].entrega.id}">Excluir</a>
+		  <a class="btn btn-primary btn-xs" href="ListarAvaliacao.jsp">Voltar</a>
 		</div>
 	</div>
 </div>			

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="Menu.jsp"/>
+<c:import url="Header.jsp"/>
 <%@page import="model.Avaliacao" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,37 +27,48 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12  mt-30">
+		
+		<!-- TITULO -->
 		<div class="col-md-4 offset-md-4">
 			<h1 class="">Avaliar Alunos</h1>
 		</div>
 		
-		<div class="form-group col-md-4">
-			<label for="inputName">Data da avaliacao: </label>
-			<% // <fmt:formatDate pattern="dd/MM/yyyy" value="${lstAvaliacao[0].dataAvaliacao.parameterName}"/>%>
-			<label ></label>
-		</div>
-	
-	
+		<form action="ManterAvaliacaoController?entregaId=${listaAvaliacao[1].entrega.id}" method="post" class="form-horizontal"> 
 		
-
-		
+		<!-- Data -->
+			<div class="form-group col-md-4 offset-md-4">
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<label for="inputData">Data</label>
+					</div>
+					<div class="form-group col-md-4">
+						<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" 
+						<fmt:formatDate pattern="dd/MM/yyyy" value="${listaAvaliacao[1].dataAvaliacao}"/>/>
+					</div>
+				</div>
+			</div>
 
 			<c:forEach var="avaliacao" items="${listaAvaliacao}">
 				<div class="form-row">
+					<div class="form-group col-md-10">
+						<label>${avaliacao.aluno.nome}</label>
+						<input type="hidden" class="form-control" name="avaliacaoId${avaliacao.id}" id="avaliacaoId${avaliacao.id}" value="${avaliacao.id}" />
+					</div>
 					<div class="form-group">
 						<label for="inputName">Nota: </label>
-						<input type="text" class="form-control" name="nota&avaliacao.id" id="nota" 
-									required maxlength="100" value="${avaliacao.nota}">
+						<input type="text" class="form-control" name="nota${avaliacao.id }" id="nota${avaliacao.id }" value="${avaliacao.nota}" />
 					</div>
 					<div class="form-group">
 						<label for="inputName">Comentarios: </label>
-						<input type="text" class="form-control" name="comentario&avaliacao.id" id="comentario" 
-									required maxlength="100" value="${avaliacao.comentarios}">
+						<input type="text" class="form-control" name="comentarios${avaliacao.id }" id="comentarios${avaliacao.id }" value="${avaliacao.comentarios}" />
 					</div>
 				</div>
 			</c:forEach>
-		
-		<a class="btn btn-warning btn-xs" href="ManterAvaliacaoController?acao=Atualizar&idGrupo=${entrega.grupo.id}&idEntrega=${entrega.id}">Editar</a>
+			<input type="hidden" name="entregaId" id="entregaId" value="${listaAvaliacao[1].entrega.id }" />
+			
+			<button type="submit" class="btn btn-primary" name="acao" value="Atualizar">Enviar</button>
+			<a class="btn btn-primary btn-xs" href="ListarAvaliacao.jsp">Cancelar</a>
+			</form>
 		</div>
 	</div>
 </div>			

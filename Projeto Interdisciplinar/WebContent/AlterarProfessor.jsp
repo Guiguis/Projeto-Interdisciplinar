@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:import url="Menu.jsp"/>
+<c:import url="Header.jsp"/>
 
 <!DOCTYPE html>
 <html>
@@ -38,6 +38,7 @@
         <div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="inputName">Nome</label>
+				<input type="hidden" name="id" id="id" value="${professor.id }" />
 				<input type="text" class="form-control" name="nome" id="nome" required maxlength="100" 
               			placeholder="nome completo" value="${professor.nome }">
 			</div>

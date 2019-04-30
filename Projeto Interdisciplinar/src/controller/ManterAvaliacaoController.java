@@ -43,19 +43,19 @@ public class ManterAvaliacaoController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pIdGrupo = null;
-		String pIdEntrega = null;
+		String pIdGrupo = request.getParameter("idGrupo");
+		String pIdEntrega = request.getParameter("idEntrega");
 		String acao = request.getParameter("acao");
-		
-		if(request.getParameter("idGrupo") != null || !request.getParameter("idGrupo").equals("") ) {
-			pIdGrupo = request.getParameter("idGrupo");
+		int idGrupo = -1;
+		int idEntrega  = -1;
+	
+		try {
+			idGrupo = Integer.parseInt(pIdGrupo);
+			idEntrega = Integer.parseInt(pIdEntrega);
+		} catch(Exception e) {
+			System.out.println("Erro ao conventer o id de Grupo e/ou o id de Entrega... Erro: " + e);
 		}
-		if(request.getParameter("idEntrega") != null || !request.getParameter("idEntrega").equals("")) {
-			pIdEntrega = request.getParameter("idEntrega");
-		}
 		
-		int idGrupo = Integer.parseInt(pIdGrupo);
-		int idEntrega = Integer.parseInt(pIdEntrega);
 	
 		EntregaService es = new EntregaService();
 		AlunoService AlunoService = new AlunoService();
@@ -65,63 +65,79 @@ public class ManterAvaliacaoController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		
-		
 		if(acao.equals("Criar")) {
-			// enviar para o jsp
+			// enviar para o jsp\
 			request.setAttribute("idGrupo", idGrupo);
 			request.setAttribute("idEntrega", idEntrega);
 			request.setAttribute("listaAluno", listaAluno);
 			view = request.getRequestDispatcher("cadastroAvaliacao.jsp");
-			view.forward(request, response);	
-		}
-		else if (acao.equals("Apagar")){
-			AvaliacaoService as = new AvaliacaoService();
-			as.deleteAvaliacao(idGrupo, listaAluno, idEntrega);
-			ArrayList<Avaliacao> lista = (ArrayList<Avaliacao>)session.getAttribute("lista");
-			session.setAttribute("lista", lista);
-			view = request.getRequestDispatcher("ListarEntregas.jsp");	
-			
 		}
 		else if(acao.equals("Excluir")) {
 			// enviar para o jsp
 			AvaliacaoService as = new AvaliacaoService();
-			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);
 			request.setAttribute("listaAvaliacao", listaAvaliacao);
-			request.setAttribute("listaAluno", listaAluno);
 			view = request.getRequestDispatcher("ExcluirAvaliacao.jsp");
-			view.forward(request, response);	
+		}
+		else if (acao.equals("Apagar")){		
+			int idEn = Integer.parseInt(request.getParameter("idEntrega"));
+			AvaliacaoService as = new AvaliacaoService();
+			as.deleteAvaliacao(idEn);
+			ArrayList<Avaliacao> listaAvaliacao = new ArrayList<Avaliacao>();
+			listaAvaliacao = as.load(idEn);
+			session.setAttribute("listaAvaliacao", listaAvaliacao);
+			view = request.getRequestDispatcher("ListarEntregas.jsp");		
+			
 		}
 		else if(acao.equals("Visualizar")) {
 			// enviar para o jsp
 			AvaliacaoService as = new AvaliacaoService();
-			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);
 			request.setAttribute("listaAvaliacao", listaAvaliacao);
-			request.setAttribute("listaAluno", listaAluno);
 			view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
-			view.forward(request, response);	
 		}
 		else if(acao.equals("Editar")) {
 			// enviar para o jsp
 			AvaliacaoService as = new AvaliacaoService();
-			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);
+			request.setAttribute("idEntrega", idEntrega);
 			request.setAttribute("listaAvaliacao", listaAvaliacao);
-			request.setAttribute("listaAluno", listaAluno);
 			view = request.getRequestDispatcher("AlterarAvaliacao.jsp");
-			view.forward(request, response);
 		}
 		
 		else if(acao.equals("Atualizar")) {
 			// enviar para o jsp
+			int idEn = Integer.parseInt(request.getParameter("entregaId"));
 			AvaliacaoService as = new AvaliacaoService();
-			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega, idGrupo, listaAluno);
+			ArrayList<Avaliacao> listaAvaliacao = new ArrayList<Avaliacao>();
+			listaAvaliacao = as.load(idEn);
+			
+			System.out.println("Atualizar request idEntrega: " + idEn);
+
+			
+			for(int i = 0; i < listaAvaliacao.size(); i++) {
+				Avaliacao avaliacao = null;
+				int idAvaliacao = listaAvaliacao.get(i).getId();
+				
+				//pegando dados do formulario
+				int id = Integer.parseInt(request.getParameter("avaliacaoId"+idAvaliacao));
+				Double pNota = Double.parseDouble(request.getParameter("nota"+idAvaliacao));
+				String pComentarios = request.getParameter("comentarios"+idAvaliacao);
+				
+				//criando uma nova avaliacao e colocando na lista
+				avaliacao = new Avaliacao(id, pNota, pComentarios);
+				listaAvaliacao.set(i, avaliacao);
+				
+				System.out.println("Id = " + id + "  Nota = " + pNota + " Comentarios = " + pComentarios);
+			}
+			
+			as.updateAvaliacao(listaAvaliacao);
 			request.setAttribute("listaAvaliacao", listaAvaliacao);
-			request.setAttribute("listaAluno", listaAluno);
 			view = request.getRequestDispatcher("ListarEntregas.jsp");
-			view.forward(request, response);
 		}
 		
 		else if(acao.equals("Enviar")) {
-		
+			
 			String pNotaTodos = request.getParameter("notaTodos");
 			String pComentariosTodos = request.getParameter("comentariosTodos");
 			String pData = request.getParameter("data");
@@ -158,7 +174,6 @@ public class ManterAvaliacaoController extends HttpServlet {
 				request.setAttribute("listaAluno", listaAluno);
 				request.setAttribute("listaAvaliacao", lista);
 				view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
-				view.forward(request, response);	
 				
 			}
 			else{
@@ -192,15 +207,11 @@ public class ManterAvaliacaoController extends HttpServlet {
 				request.setAttribute("listaAluno", listaAluno);
 				request.setAttribute("listaAvaliacao", lista);
 				view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
-				view.forward(request, response);	
 					
 			}
 		
 		}
-		
-
-		
-		
+		view.forward(request, response);
 		
 	}
 	
@@ -218,6 +229,19 @@ public class ManterAvaliacaoController extends HttpServlet {
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 		return dataSql;
 	}
+	
+	
+	public ArrayList<Integer> busca(int entregaId, ArrayList<Avaliacao> lista) {
+		ArrayList<Integer> avaliacaoIndex = new ArrayList<>();
+		Avaliacao a;
+		for(int i = 0; i < lista.size(); i++){
+			a = lista.get(i);
+			if(a.getEntrega().getId() == entregaId){
+				avaliacaoIndex.add(i);
+			}
+		}
+		return avaliacaoIndex;
+	}	
 	
 
 }

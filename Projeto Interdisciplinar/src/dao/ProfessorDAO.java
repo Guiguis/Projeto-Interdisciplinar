@@ -94,8 +94,9 @@ public class ProfessorDAO extends UsuarioDAO{
 	public void update(Professor professor) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		//Atualiza email e senha
-		updateUsuario(professor);
+		UsuarioDAO dao = new UsuarioDAO();
+		dao.updateUsuario(professor);
+
 		
 		String sqlComand = "UPDATE Professor SET administrador = ?, matricula = ? WHERE professor_id = ?";
 		
@@ -104,9 +105,11 @@ public class ProfessorDAO extends UsuarioDAO{
 			stm.setString(2, professor.getMatricula());
 			stm.setInt(3, professor.getId());
 			
-			stm.executeUpdate();            
+			stm.executeUpdate();  
+			System.out.println("Atualiazado professor com sucesso");
 		}catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Professor nao atualizado, erro: " + e);
 		}finally {
 			try {
 				conn.close();

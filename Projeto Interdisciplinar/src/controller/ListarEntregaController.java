@@ -39,11 +39,9 @@ public class ListarEntregaController extends HttpServlet {
 		ArrayList<Entrega> lista = null;
 		
 		//Pega as informacoes principais da pagina
-		String busca = request.getParameter("data[search]");
 		String acao = request.getParameter("acao");
 		String pId = request.getParameter("id");
 		HttpSession session = request.getSession();
-		
 		
 		int id = -1;
 		try {
@@ -51,34 +49,9 @@ public class ListarEntregaController extends HttpServlet {
 		} catch(Exception e) {}
 		
 		
-		if(acao.equals("busca")) {
+		if(acao.equals("reiniciar")) {
+
 			lista = es.loadTodos(id);
-			
-			AvaliacaoService as = new AvaliacaoService();
-			ArrayList<Integer> listaEntregaId = new ArrayList<>();
-			ArrayList<Integer> avaliado = new ArrayList<>();
-			
-			for(int i = 0; i < lista.size(); i++) {
-				listaEntregaId.add(lista.get(i).getId());
-			}
-			
-			avaliado = as.verrifica(listaEntregaId, id);
-			session.setAttribute("listaAvaliado", avaliado);
-			
-			session.setAttribute("lista", lista);
-			
-		} else if(acao.equals("reiniciar")) {
-			AvaliacaoService as = new AvaliacaoService();
-			lista = es.loadTodos(id);
-			ArrayList<Integer> listaEntregaId = new ArrayList<>();
-			ArrayList<Integer> avaliado = new ArrayList<>();
-			
-			for(int i = 0; i < lista.size(); i++) {
-				listaEntregaId.add(lista.get(i).getId());
-			}
-			
-			avaliado = as.verrifica(listaEntregaId, id);
-			session.setAttribute("listaAvaliado", avaliado);
 			session.setAttribute("lista", lista);
 			
 		}

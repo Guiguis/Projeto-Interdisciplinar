@@ -202,5 +202,46 @@ public class AlunoDAO extends UsuarioDAO {
 		return lista;
 	}
 	
+	
+	/**
+     * CRUD: Carrega dados do aluno
+     * @param conn: Connection
+     */
+	public Aluno loadTurmaAluno(int id) {
+		Connection conn = new ConnectionFactory().getConnection();
+		
+		String sqlComand = "SELECT * FROM usuario u "
+				+ "JOIN aluno a ON u.id = a.aluno_id "
+				+ "JOIN turma_aluno t ON a.aluno_id = t.aluno_id "
+				+ "WHERE t.id = ?";
+		
+		Aluno aluno = null;
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand);){
+			
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+			
+            if(rs.next()) {
+            	String email = rs.getString("email");
+            	String senha = rs.getString("senha");
+            	int idAluno = rs.getInt("id");
+            	String nome = rs.getString("nome");
+            	String ra = rs.getString("ra");
+            	
+            	aluno = new Aluno(idAluno, nome, email, senha, ra);
+            }
+            
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return aluno;
+	}
 
 }
