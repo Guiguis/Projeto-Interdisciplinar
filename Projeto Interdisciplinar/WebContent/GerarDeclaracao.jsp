@@ -26,56 +26,68 @@
 	
      
 <div class="container">
-	<div class="col-md-12">
-		<h1 class="col-md-4">Gerar Declaração</h1>
-	</div>
-
-     <div class="col-md-12">
-        <label class="col-md-4">Orientador: ${orientador.nome }</label>
-        <label class="col-md-3">Data: <fmt:formatDate pattern="dd/MM/yyyy" value="${banca.data }"/></label>
-        <label class="col-md-4">Local: Rua Mooca 1254 Sala: ${banca.sala }</label>
-     </div>
-     
-     <br/>
-     <br/>
-     <br/>
-     
-     <div class="col-md-12">
-     	<label class="col-md-4">${grupo.nome }<br><br>
-     		<c:forEach var="aluno" items="${listaAlunos }">
-			    ${aluno.nome }<br>
-			</c:forEach>
-     	</label>
-     
-     	<label class="col-md-3"></label>
-     
-     	<label class="col-md-3">Tema: ${tema }<br><br>
-     		<c:forEach var="professor" items="${listaProfessores }">
-			    ${professor.nome }<br>
-			</c:forEach>
-     	</label>
-     	
-     	
-     </div>
-     
-     
-     <br><br><br><br>
-     
-     <p> Participou da banca como professor/orientador o Sr(a) ${orientador.nome } 
-     	no dia <fmt:formatDate pattern="dd/MM/yyyy" value="${banca.data }"/>
-     	avaliando os alunos: 
-     	<c:forEach var="aluno" items="${listaAlunos }">
-			${aluno.nome },
-		</c:forEach> referente ao tema ${tema }
-		
-     </p>
-     <p>Ass: São Judas Tadeu</p>
-     
-     </div>
-     
+  <div class="row center-block">
     
-
-     
+    <div class="col-lg-12">
+      <img src="Img\ouvidoria-universidade-sao-judas1.png" class="rounded mx-auto d-block">
+    </div>
+    
+  </div>
+  <div class="row justify-content-md-center">
+    
+    <div class="col-lg-9 text-center">
+        <p> <h2 class="text-muted"> DECLARAÇÃO </h2></p>
+    </br>
+        <p>Declaro, para os devidos fins, que o professor <h5>${orientador.nome }</h5>
+        participou, na qualidade de professor (orientador / convidado), da Banca de Trabalho de Conclusão de Curso de Graduação do ${grupo.nome }, nesta Universidade, sob o título: “${tema }”.</p>
+        <p> São Paulo, <fmt:formatDate pattern="dd/MM/yyyy" value="${banca.data }" />.</p>
+   
+    <div class="row justify-content-md-center">
+        <div class="col-4">
+    <table class="table">
+  <thead>
+    <tr>  
+      <th scope="col">Banca</th>
+    </tr>
+  </thead>
+  <tbody>
+    <c:forEach var="professor" items="${listaProfessores }">
+			   <tr>
+			   <td> ${professor.nome } </td>
+			   </tr>
+			</c:forEach>
+  </tbody>
+</table>
+    </div>
+    
+    <div class="col-4">
+    	<table class="table">
+  <thead>
+    <tr>  
+      <th scope="col">Integrantes</th>
+    </tr>
+  </thead>
+  <tbody>
+    	<c:forEach var="aluno" items="${listaAlunos }">
+    	<tr>
+			<td>${aluno.nome }</td>
+		</tr>
+		</c:forEach>
+  </tbody>
+</table>
+    </div>
+    </div>
+    
+    </br>           
+    <p>_______________________________________________________________<br>
+    Professora Dra. Ana Paula Gonçalves Serra</br>
+    Coordenadora dos cursos Ciência da Computação, Engenharia de Computação, Sistemas de Informação e Tecnologia em Análise e Desenvolvimento de Sistemas
+</p>
+    
+    
+    </div>
+</div>
+</div>
      
 
       
