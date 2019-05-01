@@ -37,42 +37,58 @@
 			
 			<form action="EnviarEmail" method="post" class="form-horizontal">
 			
-			
-				<select name="professor1">
-					<c:forEach var="professor" items="${listaProfessor }">
-						<option value="${professor.id}">${professor.nome}</option>  
-					</c:forEach>
-				</select>
+			<!-- Seleciona os professores -->
 				
-				<select name="professor2">
-					<c:forEach var="professor" items="${listaProfessor }">
-						<option value="${professor.id}">${professor.nome}</option>  
-					</c:forEach>
-				</select>
+					<div class="col-md-3">
+						<label>Selecione o 1º Professor(a)</label>
+						<select name="professor1">
+							<c:forEach var="professor" items="${listaProfessor }">
+								<option value="${professor.id}">${professor.nome}</option>  
+							</c:forEach>
+						</select>
+					</div>
+					
+					<div class="col-md-3">
+						<label>Selecione o 2º Professor(a)</label>
+						<select name="professor2">
+							<c:forEach var="professor" items="${listaProfessor }">
+								<option value="${professor.id}">${professor.nome}</option>  
+							</c:forEach>
+						</select>
+					</div>
+					
+					<div class="col-md-3">
+						<label>Selecione o 3º Professor(a)</label>
+						<select name="professor3">
+							<c:forEach var="professor" items="${listaProfessor }">
+								<option value="${professor.id}">${professor.nome}</option>  
+							</c:forEach>
+						</select>
+					</div>
 				
-				<select name="professor3">
-					<c:forEach var="professor" items="${listaProfessor }">
-						<option value="${professor.id}">${professor.nome}</option>  
-					</c:forEach>
-				</select>
+					<br>
+					<!-- Seleciona os grupos -->
+					<div class="col-md3">
+						<label>Selecione o Grupo</label>
+						<select name="grupoId">
+							<c:forEach var="grupo" items="${listaGrupo }">
+								<option value="${grupo.id}">${grupo.nome}</option>  
+							</c:forEach>
+						</select>				
+					</div>
+					
+					<!-- Insere a Data -->
+					<div class="form-group col-md-4">
+						<h6>Insira a data</h6>
+						<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" />
+					</div>
+					
+					<!-- Insere a sala -->
+					<div class="form-group col-md-4">
+						<h6>Insira a sala</h6>
+						<input id="inputData" type="text" class="form-control" name="sala"/>
+					</div>
 				
-				<select name="grupoId">
-					<c:forEach var="grupo" items="${listaGrupo }">
-						<option value="${grupo.id}">${grupo.numero}</option>  
-					</c:forEach>
-				</select>				
-				
-				
-				<div class="form-group col-md-4">
-					<h5>Insira a data em que a banca acontecerá</h5>
-					<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" />
-				</div>
-				
-				<div class="form-group col-md-4">
-					<h5>Insira a sala em que a banca acontecerá</h5>
-					<input id="inputData" type="text" class="form-control" name="sala"/>
-				</div>
-			
 			
 				 <button type="submit" class="btn btn-primary" name="acao" value="Alterar">Criar</button>
 			</form>

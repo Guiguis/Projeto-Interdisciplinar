@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,7 +55,7 @@ public class EnviarEmail extends HttpServlet {
 		int idProfessor2 = Integer.parseInt(request.getParameter("professor2"));
 		int idProfessor3 = Integer.parseInt(request.getParameter("professor3"));
 		int idGrupo = Integer.parseInt(request.getParameter("grupoId"));
-		Date data = formataData(request.getParameter("data"));
+		String data = request.getParameter("data");
 		String sala = request.getParameter("sala");
 		
 		GrupoService gs = new GrupoService();
@@ -65,7 +66,7 @@ public class EnviarEmail extends HttpServlet {
 		//Cria uma banca
 		System.out.println("Id do grupo: " + idGrupo);
 		Grupo grupo = gs.load(idGrupo);
-		Banca banca = new Banca(grupo, data, sala);
+		Banca banca = new Banca(grupo, formataData(data), sala);
 		bs.createBanca(banca);
 		
 		//Carrega os professores escolhidos
@@ -93,15 +94,17 @@ public class EnviarEmail extends HttpServlet {
 		//Envia o email para os professores cadastrados na banca
 		
 		for(int i = 0; i < lista.size(); i++) {
-			String pData = request.getParameter("data");
-			String assunto = "Você foi designado para uma banca no dia " + pData;
+			String assunto = "Você foi designado para uma banca no dia " + data;
 			String emailDestinatario = lista.get(i).getEmail();
-			String mensagem = "Professor " + lista.get(i).getNome() + ", você foi vinculado a uma banca no dia " + pData + " e na sala " + sala;
+			String mensagem = "Professor " + lista.get(i).getNome() + ", você foi designado para participar de uma banca no dia " 
+								+ data + " e na sala " + sala + "<br> caso não consiga ir no dia informar o professor ...";
 			Email email = new Email(emailDestinatario, assunto, mensagem);
 			
 			email.enviarEmail(email);
 		}
 		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
 		
 	}
 	
