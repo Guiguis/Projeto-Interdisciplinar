@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connection.ConnectionFactory;
+import model.Grupo;
 import model.Professor;
 import model.Usuario;
 
@@ -48,11 +49,7 @@ public class ProfessorDAO extends UsuarioDAO{
 	public Professor load(int id) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "SELECT professor.matricula, professor.administrador, " +
-							"usuario.id, usuario.nome, usuario.email, usuario.senha " + 
-		           			"FROM Professor as professor " + 
-		           			"INNER JOIN Usuario as usuario ON usuario.Id = professor.professor_id " + 
-		           			"WHERE usuario.id = ?";
+		String sqlComand = "SELECT * FROM professor p JOIN usuario u ON u.id = p.professor_id WHERE id = ?";
 		
 		Professor professor = null;
 		
@@ -63,15 +60,13 @@ public class ProfessorDAO extends UsuarioDAO{
 			ResultSet rs = stm.executeQuery();
 			
             if(rs.next()) {
-            	String email = rs.getString("usuario.email");
-            	String senha = rs.getString("usuario.senha");
-            	
-            	professor = new Professor(email, senha);
-            	
-            	professor.setId(rs.getInt("usuario.id"));
-            	professor.setNome(rs.getString("usuario.nome"));
-            	professor.setMatricula(rs.getString("professor.matricula"));
-            	professor.setAdministrador(rs.getInt("professor.administrador"));
+				String nome = rs.getString("nome");
+				String email = rs.getString("email");
+				String senha = rs.getString("senha");
+				String matricula = rs.getString("matricula");
+				int administrador = rs.getInt("administrador");
+				
+				professor = new Professor(id, nome, email, senha, matricula, administrador);
             }
             
 		}catch (SQLException e) {
@@ -223,6 +218,35 @@ public class ProfessorDAO extends UsuarioDAO{
 			}
 		}
 		
+		return lista;
+	}
+	
+	
+	public ArrayList<Professor> carrega() {
+		ArrayList<Professor> lista = new ArrayList<>();
+		Connection conn = new ConnectionFactory().getConnection();
+		String sqlInsert = "SELECT * FROM professor p JOIN usuario u ON u.id = p.professor_id;";
+
+		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
+
+			ResultSet rs = stm.executeQuery();
+
+			while(rs.next()) {
+				Professor professor = null;
+				int id = rs.getInt("id");
+				String nome = rs.getString("nome");
+				String email = rs.getString("email");
+				String senha = rs.getString("senha");
+				String matricula = rs.getString("matricula");
+				int administrador = rs.getInt("administrador");
+				
+				professor = new Professor(id, nome, email, senha, matricula, administrador);
+				lista.add(professor);
+			}
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return lista;
 	}
 	

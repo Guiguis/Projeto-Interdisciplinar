@@ -48,7 +48,13 @@ pageEncoding="ISO-8859-1"%>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="ListarGrupo?acao=reiniciar">
-								Avaliação Semanal
+								Avaliação
+							</a>
+						</li>
+						
+						<li class="nav-item active">
+							<a class="nav-link" href="CriarEmail?acao=reiniciar">
+								Banca
 							</a>
 						</li>
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import connection.ConnectionFactory;
 import model.Banca;
+import java.sql.Date;
 
 public class BancaDAO {
 
@@ -20,11 +21,12 @@ public class BancaDAO {
 	public void createBanca(Banca banca) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "INSERT INTO Banca (data, sala) VALUES (?, ?)";
+		String sqlComand = "INSERT INTO Banca (data, sala, grupo_id) VALUES (?, ?, ?)";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
-			stm.setDate(1, (java.sql.Date) banca.getData());
+			stm.setDate(1, banca.getData());
 			stm.setString(2, banca.getSala());
+			stm.setInt(3, banca.getGrupo().getId());
 			
 			int affectedRows = stm.executeUpdate();
 
@@ -37,8 +39,11 @@ public class BancaDAO {
 	        	else throw new SQLException("Criação de banca falhou. Nenhum id criado");
 	        }
 	        
+	        System.out.println("Banca criada com sucesso");
+	        
 		}catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Banca não fui criada erro: " + e);
 		}
 	}
 	

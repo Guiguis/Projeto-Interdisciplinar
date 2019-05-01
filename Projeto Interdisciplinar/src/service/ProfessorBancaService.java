@@ -17,8 +17,10 @@ public class ProfessorBancaService implements Serializable{
 		dao = new ProfessorBancaDAO();
 	}
 	
-	public void createProfessorBanca(ProfessorBanca professorBanca) {
-		dao.createBanca(professorBanca);
+	public void createProfessorBanca(ArrayList<ProfessorBanca> listaProfessorBanca) {
+		for(int i = 0; i < listaProfessorBanca.size(); i++) {
+			dao.createBanca(listaProfessorBanca.get(i));
+		}
 	}
 	
 	public void updateProfessorBanca(ProfessorBanca professorBanca) {

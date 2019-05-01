@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,16 +16,19 @@ import model.ProfessorBanca;
 
 public class ProfessorBancaDAO {
 
-	public void createBanca(ProfessorBanca professorBanca) {
+	public boolean createBanca(ProfessorBanca professorBanca) {
 		Connection conn = new ConnectionFactory().getConnection();
-		
-		String sqlComand = "INSERT INTO professor_banca (avaliacao) VALUES (?)";
+		boolean resp;
+		String sqlComand = "INSERT INTO professores_banca (professor_id, banca_id) VALUES (?, ?)";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
-			stm.setDouble(1,  professorBanca.getAvaliacao());
+			stm.setInt(1, professorBanca.getProfessor().getId());
+			stm.setInt(2,  professorBanca.getBanca().getId());
 			
 			int affectedRows = stm.executeUpdate();
-
+			System.out.println("Professor vinculado a banca com sucesso");
+			resp = true;
+			
 	        if (affectedRows == 0) {
 	            throw new SQLException("Criaï¿½ï¿½o de ProfessorBanca falhou. Nenhuma linha criada");
 	        }
@@ -32,11 +36,16 @@ public class ProfessorBancaDAO {
 	        try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
 	        	if (generatedKeys.next()) professorBanca.setId((int) generatedKeys.getLong(1));
 	        	else throw new SQLException("Criaï¿½ï¿½o de ProfessorBanca falhou. Nenhum id criado");
+	        	resp = false;
 	        }
 	        
 		}catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Professor não vinculado a banca erro: " + e);
+			resp = false;
 		}
+		
+		return resp;
 	}
 	
 	/**
@@ -46,7 +55,7 @@ public class ProfessorBancaDAO {
 	public void updateProfessorBanca(ProfessorBanca professorBanca) {
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "UPDATE professor_banca SET avaliacao = ? WHERE id = ?";
+		String sqlComand = "UPDATE professores_banca SET avaliacao = ? WHERE id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
 			stm.setDouble(1, professorBanca.getAvaliacao());
@@ -86,7 +95,7 @@ public class ProfessorBancaDAO {
 		ProfessorDAO professorDAO = new ProfessorDAO();
 
 		Connection conn = new ConnectionFactory().getConnection();
-		String sqlInsert = "SELECT avaliacao FROM professor_banca WHERE professor_banca.id =?";
+		String sqlInsert = "SELECT avaliacao FROM professores_banca WHERE professor_banca.id =?";
 
 		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
 

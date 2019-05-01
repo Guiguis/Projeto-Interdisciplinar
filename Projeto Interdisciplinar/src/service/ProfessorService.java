@@ -37,4 +37,8 @@ public class ProfessorService implements Serializable{
 	public ArrayList<Professor> buscarProfessor(String busca) {
 		return dao.buscarProfessor(busca);
 	}
+	
+	public ArrayList<Professor> carrega() {
+		return dao.carrega();
+	}
 }

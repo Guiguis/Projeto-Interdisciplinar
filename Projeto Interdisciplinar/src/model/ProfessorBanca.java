@@ -16,9 +16,7 @@ public class ProfessorBanca {
 	public ProfessorBanca() {
 	}
 	
-	public ProfessorBanca(int id, double avaliacao, Professor professor, Banca banca) {
-		this.id = id;
-		this.avaliacao = avaliacao;
+	public ProfessorBanca(Professor professor, Banca banca) {
 		this.professor = professor;
 		this.banca = banca;
 	}

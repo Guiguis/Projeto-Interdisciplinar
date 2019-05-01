@@ -26,13 +26,15 @@ public class GrupoDAO {
 			ResultSet rs = stm.executeQuery();
 
 			if (rs.next()) {
-				grupo.setId((rs.getInt("id")));
-				grupo.setNumero((rs.getInt("numero")));
+				grupo.setId(id);
+				grupo.setNumero(rs.getInt("numero"));
 				grupo.setNome((rs.getString("nome")));
-				grupo.setOrientador((professorDAO.load(rs.getInt("orientador_id"))));
+				grupo.setOrientador(professorDAO.load(rs.getInt("orientador_id")));
 			}
+			System.out.println("Grupo fui carregado: ");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Grupo não fui carregado erro: " + e);
 		} finally {
 			try {
 				conn.close();

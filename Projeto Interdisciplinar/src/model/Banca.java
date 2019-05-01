@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -11,10 +11,17 @@ public class Banca {
 	private int id;
 	private Date data;
 	private String sala;
+	private Grupo grupo;
 	private ArrayList<ProfessorBanca> lstProfessorBanca;
 	
 	public Banca() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Banca(Grupo grupo, Date data, String sala) {
+		this.grupo = grupo;
+		this.data = data;
+		this.sala = sala;
 	}
 	
 	public Banca(int id, Date data, String sala) {
@@ -45,6 +52,14 @@ public class Banca {
 
 	public void setSala(String sala) {
 		this.sala = sala;
+	}
+	
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
 	}
 
 	public ArrayList<ProfessorBanca> getLstProfessorBanca() {
