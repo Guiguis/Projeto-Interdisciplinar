@@ -36,32 +36,36 @@ public class TurmaDAO {
 		return lista;
 	}	
 	
-	//Carrega todas as turmas baseada no ano e semestre------------------------------------------
-	public ArrayList<Turma> mostrarSigla(Turma turma) {
-		ArrayList<Turma> lista = new ArrayList<>();
+	/**
+	 * Retorna todas as turmas referente a um período (ano letivo, semestre)
+	 * @param ano
+	 * @param semestre
+	 * @return ArrayList<Turma>
+	 */
+	public ArrayList<Turma> getTurmasPeriodo(int ano, int semestre) {
+		ArrayList<Turma> lstTurma = new ArrayList<>();
 
 		Connection conn = new ConnectionFactory().getConnection();
-		String sqlInsert = 
-				"SELECT * FROM turma WHERE semestre_letivo = ? AND ano_letivo = ?";
+		String sqlInsert = "SELECT * FROM turma WHERE ano_letivo = ? AND semestre_letivo = ?";
 
 		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
-			stm.setInt(1, turma.getSemestreLetivo());
-			stm.setInt(2, turma.getAno());
+			stm.setInt(1, ano);
+			stm.setInt(2, semestre);
 			ResultSet rs = stm.executeQuery();
 
 			while(rs.next()) {
-				int id = rs.getInt("id");
-				int ano = rs.getInt("ano_letivo");
-				int semestre = rs.getInt("semestre_letivo");
-				String sigla = rs.getString("sigla");
-				turma = new Turma(id, semestre, ano, sigla);
-				
-				lista.add(turma);
+				Turma turma = new Turma();
+				turma.setId(rs.getInt("id"));
+				turma.setSigla(rs.getString("sigla"));
+				turma.setAno(rs.getInt("ano_letivo"));
+				turma.setSemestreLetivo(rs.getInt("semestre_letivo"));
+				lstTurma.add(turma);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return lista;
+		
+		return lstTurma;
 	}
 
 }

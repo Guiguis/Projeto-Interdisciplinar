@@ -14,14 +14,12 @@ public class TurmaService implements Serializable {
 		dao = new TurmaDAO();
 	}
 	
-	//Carrega Todos os anos/semestres -----------------------------------------------------------------
 	public ArrayList<Turma> mostrarAno() {
 		return dao.mostrarAno();
 	}
 	
-	//Carrega todas as turmas baseada no ano e semestre-------------------------------------------
-	public ArrayList<Turma> mostrarSigla(Turma turma) {
-		return dao.mostrarSigla(turma);
+	public ArrayList<Turma> getTurmasPeriodo(int ano, int semestre) {
+		return dao.getTurmasPeriodo(ano, semestre);
 	}
 	
 }

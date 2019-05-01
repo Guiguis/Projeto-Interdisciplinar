@@ -32,18 +32,39 @@ public class MenuController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		//SESSION
+		HttpSession session   = request.getSession();
+		String periodoSession = (String) session.getAttribute("periodoSelected");
+		String turmaIdSession = (String) session.getAttribute("turmaId");
 		
+		//PARAMETERS
+		String turmaId = request.getParameter("turma");
+		String periodoSelected = request.getParameter("periodo");
+		
+		//SUBSTITUI PELA SESSION CASO PARÂMETRO VENHA NULO
+		if(turmaId == null) turmaId = turmaIdSession;
+		if(periodoSelected == null) periodoSelected = periodoSession;
+		
+		//PERÍODO - SPLIT
+		String[] splitPeriodo = new String[2];
+		splitPeriodo = (periodoSelected != null) ? periodoSelected.split("-") : new String[2];
+		periodoSelected = (periodoSelected != null) ? periodoSelected : (String) session.getAttribute("periodo");
+		session.setAttribute("periodoSelected", periodoSelected);
+		
+		//BUSCA PERÍODOS
 		TurmaService ts = new TurmaService();
+		ArrayList<Turma> lstPeriodo = ts.mostrarAno();
+		request.setAttribute("lstPeriodo", lstPeriodo);
+		session.setAttribute("lstPeriodo", lstPeriodo);
 		
-		ArrayList<Turma> lstSemestre = ts.mostrarAno();
-		request.setAttribute("lstSemestre", lstSemestre);
-		session.setAttribute("lstSemestre", lstSemestre);
-		
-		String semestreSelected = request.getParameter("semestre");
-		
-		session.setAttribute("escholhido", semestreSelected);
-		
+		//BUSCA TURMAS
+		int ano = (splitPeriodo[0] != null) ? Integer.parseInt(splitPeriodo[0]) : 0;
+		int semestre = (splitPeriodo[1] != null) ? Integer.parseInt(splitPeriodo[1]) : 0;
+		ArrayList<Turma> lstTurmas = ts.getTurmasPeriodo(ano, semestre);	
+		request.setAttribute("lstTurmas", lstTurmas);
+		session.setAttribute("lstTurmas", lstTurmas);
+		session.setAttribute("turmaId", turmaId);
+				
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

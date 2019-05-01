@@ -5,9 +5,10 @@ pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="model.Turma" %>
 
+<link href="assets/style/main.css"   rel="stylesheet" />
 <link href="assets/style/header.css" rel="stylesheet" />
 
-<header class="header bg-info">
+<header class="header">
 	<div class="container">
 		<div class="row">
 			
@@ -24,14 +25,16 @@ pageEncoding="ISO-8859-1"%>
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 
 					<!-- LOGO -->
-					<a class="navbar-brand" href="#">
-						<img alt="" src="Img\LogoUsjt.jpeg" >
+					<a class="navbar-brand" href="index.jsp">
+						<img alt="" src="assets/images/logo-blue.png" >
 					</a>
 
 					<!-- LINKS -->
 					<ul class="navbar-nav menu-flex">
 						<li class="nav-item active">
-							<a class="nav-link" href="index.jsp">Início</a>
+							<a class="nav-link" href="index.jsp">
+								Início
+							</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link active" href="ListarProfessor?acao=reiniciar">
@@ -40,37 +43,65 @@ pageEncoding="ISO-8859-1"%>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="ListarGrupoDeclaracao?acao=reiniciar">
-								Gerar Declarção
+								Gerar Declaração
 							</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="ListarGrupo?acao=reiniciar">
-								Avaliacao Semanal
+								Avaliação Semanal
 							</a>
 						</li>
 
-						<!-- SEMESTRE E ANO LETIVO -->
-						<li class="nav-item">
-							<form name="formMenu" class="form-semestre-anoletivo" method=post action=LoginManter>
-								<select name="semestre" class="custom-select" 
-										onchange="javascript:document.formMenu.submit();">
+						<!-- PERÍODOS -->
+						<li class="nav-item nav-link">
+							<form name="periodoMenu" class="form-periodo" method=post action=LoginManter>
+								<select name="periodo" class="custom-select" 
+										onchange="javascript:document.periodoMenu.submit();">
 								
-												<option value="" selected disabled>Semestre / Ano</option>
+										<option value="" selected disabled>
+											Semestre / Ano
+										</option>
 												
-												<c:forEach var="semestre" items="${lstSemestre}">
-												<c:set var="item" 
-												value="${semestre.semestreLetivo}-${semestre.ano}"/>
+										<c:forEach var="periodo" items="${lstPeriodo}">
+											<c:set var="item" 
+											value="${periodo.ano}-${periodo.semestreLetivo}"/>
 
-												<c:if test="${escholhido == item}">
+											<c:if test="${periodoSelected == item}">
 												<option selected value="${item}">
-													${semestre.semestreLetivo}º / ${semestre.ano}
+													${periodo.semestreLetivo}º / ${periodo.ano}
 												</option>
 											</c:if>
-											<c:if test="${escholhido != item}">
-											<option value="${item}">
-												${semestre.semestreLetivo}º / ${semestre.ano}
-											</option>
-										</c:if>
+											<c:if test="${periodoSelected != item}">
+												<option value="${item}">
+													${periodo.semestreLetivo}º / ${periodo.ano}
+												</option>
+											</c:if>
+										</c:forEach>
+								</select>
+							</form>
+						</li>
+
+						<!-- TURMAS -->
+						<li class="nav-item">
+							<form name="turmaMenu" class="form-turma" method=post action=LoginManter>
+								<select name="turma" class="custom-select" 
+										onchange="javascript:document.turmaMenu.submit();">
+								
+										<option value="" selected disabled>
+											Turmas
+										</option>
+												
+										<c:forEach var="turma" items="${lstTurmas}">											
+											<c:if test="${turmaId == turma.id}">
+												<option selected value="${turma.id}">
+													${turma.sigla}
+												</option>
+											</c:if>
+											<c:if test="${turmaId != turma.id}">
+												<option value="${turma.id}">
+													${turma.sigla}
+												</option>
+											</c:if>
 									</c:forEach>
 								</select>
 							</form>
