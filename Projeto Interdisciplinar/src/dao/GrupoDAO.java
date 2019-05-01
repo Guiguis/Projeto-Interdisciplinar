@@ -45,21 +45,24 @@ public class GrupoDAO {
 		return grupo;
 	}
 	
-	//Carrega todos os grupos baseado na sigla de uma turma ---------------------------------------------------------------
-	public ArrayList<Grupo> carregaPorSigla(Turma turma) {
+	/**
+	 * Carregar grupos de acordo com a turma
+	 * @param idTurma
+	 * @return ArrayList<Grupo>
+	 */
+	public ArrayList<Grupo> loadGrupoByTurma(int idTurma) {
 		ArrayList<Grupo> lista = new ArrayList<>();
 		ProfessorDAO professorDAO = new ProfessorDAO();
 		Connection conn = new ConnectionFactory().getConnection();
 		String sqlInsert = "SELECT DISTINCT g.nome, g.numero, orientador_id, g.id FROM turma t "
 						 + "JOIN turma_aluno a ON t.id = a.turma_id "
 						 + "JOIN grupo g ON a.grupo_id = g.id "
-						 + "WHERE sigla = ?";
+						 + "WHERE a.turma_id = ?";
 
 		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
-
-			stm.setString(1, turma.getSigla());
+			stm.setInt(1, idTurma);
+			
 			ResultSet rs = stm.executeQuery();
-
 			while(rs.next()) {
 				Grupo grupo = new Grupo();
 				grupo.setId(rs.getInt("id"));
@@ -68,7 +71,6 @@ public class GrupoDAO {
 				grupo.setOrientador(professorDAO.load(rs.getInt("orientador_id")));
 				lista.add(grupo);
 			}
-
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

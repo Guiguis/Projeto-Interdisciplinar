@@ -18,8 +18,8 @@ public class GrupoService {
 		return dao.load(id);
 	}
 	
-	public ArrayList<Grupo> carregaGrupos(Turma turma) {
-		return dao.carregaPorSigla(turma);
+	public ArrayList<Grupo> loadGrupoByTurma(int idTurma) {
+		return dao.loadGrupoByTurma(idTurma);
 	}
 	
 	public ArrayList<Grupo> carrega() {

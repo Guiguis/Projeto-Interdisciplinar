@@ -36,17 +36,22 @@ public class ListarGrupo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//SESSION
+		HttpSession session   = request.getSession();
+		String turmaIdSession = (String) session.getAttribute("turmaId");
+
+		//BUSCA GRUPO DE ACORDO COM TURMA
 		GrupoService gs = new GrupoService();
-		ArrayList<Grupo> lista = null;
+		ArrayList<Grupo> lstGrupo = null;
 		
 		//Pega as informacoes principais da pagina
 		String acao = request.getParameter("acao");
-		HttpSession session = request.getSession();
 
 		if(acao.equals("reiniciar")) {
-			lista = gs.carrega();
-			session.setAttribute("lista", lista);
+			int idTurma = (turmaIdSession != null) ? Integer.parseInt(turmaIdSession) : -1;
 			
+			lstGrupo = gs.loadGrupoByTurma(idTurma);
+			request.setAttribute("lstGrupo", lstGrupo);
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ListarGrupos.jsp");

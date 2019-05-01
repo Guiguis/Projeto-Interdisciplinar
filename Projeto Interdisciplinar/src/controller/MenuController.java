@@ -42,7 +42,6 @@ public class MenuController extends HttpServlet {
 		String periodoSelected = request.getParameter("periodo");
 		
 		//SUBSTITUI PELA SESSION CASO PARÂMETRO VENHA NULO
-		if(turmaId == null) turmaId = turmaIdSession;
 		if(periodoSelected == null) periodoSelected = periodoSession;
 		
 		//PERÍODO - SPLIT
@@ -64,8 +63,13 @@ public class MenuController extends HttpServlet {
 		request.setAttribute("lstTurmas", lstTurmas);
 		session.setAttribute("lstTurmas", lstTurmas);
 		session.setAttribute("turmaId", turmaId);
-				
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+		//REDIRECIONAMENTO DE PÁGINA
+		String uri = request.getHeader("referer");
+		String pageName = uri.substring(uri.lastIndexOf("/")+1);
+		if(pageName.equals("Login.jsp")) pageName = "index.jsp";
+		
+		response.sendRedirect(pageName);
 	}
 
 	/**

@@ -45,7 +45,7 @@
 	          </tr>
 	
 			  <tbody>
-				<c:forEach var="grupo" items="${lista }">
+				<c:forEach var="grupo" items="${lstGrupo}">
 				  <tr>
 				  	<p hidden>${grupo.id }</p>
 				    <td>${grupo.nome }</td>
