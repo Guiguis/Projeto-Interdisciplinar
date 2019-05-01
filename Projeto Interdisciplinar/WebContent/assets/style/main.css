@@ -3,6 +3,7 @@
 
 body p, a, span, h1, h2, h3, h4, h5, h6{
     font-family: "Lato", sans-serif !important;
+    font-weight: 500;
 }
 
 body p, a{
@@ -31,4 +32,9 @@ body a.btn {
 /*-- BUTTONS --*/
 .btn.btn-default {
 	color: #353c86 !important
+}
+
+.img-width {
+	width: 200px;
+    height: 60px;
 }
