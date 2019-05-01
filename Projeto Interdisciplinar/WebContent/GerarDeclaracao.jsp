@@ -29,7 +29,7 @@
   <div class="row center-block">
     
     <div class="col-lg-12">
-      <img src="Img\ouvidoria-universidade-sao-judas1.png" class="rounded mx-auto d-block">
+      <img src="assets/images/logo-blue.png" class="rounded mx-auto d-block">
     </div>
     
   </div>
