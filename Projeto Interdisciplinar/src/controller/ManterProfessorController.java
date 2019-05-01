@@ -68,23 +68,23 @@ public class ManterProfessorController extends HttpServlet {
 			ps.create(professor);
 			ArrayList<Professor> lista = ps.getProfessores();
 			lista.add(professor);
-			session.setAttribute("lista", lista);
+			session.setAttribute("lstProfessor", lista);
 			view = request.getRequestDispatcher("ListarProfessores.jsp");
 			
-		} else if (pAcao.equals("Excluir")) {
+		} else if (pAcao.equals("Excluir")) {			
 			ps.delete(professor.getId());
-			ArrayList<Professor> lista = (ArrayList<Professor>)session.getAttribute("lista");
+			ArrayList<Professor> lista = (ArrayList<Professor>)session.getAttribute("lstProfessor");
 			lista.remove(busca(professor, lista));
-			session.setAttribute("lista", lista);
+			session.setAttribute("lstProfessor", lista);
 			view = request.getRequestDispatcher("ListarProfessores.jsp");		
 			
 		} else if (pAcao.equals("Alterar")) {
 			ps.update(professor);
-			ArrayList<Professor> lista = (ArrayList<Professor>)session.getAttribute("lista");
+			ArrayList<Professor> lista = (ArrayList<Professor>)session.getAttribute("lstProfessor");
 			int pos = busca(professor, lista);
 			lista.remove(pos);
 			lista.add(pos, professor);
-			session.setAttribute("lista", lista);
+			session.setAttribute("lstProfessor", lista);
 			request.setAttribute("professor", professor);
 			view = request.getRequestDispatcher("VisualizarProfessor.jsp");	
 			

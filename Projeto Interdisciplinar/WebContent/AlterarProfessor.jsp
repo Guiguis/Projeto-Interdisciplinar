@@ -57,7 +57,7 @@
 			</div>
 			<div class="form-group col-md-4">
 				<label for="inputPassword4">Senha</label> 
-				<input type="text" class="form-control" name="senha" id="senha" required maxlength="100" 
+				<input type="password" class="form-control" name="senha" id="senha" required maxlength="100" 
              				 placeholder="Senha" value="${professor.senha }">
 			</div>
 		</div>

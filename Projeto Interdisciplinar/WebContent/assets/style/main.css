@@ -27,3 +27,8 @@ body a.btn {
 .container.header-margin {
 	margin-top: 120px;
 }
+
+/*-- BUTTONS --*/
+.btn.btn-default {
+	color: #353c86 !important
+}

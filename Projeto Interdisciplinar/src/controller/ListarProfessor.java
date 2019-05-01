@@ -35,13 +35,15 @@ public class ListarProfessor extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProfessorService ps = new ProfessorService();
 		ArrayList<Professor> lstProfessor = null;
-		String busca = request.getParameter("data[search]");
+		String buscar = request.getParameter("data[search]");
 		String acao = request.getParameter("acao");
 		HttpSession session = request.getSession();
 		
-		if (acao.equals("buscar")) {
-			lstProfessor = ps.buscarProfessor(busca);
-			session.setAttribute("lista", lstProfessor);
+
+		
+		if (acao.equals("Buscar")) {
+			lstProfessor = ps.buscarProfessor(buscar);
+			session.setAttribute("lstProfessor", lstProfessor);
 		} else if (acao.equals("reiniciar")) {
 			lstProfessor = ps.getProfessores();
 			session.setAttribute("lstProfessor", lstProfessor);
