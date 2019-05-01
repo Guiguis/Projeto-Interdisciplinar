@@ -26,7 +26,6 @@ pageEncoding="ISO-8859-1"%>
 	
 	<c:import url="Header.jsp"/>
 	<c:import url="Footer.jsp"/>
-	<a href="LoginManter" >Menu</a>
 	
 </body>
 </html>
