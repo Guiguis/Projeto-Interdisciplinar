@@ -25,7 +25,7 @@
 <body>
 
 <!-- Buscar Professor -->
- <div id="main" class="container">
+ <div id="main" class="container header-margin">
      <form action="ListarGrupoDeclaracao" method="post">
          <div id="top" class="row">
              <div class="col-md-11">
