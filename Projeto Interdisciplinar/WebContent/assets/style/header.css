@@ -20,6 +20,6 @@
 	padding: 10px 25px !important;
 }
 
-.form-semestre-anoletivo {
+.form-periodo, .form-turma{
 	margin: 0;
 }

@@ -1,14 +1,27 @@
 /** GOOGLE FONT**/
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-body {
-    font-family: "Lato", sans-serif;
-    font-size: 1rem !important;
+body p, a, span, h1, h2, h3, h4, h5, h6{
+    font-family: "Lato", sans-serif !important;
+}
+
+body p, a{
+	font-size: 1rem !important;
 }
 
 body a {
 	color: #353c86 !important;
 	font-weight: 600;
+}
+
+body a.btn {
+	color: #fff !important;
+	font-weight: 400;
+}
+
+.title {
+	font-weight: 700;
+	padding: 20px 0;
 }
 
 .container.header-margin {
