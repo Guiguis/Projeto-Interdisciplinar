@@ -28,7 +28,7 @@
 
 <!-- Container Principal -->
 <div id="main" class="container header-margin">
-    <h3 class="page-header">Alterar Professor #${professor.id }</h3>
+    <h3 class="title">Alterar Professor #${professor.id }</h3>
     <!-- Formulario para alteração de professores -->
     <form action="ManterProfessorController" method="post">
         <!-- area de campos do form -->

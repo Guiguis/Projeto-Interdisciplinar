@@ -26,75 +26,79 @@
 <body>
 
 
-<div class="container header-margin">
-	<div class="row">
-		<div class="col-lg-12">
-		
-		<!-- Título -->
-			<div class="col-md-4 offset-md-4">
-				<h1 class="">Criar Banca</h1>	
-			</div>
-			
-			<form action="EnviarEmail" method="post" class="form-horizontal">
-			
-			<!-- Seleciona os professores -->
-				
-					<div class="col-md-3">
-						<label>Selecione o 1º Professor(a)</label>
-						<select name="professor1">
-							<c:forEach var="professor" items="${listaProfessor }">
-								<option value="${professor.id}">${professor.nome}</option>  
-							</c:forEach>
-						</select>
-					</div>
-					
-					<div class="col-md-3">
-						<label>Selecione o 2º Professor(a)</label>
-						<select name="professor2">
-							<c:forEach var="professor" items="${listaProfessor }">
-								<option value="${professor.id}">${professor.nome}</option>  
-							</c:forEach>
-						</select>
-					</div>
-					
-					<div class="col-md-3">
-						<label>Selecione o 3º Professor(a)</label>
-						<select name="professor3">
-							<c:forEach var="professor" items="${listaProfessor }">
-								<option value="${professor.id}">${professor.nome}</option>  
-							</c:forEach>
-						</select>
-					</div>
-				
-					<br>
-					<!-- Seleciona os grupos -->
-					<div class="col-md3">
-						<label>Selecione o Grupo</label>
-						<select name="grupoId">
-							<c:forEach var="grupo" items="${listaGrupo }">
+       <!-- Container Principal -->
+<div id="main" class="container header-margin">
+    <h2 class="title">Criar Banca</h2>
+    <!-- Formulario para alteração de professores -->
+    <form action="EnviarEmail" method="post" class="from-horizontal">
+        <!-- area de campos do form -->        
+        
+        <div class="form-row">
+			<div class="form-group col-md-3">
+				<div class="form-group">
+                    <label for="exampleFormControlSelect1">Selecione o 1º Professor(a)</label>
+                    <select class="form-control" name="professor1">
+                        <c:forEach var="professor" items="${listaProfessor }">
+                            <option value="${professor.id}">${professor.nome}</option>  
+                        </c:forEach>
+                    </select>
+                  </div>
+            </div>
+        <div class="form-group col-md-3">
+			<div class="form-group">
+                <label for="exampleFormControlSelect1">Selecione o 2º Professor(a)</label>
+                    <select class="form-control" name="professor2">
+                        <c:forEach var="professor" items="${listaProfessor }">
+                            <option value="${professor.id}">${professor.nome}</option>  
+                        </c:forEach>
+            </select>
+          </div>    
+            </div>
+         <div class="form-group col-md-3">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Selecione o 3º Professor(a)</label>
+                    <select class="form-control"  name="professor3">
+                        <c:forEach var="professor" items="${listaProfessor }">
+							<option value="${professor.id}">${professor.nome}</option>  
+						</c:forEach>
+                    </select>
+             </div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-4">
+                <div class="form-group">
+                <label for="exampleFormControlSelect1">Selecione o Grupo</label>
+                    <select class="form-control"  name="grupoId">
+                        <c:forEach var="grupo" items="${listaGrupo }">
 								<option value="${grupo.id}">${grupo.nome}</option>  
 							</c:forEach>
-						</select>				
-					</div>
-					
-					<!-- Insere a Data -->
-					<div class="form-group col-md-4">
-						<h6>Insira a data</h6>
-						<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" />
-					</div>
-					
-					<!-- Insere a sala -->
-					<div class="form-group col-md-4">
-						<h6>Insira a sala</h6>
-						<input id="inputData" type="text" class="form-control" name="sala"/>
-					</div>
-				
-			
-				 <button type="submit" class="btn btn-primary" name="acao" value="Alterar">Criar</button>
-			</form>
+                    </select>
+                </div>
+		     </div>
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Data</label>
+				<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" />
+			</div>
+			<div class="form-group col-md-4">
+				<label for="inputPassword4">Sala</label> 
+				<input id="inputData" type="text" class="form-control" name="sala"/>
+			</div>
 		</div>
-	</div>
-</div>			
+            </div>
+        <br/>
+        
+            <div id="actions" class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary" name="acao" value="Alterar">Criar</button>
+                
+            </div>
+            
+        </div>
+                 
+    </form>
+            
+</div>
 			
 
 

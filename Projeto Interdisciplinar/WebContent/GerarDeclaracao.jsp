@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
             <h2 class="text-muted text-capitalize title">Declaração</h2>
             <p>Declaro, para os devidos fins, que o professor: </p>
             <h5 class="title">${orientador.nome}</h5>
-            <p>participou, na qualidade de professor (orientador / convidado), da Banca de Trabalho de Conclusão de Curso de Graduação do ${grupo.nome}, nesta Universidade, sob o título: “${tema }”.</p>
+            <p>participou, na qualidade de professor orientador, da Banca de Trabalho de Conclusão de Curso de Graduação do ${grupo.nome}, nesta Universidade, sob o título: “${tema }”.</p>
             <p>São Paulo, <fmt:formatDate pattern="dd/MM/yyyy" value="${banca.data}"/> .</p>
         </div>
 

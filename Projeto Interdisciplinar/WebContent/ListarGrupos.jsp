@@ -29,7 +29,7 @@ pageEncoding="UTF-8"%>
 		<form action="ListarGrupo" method="post">
 			<div id="top" class="row">
 				<div class="col-md-11">
-					<h2>Grupos</h2>
+					<h2 class="title">Grupos</h2>
 				</div>
 			</div>
 		</form>
