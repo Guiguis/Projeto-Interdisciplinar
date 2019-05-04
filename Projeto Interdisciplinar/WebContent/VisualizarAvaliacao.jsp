@@ -38,22 +38,27 @@
 	
 		<div class="col-lg-12  mt-30">
 
-			<c:forEach var="avaliacao" items="${listaAvaliacao}">
-				<div class="form-row">
-					<div class="form-group col-md-3">
-						<label >${avaliacao.aluno.nome}</label>
-					</div>
-					<div class="form-group col-md-3">
-						<label for="inputName">Nota:  </label>
-						<label >${avaliacao.nota}</label>
-					</div>
-					<div class="form-group col-md-4">
-						<label for="inputName">Comentarios: </label>
-						<label >${avaliacao.comentarios}</label>
-					</div>
-				</div>
-			</c:forEach>
-
+			<!-- <div id="list" class="row"> -->
+            <div class="table-responsive col-md-12">
+                <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Nota</th>
+                            <th>Comentário</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="avaliacao" items="${listaAvaliacao}">
+                            <tr>
+                                <td>${avaliacao.aluno.nome}</td>
+                                <td>${avaliacao.nota}</td>
+                                <td>${avaliacao.comentarios}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody> 
+                </table>
+            </div>
 		</div>
 	</div>
 	<a class="btn btn-primary btn-xs" href="ListarAvaliacao.jsp">Voltar</a>
