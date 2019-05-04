@@ -64,15 +64,21 @@ public class ManterProfessorController extends HttpServlet {
 		RequestDispatcher view = null;
 		HttpSession session = request.getSession();
 		
+		String error = "";
 		if (pAcao.equals("Criar")) {
 			ps.create(professor);
 			ArrayList<Professor> lista = ps.getProfessores();
-			lista.add(professor);
 			session.setAttribute("lstProfessor", lista);
 			view = request.getRequestDispatcher("ListarProfessores.jsp");
 			
-		} else if (pAcao.equals("Excluir")) {			
-			ps.delete(professor.getId());
+		} else if (pAcao.equals("Excluir")) {		
+			try {
+				ps.delete(professor.getId());
+			}catch (Exception e) {
+				System.out.println("ERRO AO EXCLUIR PROFESSOR");
+				error = "Erro ao excluir professor";
+			}
+			
 			ArrayList<Professor> lista = (ArrayList<Professor>)session.getAttribute("lstProfessor");
 			lista.remove(busca(professor, lista));
 			session.setAttribute("lstProfessor", lista);
@@ -98,6 +104,8 @@ public class ManterProfessorController extends HttpServlet {
 			request.setAttribute("professor", professor);
 			view = request.getRequestDispatcher("AlterarProfessor.jsp");		
 		}
+		
+		request.setAttribute("serverError", error);
 		
 		view.forward(request, response);
 

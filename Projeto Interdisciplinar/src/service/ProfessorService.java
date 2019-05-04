@@ -1,6 +1,7 @@
 package service;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dao.ProfessorDAO;
@@ -22,7 +23,7 @@ public class ProfessorService implements Serializable{
 		dao.update(professor);
 	}
 	
-	public void delete(int id) {
+	public void delete(int id) throws SQLException {
 		dao.delete(id);
 	}
 	

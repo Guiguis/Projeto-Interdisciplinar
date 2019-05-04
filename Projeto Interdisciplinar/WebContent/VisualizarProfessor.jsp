@@ -15,7 +15,7 @@
 
 <!-- MAIN -->
 <link href="assets/style/utils.css" rel="stylesheet" />
-<title>Professor</title>
+	<title>Visulizar: Professor</title>
 </head>
 <body>
 
@@ -23,41 +23,44 @@
 	<c:import url ="Header.jsp"/>	
 	
 	<div class="container header-margin">
-		<div class="row">
+		<div class="row justify-content-md-center">
 			<div class="col-lg-12  mt-30">
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="inputName">Id: </label>
-						<label >${professor.id}</label>
+				<div class="card">
+					<div class="card-header title-name">
+					Professor: ${professor.nome}
 					</div>
-					<div class="form-group col-md-4">
-						<label for="inputName">Nome: </label>
-						<label > ${professor.nome}</label>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="inputName">E-mail: </label>
-						<label >${professor.email}</label>
-					</div>
-					<div class="form-group col-md-4">
-						<label for="inputName">Senha: </label>
-						<label >${professor.senha}</label>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="inputName">Matricula: </label>
-						<label >${professor.matricula}</label>
-					</div>
-					<div class="form-group col-md-4">
-						<label for="inputName">Administrador: </label>
-						<label >${professor.administrador}</label>
+					<div class="card-body">
+						<h5 class="card-title text-center font-weight-bold mb-5">Detalhes do Professor</h5>
+						<div class="form-row">
+							<div class="form-group col col-md-6">
+								<label class="font-weight-bold" for="inputName">E-mail: </label>
+								<label >${professor.email}</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label class="font-weight-bold" for="inputName">Senha: </label>
+								<label >${professor.senha}</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label class="font-weight-bold" for="inputName">Matricula: </label>
+								<label >${professor.matricula}</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label class="font-weight-bold" for="inputName">Administrador: </label>
+								<c:if test="${professor.administrador == 1 }">
+									Sim
+								</c:if>
+								<c:if test="${professor.administrador == 0 }">
+									Não
+								</c:if>
+							</div>
+						</div>
+						<a class="btn btn-primary btn-xs" href="ListarProfessores.jsp">Voltar</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<a class="btn btn-primary btn-xs" href="ListarProfessores.jsp">Voltar</a>
 	</div>			
 
 	<script src="assets/scripts/jquery.min.js"></script>
