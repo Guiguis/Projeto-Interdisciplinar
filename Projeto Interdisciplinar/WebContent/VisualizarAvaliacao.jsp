@@ -61,7 +61,8 @@
             </div>
 		</div>
 	</div>
-	<a class="btn btn-primary btn-xs" href="ListarAvaliacao.jsp">Voltar</a>
+	 <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Apagar&idEntrega=${listaAvaliacao[1].entrega.id}">Excluir</a>
+	<a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idEntrega }">Voltar</a>
 </div>			
 
 <script src="assets/scripts/jquery.min.js"></script>

@@ -77,10 +77,9 @@
 						<label for="inputComentariosTodos">Comentario</label> 
 						<input id="inputComentariosTodos" type="text" class="form-control" name="comentariosTodos"/>
 					</div>
-				</div>
-								
-				<button type="submit" class="btn btn-primary" name="acao" value="Enviar">Enviar</button>
-	
+				</div>		
+				<a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idEntrega }">Info</a>			
+				<button type="submit" class="btn btn-success" name="acao" value="Enviar">Enviar</button>
 			</form>
 		</div>
 	</div>

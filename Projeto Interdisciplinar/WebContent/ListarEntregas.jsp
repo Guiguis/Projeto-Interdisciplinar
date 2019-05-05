@@ -53,9 +53,8 @@
 				<!-- Botoes -->
 		    	<td class="actions">
 		    		<a class="btn btn-success btn-xs" href="ManterAvaliacaoController?acao=Criar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Criar Avaliacao</a>
-		    		 <a class="btn btn-warning btn-xs" href="ManterAvaliacaoController?acao=Editar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Editar</a>
+		    		<a class="btn btn-warning btn-xs" href="ManterAvaliacaoController?acao=Editar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Editar</a>
 			        <a class="btn btn-info btn-xs" href="ManterAvaliacaoController?acao=Visualizar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Visualizar Avaliacao</a>
-			        <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Excluir&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Excluir</a>
 		    	</td>
 			  </tr>
 			</c:forEach>

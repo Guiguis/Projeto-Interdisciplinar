@@ -72,13 +72,6 @@ public class ManterAvaliacaoController extends HttpServlet {
 			request.setAttribute("listaAluno", listaAluno);
 			view = request.getRequestDispatcher("cadastroAvaliacao.jsp");
 		}
-		else if(acao.equals("Excluir")) {
-			// enviar para o jsp
-			AvaliacaoService as = new AvaliacaoService();
-			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);
-			request.setAttribute("listaAvaliacao", listaAvaliacao);
-			view = request.getRequestDispatcher("ExcluirAvaliacao.jsp");
-		}
 		else if (acao.equals("Apagar")){		
 			int idEn = Integer.parseInt(request.getParameter("idEntrega"));
 			AvaliacaoService as = new AvaliacaoService();
@@ -91,6 +84,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		}
 		else if(acao.equals("Visualizar")) {
 			// enviar para o jsp
+			request.setAttribute("idGrupo", idGrupo);
 			AvaliacaoService as = new AvaliacaoService();
 			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);
 			request.setAttribute("listaAvaliacao", listaAvaliacao);
@@ -98,6 +92,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		}
 		else if(acao.equals("Editar")) {
 			// enviar para o jsp
+			request.setAttribute("idGrupo", idGrupo);
 			AvaliacaoService as = new AvaliacaoService();
 			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);
 			request.setAttribute("idEntrega", idEntrega);
