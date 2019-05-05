@@ -21,7 +21,11 @@ public class Aluno extends Usuario {
         this.ra = ra;
     }
 
-    public String getRa() {
+    public Aluno() {
+		
+	}
+
+	public String getRa() {
         return this.ra;
     }
 

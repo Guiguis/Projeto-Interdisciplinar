@@ -30,6 +30,10 @@ public class Professor extends Usuario {
 		this.administrador = administrador;
 	}
 
+	public Professor() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getAdministrador() {
 		return administrador;
 	}
@@ -44,6 +48,11 @@ public class Professor extends Usuario {
 	
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+	
+	public Professor load() {
+		ProfessorDAO professorDAO = new ProfessorDAO();
+		return professorDAO.load(this.getId());
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import connection.ConnectionFactory;
+import model.Atividade;
 import model.Usuario;
 
 public class UsuarioDAO {
@@ -85,5 +86,31 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	public int Load(String user, String senha) {
+		Connection conn= new ConnectionFactory().getConnection();
+		
+		String sqlComand = "Select id from usuario where email = ? and senha =?";
+		try (PreparedStatement stm = conn.prepareStatement(sqlComand)) {
+			stm.setString(1, "user");
+			stm.setString(2, "senha");
+			int i;
+			ResultSet rs = stm.executeQuery();
+			
+			if (rs.next()) {
+				i = rs.getInt("id");
+				return i;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+		
+	}
 }
+
