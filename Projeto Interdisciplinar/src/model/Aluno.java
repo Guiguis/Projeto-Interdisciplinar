@@ -63,11 +63,6 @@ public class Aluno extends Usuario {
 		AlunoDAO dao = new AlunoDAO();		
 		dao.update(this);
 	}
-
-	public void delete() {
-		AlunoDAO dao = new AlunoDAO();		
-		dao.delete(this.getId());
-	}	
 	
 	@Override
 	public String toString() {

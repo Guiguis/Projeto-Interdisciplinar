@@ -112,5 +112,33 @@ public class UsuarioDAO {
 		return -1;
 		
 	}
+	
+	
+	public int logar(String email, String senha) {
+		Connection conn = new ConnectionFactory().getConnection();
+		int i = -1;
+		String sqlComand = "SELECT id from usuario where email = ? and senha = ?";
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setString(1, email);
+			stm.setString(2, senha);
+			ResultSet rs = stm.executeQuery();
+			
+            if(rs.next()) {
+				i = rs.getInt("id");	
+            }
+            
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return i;
+	}
 }
 

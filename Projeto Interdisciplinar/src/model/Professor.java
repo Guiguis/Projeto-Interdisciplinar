@@ -50,11 +50,6 @@ public class Professor extends Usuario {
 		this.matricula = matricula;
 	}
 	
-	public Professor load() {
-		ProfessorDAO professorDAO = new ProfessorDAO();
-		return professorDAO.load(this.getId());
-	}
-	
 	@Override
 	public String toString() {
 		return "Professor [id=" + this.getId() + " matricula=" + this.getMatricula() + " admin=" + this.getAdministrador()  + " nome=" + this.getNome() + " email=" + this.getEmail() + "]"; 

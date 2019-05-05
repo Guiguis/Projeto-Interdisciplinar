@@ -32,6 +32,7 @@
 <div class="card-body">
 <form action="ManterLogin" method="post">
 	<div class="form-row">
+		<label>${erro }</label>
 		<div class="form-group col-xl-12">
 			<label for="inputUsuario">Usuario</label> 
 			<div class="input-group">
@@ -54,7 +55,7 @@
 			</div>
 		</div>
 	<br>
-		<button type="submit" class="btn btn-primary" name="logar" value="logar">Logar</button>
+		<button type="submit" class="btn btn-primary" name="logar" value="logar" href="ManterLogin">Logar</button>
 </form>
 </div>
 <div class="card-footer text-muted">
