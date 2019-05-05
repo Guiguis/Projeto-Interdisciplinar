@@ -55,7 +55,7 @@
 			</div>
 		</div>
 	<br>
-		<button type="submit" class="btn btn-primary" name="logar" value="logar" href="ManterLogin">Logar</button>
+		<button type="submit" class="btn btn-primary" name="logar" value="logar">Logar</button>
 </form>
 </div>
 <div class="card-footer text-muted">

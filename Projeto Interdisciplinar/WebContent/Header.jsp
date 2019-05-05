@@ -10,8 +10,8 @@ pageEncoding="ISO-8859-1"%>
 <link href="assets/style/header.css" rel="stylesheet" />
 
 <header class="header">
-	<div class="container">
-		<div class="row">
+
+		<div class="row mx-auto" >
 			
 			<nav class="navbar navbar-expand-lg navbar-dark">
 
@@ -89,7 +89,7 @@ pageEncoding="ISO-8859-1"%>
 						</li>
 
 						<!-- TURMAS -->
-						<li class="nav-item">
+						<li class="nav-item col-md-2">
 							<form name="turmaMenu" class="form-turma" method=post action=LoginManter>
 								<select name="turma" class="custom-select" 
 										onchange="javascript:document.turmaMenu.submit();">
@@ -115,9 +115,12 @@ pageEncoding="ISO-8859-1"%>
 						</li>
 					</ul>
 				</div>
+				<div class="col-md-2">
+					<label>${professor.nome }</label>
+				</div>
 			</nav>
 		</div>
-	</div>
+
 </header>
 
 

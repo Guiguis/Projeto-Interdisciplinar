@@ -65,19 +65,15 @@ public class ManterLogin extends HttpServlet {
 			else {
 				AlunoService as = new AlunoService();
 				Aluno aluno = as.load(id);
-				session.setAttribute("usuario", aluno);
+				session.setAttribute("aluno", aluno);
 				view = request.getRequestDispatcher("Aluno.jsp");
-			}
-		}
-		
-		//se não encontrar o e-mail retorna para pagina
-		if(id == -1) {
-			request.setAttribute("erro", "Usuario não encontrado");
+			}		
+		}	
+		if(id <= 0) {
+			request.setAttribute("erro", "erro ao se logar");
 			view = request.getRequestDispatcher("Login.jsp");
 		}
-		
-		view.forward(request, response);
-
+		view.forward(request, response);	
 	}
 
 }
