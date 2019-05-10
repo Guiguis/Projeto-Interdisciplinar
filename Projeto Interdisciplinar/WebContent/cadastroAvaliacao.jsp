@@ -84,7 +84,7 @@
 						<input id="inputComentariosTodos" type="text" class="form-control" name="comentariosTodos"/>
 					</div>
 				</div>		
-				<a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idGrupo }">Voltar</a>			
+				<a class="btn btn-danger btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idGrupo }">Cancelar</a>			
 				<button type="submit" class="btn btn-success" name="acao" value="Enviar">Enviar</button>
 			</form>
 		</div>

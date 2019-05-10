@@ -92,6 +92,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		}
 		else if(acao.equals("Editar")) {
 			// enviar para o jsp
+			request.setAttribute("idGrupo", idGrupo);
 			request.setAttribute("idEntrega", idEntrega);
 			AvaliacaoService as = new AvaliacaoService();
 			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);

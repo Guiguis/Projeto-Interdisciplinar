@@ -67,13 +67,14 @@
 		</div>
 	</div>
 	
-	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-${professor.id}">Excluir</button>
-	 <a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idGrupo }">Voltar</a>	
+	<a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idGrupo }">Voltar</a>	
+	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-${listaAvaliacao[1].id}">Excluir</button>
+	 
 </div>			
 
 <!-- Modal Delete -->
-	<c:forEach var="professor" items="${lstProfessor}">
-	    <div class="modal fade" id="modal-${professor.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<c:forEach var="professor" items="${listaAvaliacao}">
+	    <div class="modal fade" id="modal-${listaAvaliacao[1].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	        <div class="modal-dialog modal-dialog-centered" role="document">
 	            <div class="modal-content">
 	                <div class="modal-body">

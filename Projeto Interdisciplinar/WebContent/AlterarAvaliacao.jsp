@@ -71,8 +71,9 @@
 			</c:forEach>
 			<input type="hidden" name="entregaId" id="entregaId" value="${listaAvaliacao[1].entrega.id }" />
 			
-			<button type="submit" class="btn btn-primary" name="acao" value="Atualizar">Enviar</button>
-			<a class="btn btn-primary btn-xs" href="ListarAvaliacao.jsp">Cancelar</a>
+			<a class="btn btn-danger btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idGrupo }">Cancelar</a>
+			<button type="submit" class="btn btn-success" name="acao" value="Atualizar">Enviar</button>
+			
 			</form>
 		</div>
 	</div>
