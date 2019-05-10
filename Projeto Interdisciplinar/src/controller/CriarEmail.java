@@ -41,9 +41,13 @@ public class CriarEmail extends HttpServlet {
 		ArrayList<Grupo> listaGrupo = gs.carrega();
 		ArrayList<Professor> listaProfessor	= ps.carrega();
 		
+		
+		//Cria uma lista com os grupos nao avaliados
+		ArrayList<Grupo> lista = gs.verificaAvaliado(listaGrupo);
+		
 		//Pega as informacoes principais da pagina
 		request.setAttribute("listaProfessor", listaProfessor);
-		request.setAttribute("listaGrupo", listaGrupo);
+		request.setAttribute("listaGrupo", lista);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("CriarBanca.jsp");
 		dispatcher.forward(request, response);

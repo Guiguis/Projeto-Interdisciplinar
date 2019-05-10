@@ -60,6 +60,7 @@ public class ManterLogin extends HttpServlet {
 			//verifica se o usuario é um professor
 			if(professor != null) {
 				session.setAttribute("usuario", professor);
+				session.setAttribute("erro", erro);
 				view = request.getRequestDispatcher("LoginManter");
 			}
 			//carrega os dados de aluno
@@ -67,6 +68,7 @@ public class ManterLogin extends HttpServlet {
 				AlunoService as = new AlunoService();
 				Aluno aluno = as.load(id);
 				session.setAttribute("usuario", aluno);
+				session.setAttribute("erro", erro);
 				view = request.getRequestDispatcher("Aluno.jsp");
 			}		
 		}	

@@ -37,6 +37,7 @@ public class SairController extends HttpServlet {
 		
 		if(acao.equals("sair")) {
 			session.setAttribute("usuario", null);
+			session.setAttribute("erro", null);
 			view = request.getRequestDispatcher("Login.jsp");
 		}
 		view.forward(request, response);	
