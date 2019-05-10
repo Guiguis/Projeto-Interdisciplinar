@@ -7,6 +7,8 @@ import dao.AlunoDAO;
 import dao.AvaliacaoDAO;
 import model.Aluno;
 import model.Avaliacao;
+import model.Grupo;
+import model.Professor;
 
 public class AvaliacaoService implements Serializable{
 
@@ -45,6 +47,29 @@ public class AvaliacaoService implements Serializable{
 		return dao.loadPorId(id);
 	}
 	
+	//Verifica se o professor logado pode avaliar o grupo
+	public ArrayList<Grupo> verificaGruposAvaliar(ArrayList<Grupo> listaGrupos, Professor orientador){
+		
+		for(int i = 0; i < listaGrupos.size(); i++) {
+			if(listaGrupos.get(i).getOrientador().getId() != orientador.getId()) {
+				listaGrupos.remove(i);
+			}
+		}
+		return listaGrupos;
+	}
+	
+	
+	//Verifica se o professor logado pode avaliar o grupo
+	public ArrayList<Professor> verificaDeclaracao(Professor usuario, ArrayList<Professor> listaProfessores){
+			
+			for(int i = 0; i < listaProfessores.size(); i++) {
+				
+				
+				
+			}
+			
 
+		return listaProfessores;
+	}
 	
 }

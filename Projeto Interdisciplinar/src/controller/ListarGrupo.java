@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Entrega;
 import model.Grupo;
-import service.EntregaService;
+import model.Professor;
+import service.AvaliacaoService;
 import service.GrupoService;
 
 /**
@@ -50,7 +50,20 @@ public class ListarGrupo extends HttpServlet {
 		if(acao.equals("reiniciar")) {
 			int idTurma = (turmaIdSession != null) ? Integer.parseInt(turmaIdSession) : -1;
 			
+			//busca todos os grupos da turma selecionada
 			lstGrupo = gs.loadGrupoByTurma(idTurma);
+			
+			//Verifica se o professor logado é administrador
+			Professor orientador = (Professor) session.getAttribute("usuario");
+			if(orientador.getAdministrador() == 0) {
+				
+				//Verrifica quais grupos pertencem ao professor
+				AvaliacaoService as = new AvaliacaoService();
+				ArrayList<Grupo> listaGrupo = as.verificaGruposAvaliar(lstGrupo, orientador);
+				
+				request.setAttribute("lstGrupo", listaGrupo);
+			}
+			
 			request.setAttribute("lstGrupo", lstGrupo);
 		}
 		
