@@ -30,6 +30,12 @@
 	<c:redirect url = "Login.jsp"/> 
 </c:if>
 
+<!-- REDIRECIONA O USUARIO PARA O INDEX SE ELE NÃO FOR ADMINSTRADOR -->
+<c:if test="${usuario.administrador != 1}">
+	<c:redirect url = "index.jsp"/> 
+</c:if> 
+
+
 <div class="container header-margin">
 	<div class="row">
 		<div class="col-lg-12  mt-30">

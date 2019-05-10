@@ -59,17 +59,4 @@ public class AvaliacaoService implements Serializable{
 	}
 	
 	
-	//Verifica se o professor logado pode avaliar o grupo
-	public ArrayList<Professor> verificaDeclaracao(Professor usuario, ArrayList<Professor> listaProfessores){
-			
-			for(int i = 0; i < listaProfessores.size(); i++) {
-				
-				
-				
-			}
-			
-
-		return listaProfessores;
-	}
-	
 }

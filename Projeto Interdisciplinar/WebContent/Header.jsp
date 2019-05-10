@@ -43,11 +43,14 @@ pageEncoding="ISO-8859-1"%>
 								Início
 							</a>
 						</li>
+						<c:if test="${usuario.administrador == 1}">
 						<li class="nav-item active">
 							<a class="nav-link active" href="ListarProfessor?acao=reiniciar">
 								Professor
 							</a>
 						</li>
+						</c:if>
+						
 						<li class="nav-item active">
 							<a class="nav-link" href="ListarGrupoDeclaracao?acao=reiniciar">
 								Gerar Declaração
@@ -59,12 +62,14 @@ pageEncoding="ISO-8859-1"%>
 							</a>
 						</li>
 						
+						<c:if test="${usuario.administrador == 1}">
 						<li class="nav-item active">
 							<a class="nav-link" href="CriarEmail?acao=reiniciar">
 								Banca
 							</a>
 						</li>
-
+						 </c:if>
+						
 						<!-- PERÍODOS -->
 						<li class="nav-item nav-link">
 							<form name="periodoMenu" class="form-periodo" method=post action=LoginManter>

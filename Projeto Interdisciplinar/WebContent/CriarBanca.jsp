@@ -31,6 +31,12 @@
 	<c:redirect url = "Login.jsp"/> 
 </c:if>
 
+<!-- REDIRECIONA O USUARIO PARA O INDEX SE ELE NÃO FOR ADMINSTRADOR -->
+<c:if test="${usuario.administrador != 1}">
+	<c:redirect url = "index.jsp"/> 
+</c:if> 
+
+
        <!-- Container Principal -->
 <div id="main" class="container header-margin">
     <h2 class="title">Criar Banca</h2>

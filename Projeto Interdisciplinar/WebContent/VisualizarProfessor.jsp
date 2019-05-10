@@ -24,6 +24,12 @@
 	<c:redirect url = "Login.jsp"/> 
 </c:if>
 
+<!-- REDIRECIONA O USUARIO PARA O INDEX SE ELE NÃO FOR ADMINSTRADOR -->
+<c:if test="${usuario.administrador != 1}">
+	<c:redirect url = "index.jsp"/> 
+</c:if> 
+
+
 <!-- Barra superior com os menus de navegação -->
 	<c:import url ="Header.jsp"/>	
 	
