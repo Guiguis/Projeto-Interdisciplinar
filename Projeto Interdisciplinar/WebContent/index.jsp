@@ -27,5 +27,8 @@ pageEncoding="ISO-8859-1"%>
 	<c:import url="Header.jsp"/>
 	<c:import url="Footer.jsp"/>
 	
+	<c:if test="${ usuario == null}">
+		<c:redirect url = "Login.jsp"/> 
+	</c:if>
 </body>
 </html>

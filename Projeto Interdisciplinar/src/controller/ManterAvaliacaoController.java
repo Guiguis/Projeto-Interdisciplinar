@@ -92,7 +92,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		}
 		else if(acao.equals("Editar")) {
 			// enviar para o jsp
-			request.setAttribute("idGrupo", idGrupo);
+			request.setAttribute("idEntrega", idEntrega);
 			AvaliacaoService as = new AvaliacaoService();
 			ArrayList<Avaliacao> listaAvaliacao = as.load(idEntrega);
 			request.setAttribute("idEntrega", idEntrega);
@@ -137,7 +137,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 			String pComentariosTodos = request.getParameter("comentariosTodos");
 			String pData = request.getParameter("data");
 			
-			//Verifica se o campo "todos" foi preenchido, se nao foi ele adiciona os 3 alunos manualmente
+			//Verifica se o campo "todos" foi preenchido
 			if(pNotaTodos.equals("")) {
 				ArrayList<Avaliacao>lstAvaliacao = new ArrayList<Avaliacao>();
 				
@@ -166,8 +166,8 @@ public class ManterAvaliacaoController extends HttpServlet {
 				}
 				
 				// enviar para o jsp
-				request.setAttribute("listaAluno", listaAluno);
 				request.setAttribute("listaAvaliacao", lista);
+				System.out.print("");
 				view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
 				
 			}
@@ -199,7 +199,6 @@ public class ManterAvaliacaoController extends HttpServlet {
 				}
 				
 				// enviar para o jsp
-				request.setAttribute("listaAluno", listaAluno);
 				request.setAttribute("listaAvaliacao", lista);
 				view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
 					

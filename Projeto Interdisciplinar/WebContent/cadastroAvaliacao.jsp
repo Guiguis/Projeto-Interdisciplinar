@@ -25,6 +25,12 @@
 
 <body>	
 	
+<!-- REDIRECIONA O USUARIO PARA O LOGIN SE ELE NÃO ESTIVER LOGADO -->
+<c:if test="${ usuario == null}">
+	<c:redirect url = "Login.jsp"/> 
+</c:if>	
+	
+	
 <div class="container header-margin">
 	<div class="row">
 		<div class="col-lg-12">
@@ -78,7 +84,7 @@
 						<input id="inputComentariosTodos" type="text" class="form-control" name="comentariosTodos"/>
 					</div>
 				</div>		
-				<a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idEntrega }">Info</a>			
+				<a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idGrupo }">Voltar</a>			
 				<button type="submit" class="btn btn-success" name="acao" value="Enviar">Enviar</button>
 			</form>
 		</div>

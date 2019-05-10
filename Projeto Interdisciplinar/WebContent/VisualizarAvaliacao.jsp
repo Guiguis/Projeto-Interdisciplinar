@@ -23,6 +23,11 @@
 </head>
 <body>
 
+<!-- REDIRECIONA O USUARIO PARA O LOGIN SE ELE NÃO ESTIVER LOGADO -->
+<c:if test="${ usuario == null}">
+	<c:redirect url = "Login.jsp"/> 
+</c:if>
+
 <div class="container header-margin">
 	<div class="row">
 	
@@ -61,9 +66,33 @@
             </div>
 		</div>
 	</div>
-	 <a class="btn btn-danger btn-xs" href="ManterAvaliacaoController?acao=Apagar&idEntrega=${listaAvaliacao[1].entrega.id}">Excluir</a>
-	<a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idEntrega }">Voltar</a>
+	
+	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-${professor.id}">Excluir</button>
+	 <a class="btn btn-primary btn-xs" href="ListarEntregaController?acao=reiniciar&id=${idGrupo }">Voltar</a>	
 </div>			
+
+<!-- Modal Delete -->
+	<c:forEach var="professor" items="${lstProfessor}">
+	    <div class="modal fade" id="modal-${professor.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	        <div class="modal-dialog modal-dialog-centered" role="document">
+	            <div class="modal-content">
+	                <div class="modal-body">
+                       Deseja realmente excluir essa avaliacao?
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <a class="btn btn-primary btn-xs" 
+                           href="ManterAvaliacaoController?acao=Apagar&idEntrega=${listaAvaliacao[1].entrega.id}">
+                           Confirmar
+                        </a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</c:forEach>
+
 
 <script src="assets/scripts/jquery.min.js"></script>
 <script src="assets/scripts/bootstrap/bootstrap.min.js"></script>

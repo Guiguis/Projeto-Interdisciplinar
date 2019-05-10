@@ -25,6 +25,10 @@
 </head>
 <body>
 
+<!-- REDIRECIONA O USUARIO PARA O LOGIN SE ELE NÃO ESTIVER LOGADO -->
+<c:if test="${ usuario == null}">
+	<c:redirect url = "Login.jsp"/> 
+</c:if>
 
 <!-- Container Principal -->
 <div id="main" class="container header-margin">

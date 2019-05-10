@@ -93,9 +93,11 @@ public class AvaliacaoDAO {
 
 	public Avaliacao loadPorId(int id) {
 		Avaliacao avaliacao = new Avaliacao();
+		AlunoDAO alunoDAO = new AlunoDAO();
+		EntregaDAO entregaDAO = new EntregaDAO();
 		Connection conn = new ConnectionFactory().getConnection();
 		
-		String sqlComand = "SELECT nota, comentario, dt_avaliacao FROM avaliacao WHERE id = ?";
+		String sqlComand = "SELECT * FROM avaliacao WHERE id = ?";
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
@@ -106,6 +108,9 @@ public class AvaliacaoDAO {
 				avaliacao.setNota(rs.getDouble("Nota"));
 				avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
 				avaliacao.setComentarios(rs.getString("Comentario"));
+				avaliacao.setAluno(alunoDAO.loadTurmaAluno(rs.getInt("turma_aluno_id")));
+				avaliacao.setEntrega(entregaDAO.loadEntrega(rs.getInt("entrega_id")));
+				
 			} 
 		
 		}catch(SQLException e) {

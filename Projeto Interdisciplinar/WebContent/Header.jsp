@@ -10,8 +10,8 @@ pageEncoding="ISO-8859-1"%>
 <link href="assets/style/header.css" rel="stylesheet" />
 
 <header class="header">
-
-		<div class="row mx-auto" >
+	<div class="container"> 
+		<div class="row" >
 			
 			<nav class="navbar navbar-expand-lg navbar-dark">
 
@@ -22,6 +22,12 @@ pageEncoding="ISO-8859-1"%>
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
+				
+				<!-- REDIRECIONA O USUARIO PARA O LOGIN SE ELE NÃO ESTIVER LOGADO -->
+				<c:if test="${ usuario == null}">
+					<c:redirect url = "Login.jsp"/> 
+				</c:if>	
+				
 				<!-- MENU -->
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 
@@ -116,11 +122,14 @@ pageEncoding="ISO-8859-1"%>
 					</ul>
 				</div>
 				<div class="col-md-2">
-					<label>${professor.nome }</label>
+					<label>${usuario.nome }</label>
+				</div>
+				<div class="col-md-1">
+					<a class="btn btn-info" href="SairController?acao=sair">Sair</a>
 				</div>
 			</nav>
 		</div>
-
+	</div>
 </header>
 
 

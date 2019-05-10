@@ -44,6 +44,7 @@ public class ManterLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("user");
 		String senha = request.getParameter("senha");
+		String erro = null;
 		
 		//Carrega os dados do BD
 		UsuarioService us = new UsuarioService();
@@ -58,20 +59,22 @@ public class ManterLogin extends HttpServlet {
 			
 			//verifica se o usuario é um professor
 			if(professor != null) {
-				session.setAttribute("professor", professor);
+				session.setAttribute("usuario", professor);
 				view = request.getRequestDispatcher("LoginManter");
 			}
 			//carrega os dados de aluno
 			else {
 				AlunoService as = new AlunoService();
 				Aluno aluno = as.load(id);
-				session.setAttribute("aluno", aluno);
+				session.setAttribute("usuario", aluno);
 				view = request.getRequestDispatcher("Aluno.jsp");
 			}		
 		}	
 		if(id <= 0) {
-			request.setAttribute("erro", "erro ao se logar");
+			erro = "Usuario ou senha incorreto";
+			session.setAttribute("erro", erro);
 			view = request.getRequestDispatcher("Login.jsp");
+			
 		}
 		view.forward(request, response);	
 	}
