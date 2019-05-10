@@ -19,6 +19,12 @@ public class ProfessorService implements Serializable{
 		dao.create(professor);
 	}
 	
+	public Professor create(String email, String senha) {
+		Professor professor = new Professor(email,senha);
+		dao.create(professor);
+		return professor;
+	}
+	
 	public void update(Professor professor) {
 		dao.update(professor);
 	}

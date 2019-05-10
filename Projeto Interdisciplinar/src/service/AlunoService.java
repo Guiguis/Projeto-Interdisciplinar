@@ -17,6 +17,11 @@ public class AlunoService {
 		dao.create(aluno);
 	}
 	
+	public void create( String email, String senha) {
+		Aluno aluno1 = new Aluno(email,senha);
+		dao.create(aluno1);
+	}
+	
 	public void update(Aluno aluno) {
 		dao.update(aluno);
 	}
