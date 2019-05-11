@@ -68,7 +68,7 @@
 <div class="card-footer text-muted">
    <a href="Cadastro.jsp">Usuario novo? Se cadastre aqui</a>
    <br>
-   <a href="novaSenha.jsp">Esqueceu a senha?</a>
+   <!--<a href="novaSenha.jsp">Esqueceu a senha?</a> -->
 </div>
 </div>
 </div>

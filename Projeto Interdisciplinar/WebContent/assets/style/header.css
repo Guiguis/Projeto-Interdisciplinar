@@ -10,7 +10,7 @@
 
 .menu-flex {
 	display: flex;
-	justify-content: space-around; s
+	justify-content: end;
 	flex-flow: row wrap;
 	display: flex;
 	align-items: center;
@@ -22,4 +22,15 @@
 
 .form-periodo, .form-turma{
 	margin: 0;
+}
+
+.vertical-align--center{
+	flex-flow: row wrap;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+}
+
+.float-left {
+	float: left;
 }
