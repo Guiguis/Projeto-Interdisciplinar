@@ -68,7 +68,7 @@ public class ManterLogin extends HttpServlet {
 			else {
 				AlunoService as = new AlunoService();
 				Aluno aluno = as.load(id);
-				session.setAttribute("usuario", aluno);
+				session.setAttribute("aluno", aluno);
 				session.setAttribute("erro", erro);
 				view = request.getRequestDispatcher("Aluno.jsp");
 				view.forward(request, response);

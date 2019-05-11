@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import email.Email;
 import model.Banca;
@@ -94,10 +95,14 @@ public class EnviarEmail extends HttpServlet {
 		//Envia o email para os professores cadastrados na banca
 		
 		for(int i = 0; i < lista.size(); i++) {
+			HttpSession session = request.getSession();	
+			Professor professor = (Professor) session.getAttribute("usuario");
+			
 			String assunto = "Você foi designado para uma banca no dia " + data;
 			String emailDestinatario = lista.get(i).getEmail();
 			String mensagem = "Professor " + lista.get(i).getNome() + ", você foi designado para participar de uma banca no dia " 
-								+ data + " e na sala " + sala + "<br> caso não consiga ir no dia informar o professor ...";
+								+ data + " e na sala " + sala + "<br> caso não consiga ir no dia informar entre em contato no email: " 
+								+ professor.getEmail();
 			Email email = new Email(emailDestinatario, assunto, mensagem);
 			
 			email.enviarEmail(email);

@@ -24,7 +24,7 @@ pageEncoding="ISO-8859-1"%>
 
 				
 				<!-- REDIRECIONA O USUARIO PARA O LOGIN SE ELE NÃO ESTIVER LOGADO -->
-				<c:if test="${ usuario == null}">
+				<c:if test="${ aluno == null}">
 					<c:redirect url = "Login.jsp"/> 
 				</c:if>	
 				
@@ -101,7 +101,7 @@ pageEncoding="ISO-8859-1"%>
 				
 				<ul class="nav navbar-nav ml-auto">
 			      <li class="nav-item dropdown">
-			        	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >${usuario.nome }</a>
+			        	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >${aluno.nome }</a>
 			        	<div class="dropdown-menu">
 					     	<a class="dropdown-item" href="SairController?acao=sair">Sair</a>		      
 					    </div>
