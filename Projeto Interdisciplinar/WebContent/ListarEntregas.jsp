@@ -50,14 +50,27 @@
               <th class="actions">Ações</th>
           </tr>		  
 		  
-			<c:forEach var="entrega" items="${lista }">
+		  	<!-- LISTA AS ENTREGA NÃO AVALIADAS E AS SUAS RESPECTIVAS OPCOES -->
+			<c:forEach var="entrega" items="${listaNaoAvaliados }">
 			  <tr>
-			  	<p hidden name="entregaId">${lista[1].id }</p>
+			  	<p hidden name="entregaId">${listaNaoAvaliados[1].id }</p>
 			  	<td>${entrega.atividade.tema.titulo}</td>
 			  	<td><fmt:formatDate pattern="dd/MM/yyyy" value="${entrega.dtCadastro}"/></td>
 				<!-- Botoes -->
 		    	<td class="actions">
 		    		<a class="btn btn-success btn-xs" href="ManterAvaliacaoController?acao=Criar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Criar Avaliacao</a>
+		    	</td>
+			  </tr>
+			</c:forEach>
+			
+			<!-- LISTA AS ENTREGA AVALIADAS E AS SUAS RESPECTIVAS OPCOES -->
+			<c:forEach var="entrega" items="${listaAvaliados }">
+			  <tr>
+			  	<p hidden name="entregaId">${listaAvaliados[1].id }</p>
+			  	<td>${entrega.atividade.tema.titulo}</td>
+			  	<td><fmt:formatDate pattern="dd/MM/yyyy" value="${entrega.dtCadastro}"/></td>
+				<!-- Botoes -->
+		    	<td class="actions">
 		    		<a class="btn btn-warning btn-xs" href="ManterAvaliacaoController?acao=Editar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Editar</a>
 			        <a class="btn btn-info btn-xs" href="ManterAvaliacaoController?acao=Visualizar&idEntrega=${entrega.id}&idGrupo=${entrega.grupo.id}">Visualizar Avaliacao</a>
 		    	</td>

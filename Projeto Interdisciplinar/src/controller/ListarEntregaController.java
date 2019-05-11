@@ -56,8 +56,8 @@ public class ListarEntregaController extends HttpServlet {
 			
 			ArrayList<Entrega> listaAvaliados = es.beenEvaluated(lista);
 			
-			session.setAttribute("lista", lista);
-			session.setAttribute("lista", listaAvaliados);
+			session.setAttribute("listaNaoAvaliados", lista);
+			session.setAttribute("listaAvaliados", listaAvaliados);
 			
 		}
 		

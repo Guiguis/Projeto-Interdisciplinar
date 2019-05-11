@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Aluno;
 import model.Avaliacao;
+import model.Entrega;
 import model.Professor;
 import service.AlunoService;
 import service.AvaliacaoService;
@@ -73,13 +74,37 @@ public class ManterAvaliacaoController extends HttpServlet {
 			view = request.getRequestDispatcher("cadastroAvaliacao.jsp");
 		}
 		else if (acao.equals("Apagar")){		
+			
 			int idEn = Integer.parseInt(request.getParameter("idEntrega"));
+			
+			//Exclui a avaliacao de lista de avaliados
+			
+			ArrayList<Entrega> listaNaoAvaliados = (ArrayList<Entrega>) session.getAttribute("listaNaoAvaliados");
+			ArrayList<Entrega> listaAvaliados = (ArrayList<Entrega>) session.getAttribute("listaAvaliados");
+			 
+			for(int i = 0; i < listaAvaliados.size(); i++) {
+				//verifica se a o id da entrega excluido e igual a entrega da lista
+				if(listaAvaliados.get(i).getId() == idEn) {
+					System.out.println("Achou a entrega na lista");
+					Entrega entrega = listaAvaliados.get(i);
+					listaAvaliados.remove(i);
+					listaNaoAvaliados.add(entrega);
+				}
+				else {
+					System.out.println("NAO Achou a entrega na lista");
+				}
+			}
+			
+			//Exclui a avaliacao no banco
 			AvaliacaoService as = new AvaliacaoService();
 			as.deleteAvaliacao(idEn);
 			ArrayList<Avaliacao> listaAvaliacao = new ArrayList<Avaliacao>();
 			listaAvaliacao = as.load(idEn);
-			session.setAttribute("listaAvaliacao", listaAvaliacao);
-			view = request.getRequestDispatcher("ListarEntregas.jsp");		
+			
+			request.setAttribute("listaNaoAvaliados", listaNaoAvaliados);
+			request.setAttribute("listaAvaliados", listaAvaliados);
+			
+			view = request.getRequestDispatcher("ListarEntregas.jsp");	
 			
 		}
 		else if(acao.equals("Visualizar")) {
@@ -239,6 +264,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 		}
 		return avaliacaoIndex;
 	}	
+	
 	
 
 }
