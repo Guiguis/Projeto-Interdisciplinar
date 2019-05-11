@@ -72,21 +72,11 @@ pageEncoding="ISO-8859-1"%>
 								</a>
 							</li>
 						 </c:if>
-						
-							<!-- PERÍODOS -->
-							<li class="nav-item nav-link">
-								
-							</li>
-	
-							<!-- TURMAS -->
-							<li class="nav-item col-md-2">
-								
-							</li>
 						</ul>
 					</div>
 					
 					<div class="width-100 col-sm-12 col-md-12 col-lg-3">
-						<div class="float-left col-lg-12 mb-4 row">
+						<div class="float-left row">
 							<form name="periodoMenu" class="form-periodo float-left col-lg-6" method=post action=LoginManter>
 									<select name="periodo" class="custom-select" 
 											onchange="javascript:document.periodoMenu.submit();">
@@ -137,17 +127,18 @@ pageEncoding="ISO-8859-1"%>
 						</form>
 						</div>
 						
-						<div class="float-left col-lg-6">
-							<label>${usuario.nome}</label>
-						</div>
-						<div class="float-left col-lg-6">
-							<a class="btn btn-info" href="SairController?acao=sair">Sair</a>
-						</div>
+						
 					</div>	
 				</div>
-				
-				
 			</nav>
+		</div>
+		<div class="user float-left">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >
+				${usuario.nome }
+			</a>
+        	<div class="dropdown-menu">
+     			<a class="dropdown-item" href="SairController?acao=sair">Sair</a>		      
+		    </div>
 		</div>
 	</div>
 </header>

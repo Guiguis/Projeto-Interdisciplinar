@@ -60,7 +60,9 @@ pageEncoding="ISO-8859-1"%>
 
 						
 						<li class="nav-item dropdown">
-						    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ambiente Virtual de Aprendizagem</a>
+						    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						    	Ulife
+						    </a>
 						    <div class="dropdown-menu">
 						      <a class="dropdown-item" href="#">Salas de Aula Virtual</a>						        
 						    </div>
@@ -99,10 +101,10 @@ pageEncoding="ISO-8859-1"%>
 				
 				<ul class="nav navbar-nav ml-auto">
 			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >${usuario.nome }</a>
-			        <div class="dropdown-menu">
-						     <a class="dropdown-item" href="SairController?acao=sair">Sair</a>		      
-						    </div>
+			        	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >${usuario.nome }</a>
+			        	<div class="dropdown-menu">
+					     	<a class="dropdown-item" href="SairController?acao=sair">Sair</a>		      
+					    </div>
 			      </li>
 			     
 			    </ul>

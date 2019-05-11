@@ -2,7 +2,7 @@
 	box-shadow: 0 0px 20px;
     background-color: #fff;
 	padding: 10px 0 0 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     z-index: 1;
@@ -10,7 +10,7 @@
 
 .menu-flex {
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 	flex-flow: row wrap;
 	display: flex;
 	align-items: center;
@@ -33,4 +33,10 @@
 
 .float-left {
 	float: left;
+}
+
+.user{
+	position: absolute;
+    right: 0;
+    top: 30%;
 }
