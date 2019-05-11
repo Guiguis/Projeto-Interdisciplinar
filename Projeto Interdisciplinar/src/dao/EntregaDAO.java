@@ -69,4 +69,33 @@ public class EntregaDAO {
 		return listaEntrega;
 	}
 	
+	
+	/***
+	 * VERIFICA SE A ENTREGA JÁ FOI AVALIADA
+	 */
+	
+	public boolean entregaAvalida(int id){
+		Connection conn = new ConnectionFactory().getConnection();
+		boolean resp = false;
+		
+		String sqlComand = "SELECT DISTINCT entrega_id FROM avaliacao "
+						+ "JOIN entrega ON entrega.id = avaliacao.entrega_id "
+						+ "WHERE entrega.id = ?";
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+			
+			if(rs.next()) {
+				int x = rs.getInt("entrega_id");
+				resp = true;
+			} 
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
 }

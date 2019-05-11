@@ -101,20 +101,21 @@ public class AvaliacaoDAO {
 		
 		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
 			
-			stm.setInt(1,id);
+			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
 			
 			if(rs.next()) {
 				avaliacao.setNota(rs.getDouble("Nota"));
 				avaliacao.setDataAvaliacao(rs.getDate("dt_avaliacao"));
-				avaliacao.setComentarios(rs.getString("Comentario"));
+				avaliacao.setComentarios(rs.getString("comentarios"));
 				avaliacao.setAluno(alunoDAO.loadTurmaAluno(rs.getInt("turma_aluno_id")));
 				avaliacao.setEntrega(entregaDAO.loadEntrega(rs.getInt("entrega_id")));
-				
+				System.out.println(avaliacao.getAluno().getNome());
 			} 
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
+			System.out.println("Erro ao carregar avaliacao");
 		}
 		return avaliacao;
 	}

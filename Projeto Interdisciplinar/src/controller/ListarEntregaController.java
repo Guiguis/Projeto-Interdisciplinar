@@ -52,7 +52,12 @@ public class ListarEntregaController extends HttpServlet {
 		if(acao.equals("reiniciar")) {
 
 			lista = es.loadTodos(id);
+			
+			
+			ArrayList<Entrega> listaAvaliados = es.beenEvaluated(lista);
+			
 			session.setAttribute("lista", lista);
+			session.setAttribute("lista", listaAvaliados);
 			
 		}
 		

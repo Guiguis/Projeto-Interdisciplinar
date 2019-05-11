@@ -128,6 +128,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 			}
 			
 			as.updateAvaliacao(listaAvaliacao);
+			request.setAttribute("idGrupo", idGrupo);
 			request.setAttribute("listaAvaliacao", listaAvaliacao);
 			view = request.getRequestDispatcher("ListarEntregas.jsp");
 		}
@@ -161,8 +162,8 @@ public class ManterAvaliacaoController extends HttpServlet {
 				ArrayList<Avaliacao> lista = new ArrayList<>();
 				//carrega os objetos para mostrar na tela
 				for(int i = 0; i < lstAvaliacao.size(); i++) {
-					Avaliacao avaliacao = lstAvaliacao.get(i);
-					lstAvaliacao.set(i, as.loadPorId(avaliacao.getId()));
+					Avaliacao avaliacao = new Avaliacao();
+					avaliacao = as.loadPorId(lstAvaliacao.get(i).getId());
 					lista.add(avaliacao);
 				}
 				
@@ -194,13 +195,14 @@ public class ManterAvaliacaoController extends HttpServlet {
 				ArrayList<Avaliacao> lista = new ArrayList<>();
 				//carrega os objetos para mostrar na tela
 				for(int i = 0; i < lstAvaliacao.size(); i++) {
-					Avaliacao avaliacao = lstAvaliacao.get(i);
-					lstAvaliacao.set(i, as.loadPorId(avaliacao.getId()));
+					Avaliacao avaliacao = new Avaliacao();
+					avaliacao = as.loadPorId(lstAvaliacao.get(i).getId());
 					lista.add(avaliacao);
 				}
 				
 				// enviar para o jsp
 				request.setAttribute("listaAvaliacao", lista);
+				request.setAttribute("idGrupo", idGrupo);
 				view = request.getRequestDispatcher("VisualizarAvaliacao.jsp");
 					
 			}

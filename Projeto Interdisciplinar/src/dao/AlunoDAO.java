@@ -229,10 +229,12 @@ public class AlunoDAO extends UsuarioDAO {
             	String ra = rs.getString("ra");
             	
             	aluno = new Aluno(idAluno, nome, email, senha, ra);
+            	System.out.println("Aluno carregado com sucesso");
             }
             
 		}catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Erro ao carregar aluno");
 		}finally {
 			try {
 				conn.close();
