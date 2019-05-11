@@ -62,6 +62,7 @@ public class ManterLogin extends HttpServlet {
 				session.setAttribute("usuario", professor);
 				session.setAttribute("erro", erro);
 				view = request.getRequestDispatcher("LoginManter");
+				view.forward(request, response);
 			}
 			//carrega os dados de aluno
 			else {
@@ -70,15 +71,16 @@ public class ManterLogin extends HttpServlet {
 				session.setAttribute("usuario", aluno);
 				session.setAttribute("erro", erro);
 				view = request.getRequestDispatcher("Aluno.jsp");
+				view.forward(request, response);
 			}		
 		}	
 		if(id <= 0) {
 			erro = "Usuario ou senha incorreto";
 			session.setAttribute("erro", erro);
-			view = request.getRequestDispatcher("Login.jsp");
+			response.sendRedirect("Login.jsp");
 			
 		}
-		view.forward(request, response);	
+			
 	}
 
 }
