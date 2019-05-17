@@ -47,7 +47,6 @@ public class LoginFiltro implements Filter {
 		String path = req.getContextPath();
 		String uri = req.getRequestURI();
 		String comando = request.getParameter("comand");
-		System.out.println(comando);
 
 		if (logado == null && !uri.equals(path + "/Login.jsp") && comando == null) {
 			((HttpServletResponse) response).sendRedirect(path + "/Login.jsp");

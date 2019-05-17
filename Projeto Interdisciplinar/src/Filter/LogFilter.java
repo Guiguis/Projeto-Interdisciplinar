@@ -44,20 +44,20 @@ public class LogFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession();
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		Usuario aluno = (Usuario)session.getAttribute("aluno");
 		String uri = req.getRequestURI();
 		
 		if(usuario == null){
 			System.out.println(uri);
-		} else {
+		}
+		else if(aluno == null) {
+			System.out.println(uri);
+		}
+		else {
 			System.out.println(usuario.getNome()+ " -> " + uri);
 		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
-		if(usuario == null){
-			System.out.println(uri);
-		} else {
-			System.out.println(uri+ " -> " + usuario.getNome());
-		}
 	}
 
 	/**

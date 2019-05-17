@@ -23,7 +23,6 @@ pageEncoding="ISO-8859-1"%>
 </head>
 <body>
 	<c:import url="menuAluno.jsp"/>
-	<c:import url="Footer.jsp"/>
 	
 	<div id="main" class="container header-margin">
 		<div class="row justify-content-md-center">
@@ -85,7 +84,7 @@ pageEncoding="ISO-8859-1"%>
 			</div>
 		</div>
 	</div>
-	
+
 	<c:import url="Footer.jsp"/>
 </body>
 </html>
