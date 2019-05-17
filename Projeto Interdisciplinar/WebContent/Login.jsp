@@ -37,6 +37,7 @@
 <form action="ManterLogin" method="post">
 	<div class="form-row">
 		<label>${erro }</label>
+		<input type="hidden" name="comand" value="ManterLogin"> 
 		<div class="form-group col-xl-12">
 			<label for="inputUsuario">Usuario</label> 
 			<div class="input-group">

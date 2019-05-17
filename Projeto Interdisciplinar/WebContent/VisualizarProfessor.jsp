@@ -24,7 +24,6 @@
 	<c:redirect url = "index.jsp"/> 
 </c:if> 
 
-
 <!-- Barra superior com os menus de navegação -->
 	<c:import url ="Header.jsp"/>	
 	

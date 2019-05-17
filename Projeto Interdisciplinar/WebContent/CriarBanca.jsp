@@ -30,12 +30,11 @@
 	<c:redirect url = "index.jsp"/> 
 </c:if> 
 
-
        <!-- Container Principal -->
 <div id="main" class="container header-margin">
     <h2 class="title">Criar Banca</h2>
     <!-- Formulario para alteração de professores -->
-    <form action="EnviarEmail" method="post" class="from-horizontal">
+    <form action="EnviarEmail" method="post" class="from-horizontal" onsubmit="verifica()">
         <!-- area de campos do form -->        
         
         <div class="form-row">
@@ -83,11 +82,11 @@
 		     </div>
             <div class="form-group col-md-4">
                 <label for="inputEmail4">Data</label>
-				<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" />
+				<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" required/>
 			</div>
 			<div class="form-group col-md-4">
 				<label for="inputPassword4">Sala</label> 
-				<input id="inputData" type="text" class="form-control" name="sala"/>
+				<input id="inputData" type="text" class="form-control" name="sala" required/>
 			</div>
 		</div>
             </div>
@@ -95,7 +94,7 @@
         
             <div id="actions" class="row">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary" name="acao">Criar</button>
+                <button type="submit" class="btn btn-primary" name="acao" onclick="verifica()">Criar</button>
                 
             </div>
             
@@ -105,6 +104,45 @@
             
 </div>
 			
+<script>
+
+function verifica(){
+	if(verificaCampos() && verificaData()){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
+
+function verificaCampos(){
+	var x = document.forms["formulario"]["data"].value;	
+	if(x.length < 1){
+		alert("preencha todos os campos");
+		document.getElementById("data").focus();
+		return false;
+	}else{
+		return true;
+	}
+}
+
+//Funcao para somar 3 dias na data atual
+function verificaData(){
+	var x = document.forms["formulario"]["data"].value;
+	//converte a data do formulario para date
+	var dataEscolhida = new Date(x);
+	var dataPermitida = new Date();
+	
+	//verifica se a data escolhida esta dentro do prazo
+	if(dataEscolhida < dataPermitida ){
+		alert("data Invalida");
+		return false
+	}else{
+		return true;
+	}
+}
+
+</script>
 
 
 </body>

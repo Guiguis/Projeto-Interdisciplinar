@@ -42,7 +42,7 @@
 						<label for="inputData">Data</label>
 					</div>
 					<div class="form-group col-md-4">
-						<input id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" 
+						<input type="hidden" id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" 
 						<fmt:formatDate pattern="dd/MM/yyyy" value="${listaAvaliacao[1].dataAvaliacao}"/>/>
 					</div>
 				</div>
@@ -56,11 +56,11 @@
 					</div>
 					<div class="form-group">
 						<label for="inputName">Nota: </label>
-						<input type="text" class="form-control" name="nota${avaliacao.id }" id="nota${avaliacao.id }" value="${avaliacao.nota}" />
+						<input type="text" class="form-control" name="nota${avaliacao.id }" id="nota${avaliacao.id }" value="${avaliacao.nota}" required/>
 					</div>
 					<div class="form-group">
 						<label for="inputName">Comentarios: </label>
-						<input type="text" class="form-control" name="comentarios${avaliacao.id }" id="comentarios${avaliacao.id }" value="${avaliacao.comentarios}" />
+						<input type="text" class="form-control" name="comentarios${avaliacao.id }" id="comentarios${avaliacao.id }" value="${avaliacao.comentarios}" required/>
 					</div>
 				</div>
 			</c:forEach>

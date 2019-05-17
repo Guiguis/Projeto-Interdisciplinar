@@ -23,7 +23,7 @@ pageEncoding="ISO-8859-1"%>
 </head>
 
 <body>
-	
+
 	<c:import url="Header.jsp"/>
 	<c:import url="Footer.jsp"/>
 </body>

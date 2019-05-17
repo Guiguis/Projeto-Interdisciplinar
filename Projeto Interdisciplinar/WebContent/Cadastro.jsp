@@ -18,6 +18,7 @@
 <link href="assets/style/utils.css" rel="stylesheet" />
 </head>
 <body>
+<input type="hidden" name="comand" value="ManterLogin"> 
 <div class="container">
 <br>
 <div class="row justify-content-center">

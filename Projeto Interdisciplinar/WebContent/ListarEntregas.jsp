@@ -32,7 +32,7 @@
              </div>
          </div>
 	</form>
-	
+
 <!-- Listar Entregas-->
 <div id="list" class="row">
    <div class="table-responsive col-md-12">

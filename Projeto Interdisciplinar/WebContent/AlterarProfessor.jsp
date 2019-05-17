@@ -29,7 +29,6 @@
 <c:if test="${usuario.administrador != 1}">
 	<c:redirect url = "index.jsp"/> 
 </c:if> 
-
 <!-- Container Principal -->
 <div id="main" class="container header-margin">
     <h3 class="title">Alterar Professor #${professor.id }</h3>
