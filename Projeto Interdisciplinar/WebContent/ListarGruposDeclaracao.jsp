@@ -64,6 +64,6 @@
 </div>
 	
 
-
+<c:import url="Footer.jsp"/>
 </body>
 </html>

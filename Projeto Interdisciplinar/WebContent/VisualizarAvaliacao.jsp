@@ -90,7 +90,6 @@
 	</c:forEach>
 
 
-<script src="assets/scripts/jquery.min.js"></script>
-<script src="assets/scripts/bootstrap/bootstrap.min.js"></script>
+<c:import url="Footer.jsp"/>
 </body>
 </html>

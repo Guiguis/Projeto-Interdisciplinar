@@ -86,5 +86,6 @@ pageEncoding="ISO-8859-1"%>
 		</div>
 	</div>
 	
+	<c:import url="Footer.jsp"/>
 </body>
 </html>

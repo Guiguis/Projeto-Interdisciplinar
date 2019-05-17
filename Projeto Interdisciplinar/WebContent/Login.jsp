@@ -46,7 +46,7 @@
 		            	<i class="fa fa-envelope"></i>
 		          </div>
 		        </div> 
-		     <input id="user" name="user" placeholder="Email" type="email" class="form-control" required>
+		     <input id="user" name="user" placeholder="Email" type="email" class="form-control">
 		     </div>
 			<label for="inputUsuario">senha</label> 
 			<div class="input-group">
@@ -55,12 +55,12 @@
 		            	<i class="fa fa-unlock-alt"></i>
 		       		</div>
 		     	</div> 
-		     <input type="password" class="form-control" name="senha" id="senha" required maxlength="100" placeholder="Senha" value="">
+		     <input type="password" class="form-control" name="senha" id="senha" maxlength="100" placeholder="Senha" value="">
 		      </div>
 			</div>
 		</div>
 	<br>
-		<button type="submit" class="btn btn-primary" name="logar" value="logar">Logar</button>
+		<button type="submit" id="buttonLogar" class="btn btn-primary" name="logar" value="logar">Logar</button>
 		
 		
 
@@ -74,7 +74,32 @@
 </div>
 </div>
 </div>
-<script src="assets/scripts/jquery.min.js"></script>
-<script src="assets/scripts/bootstrap/bootstrap.min.js"></script>
+<c:import url="Footer.jsp"/>
+
+
+<script>
+	$(document).ready(function() {
+		
+		let userInput = $('#user');
+		let passInput = $('#senha'); 
+
+		$('#buttonLogar').click(function(event) {
+
+			let userTxt = $(userInput).val();
+			let passTxt = $(passInput).val();
+
+			console.log('userTxt: ' + userTxt);
+			console.log('passTxt: ' + passTxt);
+
+			if (userTxt == '' || passTxt == ''){
+				return false
+			} else{
+				return true;
+			}
+
+		});
+	});
+</script>
+
 </body>
 </html> 

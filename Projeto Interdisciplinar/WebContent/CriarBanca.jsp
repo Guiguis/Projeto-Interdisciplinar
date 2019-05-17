@@ -101,6 +101,8 @@
         </div>
                  
     </form>
+    
+    <c:import url="Footer.jsp"/>
             
 </div>
 			

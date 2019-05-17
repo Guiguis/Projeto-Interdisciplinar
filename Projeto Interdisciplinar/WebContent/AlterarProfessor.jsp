@@ -85,6 +85,6 @@
         </div>
     </form>
 </div>
-
+<c:import url="Footer.jsp"/>
 </body>
 </html>
