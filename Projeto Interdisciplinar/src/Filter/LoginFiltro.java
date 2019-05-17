@@ -46,9 +46,10 @@ public class LoginFiltro implements Filter {
 		Usuario logado = (Usuario) session.getAttribute("usuario");
 		String path = req.getContextPath();
 		String uri = req.getRequestURI();
-		String comando = "ManterLogin";
+		String comando = request.getParameter("comand");
+		System.out.println(comando);
 
-		if (logado == null && !uri.equals(path + "/Login.jsp") && !comando.equals("ManterLogin")) {
+		if (logado == null && !uri.equals(path + "/Login.jsp") && comando == null) {
 			((HttpServletResponse) response).sendRedirect(path + "/Login.jsp");
 		} 
 		else {
