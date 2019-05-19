@@ -140,5 +140,146 @@ public class UsuarioDAO {
 		}
 		return i;
 	}
+	
+	public boolean verificarEmail(String email) {
+		Connection conn = new ConnectionFactory().getConnection();
+		boolean i = false;
+		String sqlComand = "select email from usuario where email = ? ";
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			
+			stm.setString(1, email);
+			ResultSet rs = stm.executeQuery();
+			
+            if(rs.next()) {
+				i = true;	
+            }
+            else i = false;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return i;
+	}
+	
+	public String buscaMatricula(String email) {
+		Connection conn = new ConnectionFactory().getConnection();
+		String i = null;
+		String sqlComand = "select usuario.id, usuario.email, professor.matricula\r\n" + 
+				"from usuario as usuario, professor as professor\r\n" + 
+				"where usuario.email = ? and usuario.id = professor.professor_id ";
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			stm.setString(1, email);
+			ResultSet rs = stm.executeQuery();
+            if(rs.next()) {
+				i = rs.getString("matricula");	
+            }
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return i;
+	}
+	public String buscaRA(String email) {
+		Connection conn = new ConnectionFactory().getConnection();
+		String i = null;
+		String sqlComand = "select usuario.id, usuario.email, aluno.ra\r\n" + 
+				"from usuario as usuario, aluno as aluno\r\n" + 
+				"where usuario.email = ? and usuario.id = aluno.aluno_id ";
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+			stm.setString(1, email);
+			ResultSet rs = stm.executeQuery();
+            if(rs.next()) {
+				i = rs.getString("ra");	
+            }
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return i;
+	}
+	
+	public String BucarOldPassword(String email, String criterio) {
+		Connection conn = new ConnectionFactory().getConnection();
+		String i = null;
+		if(criterio.equals("ra")|| criterio.equals("RA")) {
+			String sqlComand = "select usuario.id, usuario.email, aluno.ra, aluno.senha\r\n" + 
+					"from usuario as usuario, aluno as aluno\r\n" + 
+					"where usuario.email = ? and usuario.id = aluno.aluno_id ";
+			try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+				stm.setString(1, email);
+				ResultSet rs = stm.executeQuery();
+	            if(rs.next()) {
+					i = rs.getString("senha");	
+	            }
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		else {
+			String sqlComand = "select usuario.id, usuario.email, professor.matricula, usuario.senha\r\n" + 
+					"from usuario as usuario, professor as professor\r\n" + 
+					"where usuario.email = ? and usuario.id = professor.professor_id ";
+			try(PreparedStatement stm = conn.prepareStatement(sqlComand)){
+				stm.setString(1, email);
+				ResultSet rs = stm.executeQuery();
+	            if(rs.next()) {
+					i = rs.getString("senha");	
+	            }
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return i;
+	}
+	
+	public void updateSenha(String senha, String email) {
+		Connection conn = new ConnectionFactory().getConnection();
+		
+		String sqlComand = "UPDATE Usuario SET senha = ? WHERE email = ?";
+		
+		try(PreparedStatement stm = conn.prepareStatement(sqlComand, Statement.RETURN_GENERATED_KEYS)){
+			stm.setString(1, senha);
+			stm.setString(2, email);
+			
+			stm.executeUpdate();
+			
+			System.out.println("Atualizado usuario com sucesso");
+		}catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Usuario nao atualizado, erro: " + e);
+		}
+
+	}
+	
+	
 }
 
