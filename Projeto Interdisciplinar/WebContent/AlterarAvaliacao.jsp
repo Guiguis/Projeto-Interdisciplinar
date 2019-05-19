@@ -34,19 +34,6 @@
 		</div>
 		
 		<form action="ManterAvaliacaoController?entregaId=${listaAvaliacao[1].entrega.id}" method="post" class="form-horizontal"> 
-		
-		<!-- Data -->
-			<div class="form-group col-md-4 offset-md-4">
-				<div class="form-row">
-					<div class="form-group col-md-2">
-						<label for="inputData">Data</label>
-					</div>
-					<div class="form-group col-md-4">
-						<input type="hidden" id="inputData" type="text" class="form-control" name="data"  placeholder="dd/mm/ano" 
-						<fmt:formatDate pattern="dd/MM/yyyy" value="${listaAvaliacao[1].dataAvaliacao}"/>/>
-					</div>
-				</div>
-			</div>
 
 			<c:forEach var="avaliacao" items="${listaAvaliacao}">
 				<div class="form-row">
@@ -56,11 +43,11 @@
 					</div>
 					<div class="form-group">
 						<label for="inputName">Nota: </label>
-						<input type="text" class="form-control" name="nota${avaliacao.id }" id="nota${avaliacao.id }" value="${avaliacao.nota}" required/>
+						<input type="text" class="form-control individual" name="nota${avaliacao.id }" id="nota${avaliacao.id }" value="${avaliacao.nota}" required/>
 					</div>
 					<div class="form-group">
 						<label for="inputName">Comentarios: </label>
-						<input type="text" class="form-control" name="comentarios${avaliacao.id }" id="comentarios${avaliacao.id }" value="${avaliacao.comentarios}" required/>
+						<input type="text" class="form-control individual" name="comentarios${avaliacao.id }" id="comentarios${avaliacao.id }" value="${avaliacao.comentarios}" required/>
 					</div>
 				</div>
 			</c:forEach>
@@ -75,5 +62,34 @@
 </div>			
 
 <c:import url="Footer.jsp"/>
+
+<script>
+$(document).ready(function(){
+	alert($('.individual').val());
+	//Funcao que desabilita a avaliacao de todos
+	$('.form-control individual').keyup(function(){
+		if(($('.form-control individual').val()).length > 0){
+			$('form-control todos').prop("disabled", true);
+			alert("teste ");
+		}
+		else{
+			$('form-control todos').prop("disabled", false);
+			alert("teste ");
+		}
+	});
+	
+	//Funcao que desabilita o campo de avaliacao individual
+	$('form-control todos').keyup(function(){
+		if(($('form-control todos').val()).length > 0){
+			$('.form-control individual').prop("disabled", true);
+			alert("teste ");
+		}
+		else{
+			$('.form-control individual').prop("disabled", false);
+			alert("teste ");
+		}
+	});	  
+});
+</script>
 </body>
 </html>

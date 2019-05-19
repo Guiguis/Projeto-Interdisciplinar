@@ -34,7 +34,7 @@
 <div id="main" class="container header-margin">
     <h2 class="title">Criar Banca</h2>
     <!-- Formulario para alteração de professores -->
-    <form action="EnviarEmail" method="post" class="from-horizontal" onsubmit="verifica()">
+    <form action="EnviarEmail" method="post" class="from-horizontal" onsubmit="verifica()" name="formulario">
         <!-- area de campos do form -->        
         
         <div class="form-row">
@@ -55,9 +55,9 @@
                         <c:forEach var="professor" items="${listaProfessor }">
                             <option value="${professor.id}">${professor.nome}</option>  
                         </c:forEach>
-            </select>
-          </div>    
-            </div>
+            		</select>
+        	 </div>    
+         </div>
          <div class="form-group col-md-3">
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Selecione o 3º Professor(a)</label>
@@ -94,7 +94,7 @@
         
             <div id="actions" class="row">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary" name="acao" onclick="verifica()">Criar</button>
+                <button type="submit" class="btn btn-primary" name="acao">Criar</button>
                 
             </div>
             
@@ -108,8 +108,8 @@
 			
 <script>
 
-function verifica(){
-	if(verificaCampos() && verificaData()){
+function verificaa(){
+	if(dataPosterior() && dataAnterior()){
 		return true;
 	}else{
 		return false;
@@ -117,32 +117,49 @@ function verifica(){
 	
 }
 
-function verificaCampos(){
-	var x = document.forms["formulario"]["data"].value;	
-	if(x.length < 1){
-		alert("preencha todos os campos");
-		document.getElementById("data").focus();
-		return false;
-	}else{
-		return true;
-	}
-}
+
 
 //Funcao para somar 3 dias na data atual
-function verificaData(){
+function verifica(){
 	var x = document.forms["formulario"]["data"].value;
 	//converte a data do formulario para date
 	var dataEscolhida = new Date(x);
 	var dataPermitida = new Date();
+	dataPermitida.addDias(2);
 	
 	//verifica se a data escolhida esta dentro do prazo
 	if(dataEscolhida < dataPermitida ){
 		alert("data Invalida");
-		return false
-	}else{
+		
+		return false;
+	}
+	else{
+		alert(dataPermitida);
 		return true;
 	}
 }
+
+//Funcao para somar 10 dias na data atual
+function dataPosterior(){
+	var x = document.forms["formulario"]["data"].value;
+	//converte a data do formulario para date
+	var dataEscolhida = new Date(x);
+	var dataPermitida = new Date();
+	dataPermitida.setDate(time.getDate() + 10); // Adiciona 3 dias
+	
+	//verifica se a data escolhida esta dentro do prazo
+	if(dataEscolhida > dataPermitida ){
+		alert("data Invalida");
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+Date.prototype.addDias = function(dias){
+    this.setDate(this.getDate() + dias)
+};
 
 </script>
 
