@@ -34,51 +34,7 @@
 		<div class ="card-body text-center">
 			
 				<form action="RecuperarSenhaController" method="post">
-				<div class="form-row">
-	                <div class="form-group col-xl-12">
-	                	<label for="emailDoUsuario">E-mail</label>
-	                	<br>
-	                	<div class="input-group">
-					     	<div class="input-group-prepend">
-					         	<div class="input-group-text">
-					            	<i class="fa fa-envelope"></i>
-					          </div>
-					        </div> 
-					     	<input id="emailDoUsuario" name="emailDoUsuario" placeholder="Digite seu Email Cadastrado!" type="email" class="form-control">
-					     </div>
-					     <br>
-                        <div class="form-group col-xl-12">
-	                	<label for="DocumentoWeb">Digite Seu Ra Ou Matricula</label>
-	                	<br>
-	                	<div class="input-group">
-					     	<div class="input-group-prepend">
-					         	<div class="input-group-text">
-					            	<i class="far fa-address-card"></i>
-					          </div>
-					        </div> 
-					     	<input id="DocumentoWeb" name="DocumentoWeb" placeholder="Digite seu RA/Matricula" type="text" class="form-control">
-					     </div>
-	                </div>	                	
-	                </div>
-	                <label></label>
-					</div>			
-				</form>
-			
-			
-		<button type="submit" id="EnviarToken" class="btn btn-primary" name="acao" value="EnviarToken">Enviar Token(E-mail)</button>	
-		</div>
-		</div>
-	</div>	
-</div>
-<!--Modal-->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content text-center">
-    	<label>${ERRO }</label>
-		<input type="hidden" name="comand" value="RecuperarSenhaController"> 
-   		  
-				<form action="RecuperarSenhaController" method="post">
-				 <div class="form-row">
+					<div class="form-row">
 	                <div class="form-group col-xl-12">
 	                	<label for="DocumentoWeb">Digite Seu Ra Ou Matricula</label>
 	                	<div class="input-group">
@@ -115,12 +71,14 @@
 					     </div>
 	                </div>
 	                <label></label>
-                </div>
-			</form>
-		<button type="submit" id="alterarSenha2" class="btn btn-primary" name="acao" value="alterarSenha2">Alterar Senha</button>	
-    </div>
-  </div>
+                </div>		
+				</form>
+		<button type="submit" id="alterarSenha2" class="btn btn-primary" name="acao" value="alterarSenha2">Alterar Senha</button>
+		</div>
+		</div>
+	</div>	
 </div>
+
 </div>
 <c:import url="Footer.jsp"/>
 
