@@ -197,9 +197,6 @@ public class ProfessorBancaDAO {
      */
 	
 	public Banca loadBancaGrupo(int idGrupo) {
-		
-		System.out.println("idGrupo: " + idGrupo);
-		
 		Connection conn = new ConnectionFactory().getConnection();
 		String sqlInsert = "SELECT b.id, b.data, b.sala FROM banca b JOIN grupo g ON g.id = b.grupo_id WHERE g.id = ?";
 		Banca banca = new Banca();
@@ -213,7 +210,6 @@ public class ProfessorBancaDAO {
 				banca.setId(rs.getInt("id"));
 				banca.setSala(rs.getString("sala"));
 				banca.setData(rs.getDate("data"));	
-				System.out.println("Banca carregada com sucesso");
 			}
 
 		}catch(SQLException e) {

@@ -48,7 +48,7 @@ public class CriarEmail extends HttpServlet {
 		
 		
 		//Cria uma lista com os grupos nao avaliados
-		ArrayList<Grupo> lista = gs.verificaAvaliado(listaGrupo);
+		ArrayList<Grupo> lista = gs.getGrupoNaoAvaliado(listaGrupo);
 		
 		//Pega as informacoes principais da pagina
 		request.setAttribute("listaProfessor", listaProfessor);
