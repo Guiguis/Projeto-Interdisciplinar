@@ -176,7 +176,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 					avaliacao.setEntrega(es.loadEntrega(idEntrega));
 					avaliacao.setNota(Double.parseDouble(pNota));
 					avaliacao.setComentarios(pComentarios);	
-					avaliacao.setDataAvaliacao(formataData(pData));
+					avaliacao.setDataAvaliacao(formataData());
 					lstAvaliacao.add(avaliacao);
 				}
 				
@@ -209,7 +209,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 					avaliacao.setEntrega(es.loadEntrega(idEntrega));
 					avaliacao.setNota(Double.parseDouble(pNotaTodos));
 					avaliacao.setComentarios(pComentariosTodos);
-					avaliacao.setDataAvaliacao(formataData(pData));
+					avaliacao.setDataAvaliacao(formataData());
 					lstAvaliacao.add(avaliacao);
 				}
 	
@@ -238,16 +238,10 @@ public class ManterAvaliacaoController extends HttpServlet {
 	}
 	
 	
-	public static Date formataData(String pData) {
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	public static Date formataData() {
 		java.util.Date dataUtil;
 		Date data = new Date(System.currentTimeMillis());
-		try {
-			dataUtil = formato.parse(pData);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			dataUtil = data;
-		}
+		dataUtil = data;
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 		return dataSql;
 	}

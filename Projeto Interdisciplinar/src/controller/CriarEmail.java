@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Grupo;
 import model.Professor;
@@ -36,9 +37,13 @@ public class CriarEmail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session   = request.getSession();
+		String turmaIdSession = (String) session.getAttribute("turmaId");
+		int idTurma = (turmaIdSession != null) ? Integer.parseInt(turmaIdSession) : -1;
+		
 		GrupoService gs = new GrupoService();
 		ProfessorService ps = new ProfessorService();
-		ArrayList<Grupo> listaGrupo = gs.carrega();
+		ArrayList<Grupo> listaGrupo = gs.loadGrupoByTurma(idTurma);
 		ArrayList<Professor> listaProfessor	= ps.carrega();
 		
 		
