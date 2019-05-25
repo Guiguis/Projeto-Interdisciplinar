@@ -41,13 +41,21 @@ public class LoginFiltro implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		Usuario logado = (Usuario) session.getAttribute("usuario");
 		String path = req.getContextPath();
 		String uri = req.getRequestURI();
 		String comando = request.getParameter("comand");
+		
+		if(path.endsWith(".css")){
+			chain.doFilter(request,response);
+		    return;
+		}
 
+		
 		if (logado == null && !uri.equals(path + "/Login.jsp") && comando == null) {
 			((HttpServletResponse) response).sendRedirect(path + "/Login.jsp");
 		} 

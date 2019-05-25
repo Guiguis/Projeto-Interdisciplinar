@@ -75,10 +75,11 @@ public class ManterLogin extends HttpServlet {
 			}		
 		}	
 		if(id <= 0) {
-			erro = "Usuario ou senha incorreto";
+			erro = "Usuário e/ou incorretos";
 			session.setAttribute("erro", erro);
 			response.sendRedirect("Login.jsp");
-			
+		}else{
+			session.setAttribute("erro", "");
 		}
 			
 	}
