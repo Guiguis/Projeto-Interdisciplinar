@@ -88,12 +88,17 @@
 <script>
 
 $(document).ready(function(){
-	 $("#todos").on("click", function(){
-	      $(".individual").prop("hidden", this.checked); 
-	      $(".individual").prop("disabled", this.checked); 
-	   });
-	   
+
+	let inputTodos = $('.todos');
+
+	inputTodos.attr('disabled', 'true');
+
+	$("#todos").on("click", function(){
+		inputTodos.removeAttr('disabled');
+		$(".individual").prop("hidden", this.checked); 
+		$(".individual").prop("disabled", this.checked); 
 	});
+});
 	
 </script>
 
