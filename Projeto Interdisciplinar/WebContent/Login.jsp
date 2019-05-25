@@ -32,7 +32,7 @@
 <h3>Login</h3>
 </div>
 <div class="card-body">
-<form action="ManterLogin" method="post">
+<form action="ManterLogin" method="post" novalidate>
 	<div class="form-row">
 		<label>${erro}</label>
 		<input type="hidden" name="comand" value="ManterLogin"> 

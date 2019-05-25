@@ -32,16 +32,15 @@ public class GrupoService {
 		
 		ProfessorBancaService pbs = new ProfessorBancaService();
 		
+		ArrayList<Grupo> lstGrupoNaoAvaliado = new ArrayList<Grupo>();
 		for(int i = 0; i < listaGrupo.size(); i++) {
-			int idGrupo = listaGrupo.get(i).getId();
-			Banca banca = pbs.loadBancaGrupo(idGrupo);
+			Grupo grupo = listaGrupo.get(i);
+			Banca banca = pbs.loadBancaGrupo(grupo.getId());
+	
 			//verifica se existe alguma banca vinculada com esse grupo
-			if(banca.getId() > 0) {
-				listaGrupo.remove(i);
-			}
+			if(!banca.getGrupo()) System.out.println(lstGrupoNaoAvaliado.add(grupo));
 		}
-		return listaGrupo;
+		
+		return lstGrupoNaoAvaliado;
 	}
-	
-	
 }

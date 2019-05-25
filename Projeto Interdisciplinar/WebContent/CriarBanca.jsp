@@ -74,7 +74,7 @@
                 <div class="form-group">
                 <label for="exampleFormControlSelect1">Selecione o Grupo</label>
                     <select class="form-control"  name="grupoId">
-                        <c:forEach var="grupo" items="${listaGrupo }">
+                        <c:forEach var="grupo" items="${listaGrupo}">
 								<option value="${grupo.id}">${grupo.nome}</option>  
 							</c:forEach>
                     </select>
