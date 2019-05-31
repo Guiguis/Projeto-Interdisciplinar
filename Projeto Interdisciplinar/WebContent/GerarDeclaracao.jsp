@@ -80,12 +80,14 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
 
-        <div class="col-lg-12">
-            <hr/>
-            <p>Professora Dra. Ana Paula Gonçalves Serra</br>
-                Coordenadora dos cursos Ciência da Computação, Engenharia de Computação, Sistemas de Informação e Tecnologia em Análise e Desenvolvimento de Sistemas.
-            </p>
-        </div>
+		<div class="row justify-content-md-center"> 
+	        <div class="col-lg-8">
+	            <hr/>
+	            <p>Professora Dra. Ana Paula Gonçalves Serra</br>
+	                Coordenadora dos cursos Ciência da Computação, Engenharia de Computação, Sistemas de Informação e Tecnologia em Análise e Desenvolvimento de Sistemas.
+	            </p>
+	        </div>
+	    </div>
     </div>
     
     <div class="col-lg-12">
@@ -93,6 +95,8 @@ pageEncoding="UTF-8"%>
     		<button class="btn btn-primary" type="submit" onclick="imprimir();"> Imprimir </button>
     	</div>
     </div>
+    
+    <br />
     
     <c:import url="Footer.jsp"/>
 </div>    
