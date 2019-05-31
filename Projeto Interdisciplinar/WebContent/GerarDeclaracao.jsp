@@ -88,6 +88,20 @@ pageEncoding="UTF-8"%>
         </div>
     </div>
     
+    <div class="col-lg-12">
+    	<div class="row justify-content-md-center">
+    		<button class="btn btn-primary" type="submit" onclick="imprimir();"> Imprimir </button>
+    	</div>
+    </div>
+    
     <c:import url="Footer.jsp"/>
+</div>    
+    
+    <script type="text/javascript">
+    	function imprimir() {
+    		window.print();
+    	}
+    </script>
+    
 </body>
 </html>
