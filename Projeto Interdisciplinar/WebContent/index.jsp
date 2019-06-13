@@ -25,7 +25,55 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-
+	
+	<div id="main" class="container header-margin">
+		<div class="row justify-content-md-center">
+			<div class="col-lg-10">
+				<div id="carousel" class="carousel slide" data-ride="carousel">
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel" data-slide-to="1"></li>
+				    <li data-target="#carousel" data-slide-to="2"></li>
+				  </ol>
+				  <div class="carousel-inner">
+				    <div class="carousel-item active">
+				      <img class="img-fluid d-block" src="assets/images/prof1.jpg" >
+				      
+				    </div>
+				    <div class="carousel-item">
+				      <img class="img-fluid d-block" src="assets/images/pro.jpeg">
+				      
+				    </div>
+				    <div class="carousel-item">
+				      <img class="img-fluid d-block" src="assets/images/prof3.jpg">
+				      
+				    </div>
+				  </div>
+				  <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Anterior</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Proximo</span>
+				  </a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row justify-content-md-center">
+			<div class="col-lg-10">
+				<h2 class="text-muted text-capitalize title text-center"> Seja bem-vindo ${usuario.nome }</h2>
+				<p>Esta tela tem como objetivo informar ao nosso corpo de docentes a informações mais retundantes de sua rotina.
+				 Nos menus acimas encontrará todas as opções pertinentes as suas turmas. </p>
+			</div>
+		
+			
+				
+			</div>
+		</div>
+	
+	</div>
 	
 	<c:import url="Footer.jsp"/>
 </body>
