@@ -90,7 +90,7 @@
 								</div>
 							</div>
 						</div>
-	
+					
 						<button id="buttonLogar" type="submit"class="btn btn-primary" name="logar"
 								value="logar">
 								Logar
@@ -98,8 +98,9 @@
 					</form>
 				</div>
 
-				<div class="card-footer text-muted">
-					<a href="Cadastro.jsp">Usuario novo? Se cadastre aqui</a>
+				<div class="card-footer text-muted  text-center">
+					<a href="Cadastro.jsp">Usuario novo? Se cadastre aqui</a><br>
+					<a href="NovaSenha.jsp">Recuperar Senha? Clique aqui</a>"
 					<br>
 				</div>
 			</div>

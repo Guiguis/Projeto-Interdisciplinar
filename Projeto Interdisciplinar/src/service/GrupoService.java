@@ -23,6 +23,9 @@ public class GrupoService {
 		return dao.loadGrupoByTurma(idTurma);
 	}
 	
+	public ArrayList<Grupo> loadGrupoByTurmaVer2(int idTurma) { // teste
+		return dao.loadGrupoByTurmaVer2(idTurma);
+	}
 	public ArrayList<Grupo> carrega() {
 		return dao.carrega();
 	}

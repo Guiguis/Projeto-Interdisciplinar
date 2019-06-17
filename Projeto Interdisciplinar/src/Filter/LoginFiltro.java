@@ -1,6 +1,7 @@
 package Filter;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,7 +19,7 @@ import model.Usuario;
 /**
  * Servlet Filter implementation class Filtro
  */
-@WebFilter("/*")
+@WebFilter(filterName = "FiltroLogin", urlPatterns = {"/", "/"})
 public class LoginFiltro implements Filter {
 
     /**
@@ -56,7 +57,7 @@ public class LoginFiltro implements Filter {
 		}
 
 		
-		if (logado == null && !uri.equals(path + "/Login.jsp") && comando == null) {
+		if (logado == null && testar(request, response, chain) == true && comando == null) {
 			((HttpServletResponse) response).sendRedirect(path + "/Login.jsp");
 		} 
 		else {
@@ -71,5 +72,20 @@ public class LoginFiltro implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}
-
+	public boolean testar(ServletRequest request, ServletResponse response, FilterChain chain) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		Usuario logado = (Usuario) session.getAttribute("usuario");
+		String path = req.getContextPath();
+		String uri = req.getRequestURI();
+		String comando = request.getParameter("comand");
+		if(uri.equals(path +"/Login.jsp") ||uri.equals(path +"/NovaSenha.jsp") || uri.equals(path +"/Cadastro.jsp")) {
+			return true;
+		}
+		else return false;
+	}
 }

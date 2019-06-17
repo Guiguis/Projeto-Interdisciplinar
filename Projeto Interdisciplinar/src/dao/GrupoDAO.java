@@ -77,6 +77,34 @@ public class GrupoDAO {
 		return lista;
 	}
 	
+	public ArrayList<Grupo> loadGrupoByTurmaVer2(int idTurma) {  //  versão com versirificação de banca
+		ArrayList<Grupo> lista = new ArrayList<>();
+		ProfessorDAO professorDAO = new ProfessorDAO();
+		Connection conn = new ConnectionFactory().getConnection();
+		String sqlInsert = "SELECT DISTINCT g.nome, g.numero, orientador_id, g.id FROM turma t \r\n" + 
+				"						 JOIN turma_aluno a ON t.id = a.turma_id \r\n" + 
+				"						 JOIN grupo g ON a.grupo_id = g.id \r\n" + 
+				"                         JOIN banca b ON a.grupo_id = b.grupo_id\r\n" + 
+				"						 WHERE a.turma_id = ?";
+
+		try(PreparedStatement stm = conn.prepareStatement(sqlInsert)){
+			stm.setInt(1, idTurma);
+			
+			ResultSet rs = stm.executeQuery();
+			while(rs.next()) {
+				Grupo grupo = new Grupo();
+				grupo.setId(rs.getInt("id"));
+				grupo.setNome(rs.getString("nome"));
+				grupo.setNumero(rs.getInt("numero"));
+				grupo.setOrientador(professorDAO.load(rs.getInt("orientador_id")));
+				lista.add(grupo);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
 	
 	/***
 	 * 

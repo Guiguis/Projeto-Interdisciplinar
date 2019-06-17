@@ -50,8 +50,8 @@ public class ListarGrupoDeclaracao extends HttpServlet {
 		if(acao.equals("reiniciar")) {
 			int idTurma = (turmaIdSession != null) ? Integer.parseInt(turmaIdSession) : -1;
 			
-			lstGrupos = gs.loadGrupoByTurma(idTurma);
-				
+			lstGrupos = gs.loadGrupoByTurmaVer2(idTurma);
+				System.out.println(idTurma);
 			//Verifica se o professor logado é administrador
 			Professor orientador = (Professor) session.getAttribute("usuario");
 			if(orientador.getAdministrador() == 0) {
@@ -62,8 +62,10 @@ public class ListarGrupoDeclaracao extends HttpServlet {
 				
 				request.setAttribute("lstGrupo", lstGruposParticipados);
 			}
+			else {
+				request.setAttribute("lstGrupo", lstGrupos);
+			}
 			
-			request.setAttribute("lstGrupo", lstGrupos);
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ListarGruposDeclaracao.jsp");
