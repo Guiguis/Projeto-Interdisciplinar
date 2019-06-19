@@ -19,7 +19,7 @@ import model.Usuario;
 /**
  * Servlet Filter implementation class Filtro
  */
-@WebFilter(filterName = "FiltroLogin", urlPatterns = {"/", "/"})
+@WebFilter("/*")
 public class LoginFiltro implements Filter {
 
     /**
@@ -83,9 +83,11 @@ public class LoginFiltro implements Filter {
 		String path = req.getContextPath();
 		String uri = req.getRequestURI();
 		String comando = request.getParameter("comand");
-		if(uri.equals(path +"/Login.jsp") ||uri.equals(path +"/NovaSenha.jsp") || uri.equals(path +"/Cadastro.jsp") || uri.equals(path +"/ConfirmarToken.jsp")) {
-			return true;
+		if(uri.equals(path +"/Login.jsp") ||uri.equals(path +"/NovaSenha.jsp") || uri.equals(path +"/Cadastro.jsp") 
+				|| uri.equals(path +"/ConfirmarToken.jsp") || uri.equals(path +"/CadastrarController")
+				||uri.equals(path +"/RecuperarSenhaControler")) {
+			return false;
 		}
-		else return false;
+		else return true;
 	}
 }
