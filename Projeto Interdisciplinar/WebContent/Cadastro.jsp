@@ -33,25 +33,14 @@
 	<div class="form-row">
 		<label>${erro }</label>
 		<div class="form-group col-xl-12">
-			<label for="inputUsuario">RA:</label> 
+		     <label for="inputUsuario">Matricula ou RA</label> 
 			<div class="input-group">
 		     	<div class="input-group-prepend">
 		         	<div class="input-group-text">
 		            	<i class="fa fa-envelope"></i>
 		          </div>
 		        </div> 
-		     <input id="RA" name="RA" placeholder="RA" type="text" class="form-control" >
-		     </div>
-		     <a class="text-center"> ou </a>
-		     <br>
-		     <label for="inputUsuario">Matricula</label> 
-			<div class="input-group">
-		     	<div class="input-group-prepend">
-		         	<div class="input-group-text">
-		            	<i class="fa fa-envelope"></i>
-		          </div>
-		        </div> 
-		     <input id="matricula" name="matricula" placeholder="Matricula" type="text" class="form-control" >
+		     <input id="matricula" name="documentoWEB" placeholder="matricula/RA" type="text" class="form-control" >
 		     
 		     </div>
 			<label for="inputUsuario">Nome</label> 
@@ -74,16 +63,6 @@
 		
 		     <input type="text" class="form-control" name="email" id="email" required maxlength="100" placeholder="Email" value="">
 		   <div>
-		     <label for="inputUsuario" class="text-center">Confirme o email</label> 
-			<div class="input-group">
-		    	<div class="input-group-prepend">
-		        	<div class="input-group-text">
-		            	<i class="fa fa-unlock-alt"></i>
-		       		</div>
-		     	</div> 
-		     <input type="text" class="form-control" name="email" id="email" required maxlength="100" placeholder="Confirme o Email" value="">
-		      </div>
-		      
 		      <label for="inputUsuario">senha</label> 
 			<div class="input-group">
 		    	<div class="input-group-prepend">
@@ -91,19 +70,8 @@
 		            	<i class="fa fa-unlock-alt"></i>
 		       		</div>
 		     	</div> 
-		     <input type="password" class="form-control" name="senha" id="senha" required maxlength="100" placeholder="Senha" value="">
+		     <input type="password" class="form-control" name="senha" id="senha" required maxlength="100" placeholder="Senha" value="">	     
 		     
-		     <label for="inputUsuario">Confirme a senha senha</label> 
-			<div class="input-group">
-		    	<div class="input-group-prepend">
-		        	<div class="input-group-text">
-		            	<i class="fa fa-unlock-alt"></i>
-		       		</div>
-		     	</div> 
-		     <input type="password" class="form-control" name="senha" id="senha" required maxlength="100" placeholder="Senha" value="">
-		     
-		     
-			</div>
 			<br>
 			<div class="input-group ">
 			<br>
@@ -125,7 +93,9 @@
 		</div>
 		</div>
 	<br>
+	<div class="text-center">
 		<button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>
+	</div>
 </form>
 </div>
 <div class="card-footer text-muted">

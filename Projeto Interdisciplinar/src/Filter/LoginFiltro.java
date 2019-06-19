@@ -83,7 +83,7 @@ public class LoginFiltro implements Filter {
 		String path = req.getContextPath();
 		String uri = req.getRequestURI();
 		String comando = request.getParameter("comand");
-		if(uri.equals(path +"/Login.jsp") ||uri.equals(path +"/NovaSenha.jsp") || uri.equals(path +"/Cadastro.jsp")) {
+		if(uri.equals(path +"/Login.jsp") ||uri.equals(path +"/NovaSenha.jsp") || uri.equals(path +"/Cadastro.jsp") || uri.equals(path +"/ConfirmarToken.jsp")) {
 			return true;
 		}
 		else return false;

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.nio.channels.SeekableByteChannel;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -50,11 +49,11 @@ public class RecuperarSenhaControler extends HttpServlet {
 	@SuppressWarnings("static-access")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 																												//pegando informações necessarias da WEB
-		String emailDoUsuario = request.getParameter("email");
+		String emailDoUsuario = request.getParameter("emailDoUsuario");
 		String acao = request.getParameter("acao");
-		String raWeb = request.getParameter("RA");
-		String matriculaWeb = request.getParameter("matricula");
-		String tokenWeb = request.getParameter("token");
+		String raWeb = request.getParameter("DocumentoWeb");
+		String matriculaWeb = request.getParameter("DocumentoWeb");
+		String tokenWeb = request.getParameter("TokenWeb");
 		String novaSenha = request.getParameter("novaSenha");
 		String token = null;
 		RequestDispatcher view = null;
@@ -66,11 +65,11 @@ public class RecuperarSenhaControler extends HttpServlet {
 																												//verifica a ação chamada
 		if(acao.equals("EnviarToken")) {
 			
-																												//confirma se o email esta cadastrado
+							System.out.println("linha 69");																					//confirma se o email esta cadastrado
 				if(userService.verificarEmail(emailDoUsuario) == true) { 
 					Criptografia crypt = new Criptografia();
 					Email email = new Email();
-					
+					System.out.println("linha 73");
 					//verifica se o email e de um aluno
 					if(userService.BuscaRaOuMatricula(emailDoUsuario,"RA") != null) { 
 						String baseToken =  userService.token(emailDoUsuario, "RA"); 							//Gerando o Tonken com o texto base sendo o RA+SenhaAtual
@@ -86,6 +85,10 @@ public class RecuperarSenhaControler extends HttpServlet {
 							email.setEmailDestinatario(emailDoUsuario);
 							email.enviarEmail(email);
 							session.setAttribute("token", token);
+							session.setAttribute("email", emailDoUsuario);
+							view = request.getRequestDispatcher("ConfirmarToken.jsp");
+							view.forward(request, response);
+							
 						} catch (InvalidKeyException | BadPaddingException | NoSuchPaddingException | IllegalBlockSizeException
 								| NoSuchAlgorithmException | InvalidAlgorithmParameterException | InvalidKeySpecException e) {
 							e.printStackTrace();
@@ -93,6 +96,7 @@ public class RecuperarSenhaControler extends HttpServlet {
 						
 					}
 					else if (userService.BuscaRaOuMatricula(emailDoUsuario, "matricula") != null) {				//Verifica se o email é de professor
+						System.out.println("linha 96");
 						String baseToken =  userService.token(emailDoUsuario, "matricula");						//Gera um Token com base o texto de matricula+senhaAtual
 						try {
 							token = crypt.encrypt(baseToken, "adminInternoSistema", Criptografia.ALGORITMO_DES);	
@@ -106,6 +110,9 @@ public class RecuperarSenhaControler extends HttpServlet {
 							email.setEmailDestinatario(emailDoUsuario);
 							email.enviarEmail(email);
 							session.setAttribute("token", token);
+							session.setAttribute("email", emailDoUsuario);
+							view = request.getRequestDispatcher("ConfirmarToken.jsp");
+							view.forward(request, response);
 						} catch (InvalidKeyException | BadPaddingException | NoSuchPaddingException | IllegalBlockSizeException
 								| NoSuchAlgorithmException | InvalidAlgorithmParameterException | InvalidKeySpecException e) {
 							e.printStackTrace();
@@ -139,9 +146,16 @@ public class RecuperarSenhaControler extends HttpServlet {
 			
 		
 				//verifica a ação - metodo 2
-			if(acao.equals("alterarSenha 2")) {
-				if(userService.confirmarToken(emailDoUsuario, "RA", raWeb) != null) {
-					String tokenConfirmacao = userService.confirmarToken(emailDoUsuario, "RA", raWeb);
+			if(acao.equals("alterarSenha2")) {
+				System.out.println("linha 150");
+				emailDoUsuario = (String) session.getAttribute("email");
+				System.out.println(emailDoUsuario);
+				String tokenConfirmacao = (String) session.getAttribute("token") ;
+				System.out.println(tokenConfirmacao+"   linha 155");
+				if(userService.BuscaRaOuMatricula(emailDoUsuario,"ra") != null) {
+					System.out.println("linha 150");
+					//String tokenConfirmacao = (String) session.getAttribute("token") ;
+					System.out.println(tokenConfirmacao+"   linha 158");
 					if(tokenWeb.equals(tokenConfirmacao)){
 						userService.alterarSenha(novaSenha, emailDoUsuario);
 						session.setAttribute("Sucesso", "Senha alterada!");
@@ -149,15 +163,24 @@ public class RecuperarSenhaControler extends HttpServlet {
 						view.forward(request, response);
 					}
 					else session.setAttribute("ERRO", "Token Invalido");
+					System.out.println("linha 159");
 				}
-				else if (userService.confirmarToken(emailDoUsuario, "matricula", matriculaWeb)!= null) {
-					String tokenConfirmacao = userService.confirmarToken(emailDoUsuario, "matricula", matriculaWeb);
+				else if (userService.BuscaRaOuMatricula(emailDoUsuario, "matricula") != null) {
+					System.out.println("linha 169");
+					//String tokenConfirmacao = (String) session.getAttribute("token") ;
+					System.out.println(tokenConfirmacao+"   linha 152");
 					if(tokenWeb.equals(tokenConfirmacao)){
+						System.out.println("linha 173");
 						userService.alterarSenha(novaSenha, emailDoUsuario);
+						session.setAttribute("Sucesso", "Senha alterada!");
+						view = request.getRequestDispatcher("Login.jsp");											//manda o usuario de volta a tela de login
+						view.forward(request, response);
 					}
-					else session.setAttribute("ERRO", "Token Invalido");
+					else { session.setAttribute("ERRO", "Token Invalido");
+					System.out.println("linha 180");
 					}
 				}
-		}
+			}
+	}
 	
 }

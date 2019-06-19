@@ -30,10 +30,10 @@
 		<div class="card-header">
             <label>${erro }</label>
             <h3 class="text-center" align="Center">Recuperação de Senha</h3>
-		<input type="hidden" name="comand" value="RecuperarSenhaController"> 
+		<input type="hidden" name="comand" value="RecuperarSenhaControler"> 
 		<div class ="card-body text-center">
 			
-				<form action="RecuperarSenhaController" method="post">
+				<form action="RecuperarSenhaControler" method="post">
 					<div class="form-row">
 	                <div class="form-group col-xl-12">
 	                	<label for="DocumentoWeb">Digite Seu Ra Ou Matricula</label>
@@ -72,8 +72,9 @@
 	                </div>
 	                <label></label>
                 </div>		
+                <button type="submit" id="alterarSenha2" class="btn btn-primary" name="acao" value="alterarSenha2">Alterar Senha</button>
 				</form>
-		<button type="submit" id="alterarSenha2" class="btn btn-primary" name="acao" value="alterarSenha2">Alterar Senha</button>
+		
 		</div>
 		</div>
 	</div>	

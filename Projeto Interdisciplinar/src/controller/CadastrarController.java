@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Aluno;
 import model.Professor;
 import service.AlunoService;
 import service.ProfessorService;
@@ -46,8 +47,8 @@ public class CadastrarController extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String opcao = request.getParameter("inputSelecao");
 		String nome = request.getParameter("nome");
-		String ra = request.getParameter("RA");
-		String matricula = request.getParameter("matricula");
+		String ra = request.getParameter("documentoWEB");
+		String matricula = request.getParameter("documentoWEB");
 		//Carrega os dados do BD
 		UsuarioService us = new UsuarioService();
 		int id = us.logar(email, senha);	
@@ -66,7 +67,12 @@ public class CadastrarController extends HttpServlet {
 			if(opcao.equals("aluno")) {
 				System.out.println("1");
 				AlunoService alunoservice = new AlunoService();
-				alunoservice.create(email, senha);
+				Aluno aluno = new Aluno();
+				aluno.setNome(nome);
+				aluno.setEmail(email);
+				aluno.setRa(ra);
+				aluno.setSenha(senha);
+				alunoservice.create(aluno);
 				request.setAttribute("acerto", "Aluno "+nome+ "Cadastrado com sucesso!!");
 			}else if (opcao.equals("professor")) {
 				System.out.println(2);

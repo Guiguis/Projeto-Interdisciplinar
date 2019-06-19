@@ -30,10 +30,10 @@
 		<div class="card-header">
             <label>${erro }</label>
             <h3 class="text-center" align="Center">Recuperação de Senha</h3>
-		<input type="hidden" name="comand" value="RecuperarSenhaController"> 
+		<input type="hidden" name="comand" value="RecuperarSenhaControler"> 
 		<div class ="card-body text-center">
 			
-				<form action="RecuperarSenhaController" method="post">
+				<form action="RecuperarSenhaControler" method="post">
 				<div class="form-row">
 	                <div class="form-group col-xl-12">
 	                	<label for="emailDoUsuario">E-mail</label>
@@ -61,11 +61,12 @@
 	                </div>	                	
 	                </div>
 	                <label></label>
-					</div>			
+					</div>	
+					<button type="submit" id="EnviarToken" class="btn btn-primary" name="acao" value="EnviarToken">Enviar Token(E-mail)</button>			
 				</form>
 			
 			
-		<button type="submit" id="EnviarToken" class="btn btn-primary" name="acao" value="EnviarToken">Enviar Token(E-mail)</button>	
+		
 		</div>
 		</div>
 	</div>	
@@ -75,9 +76,9 @@
   <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content text-center">
     	<label>${ERRO }</label>
-		<input type="hidden" name="comand" value="RecuperarSenhaController"> 
+		<input type="hidden" name="comand" value="RecuperarSenhaControler"> 
    		  
-				<form action="RecuperarSenhaController" method="post">
+				<form action="RecuperarSenhaControler" method="post">
 				 <div class="form-row">
 	                <div class="form-group col-xl-12">
 	                	<label for="DocumentoWeb">Digite Seu Ra Ou Matricula</label>
@@ -116,8 +117,9 @@
 	                </div>
 	                <label></label>
                 </div>
+                <button type="submit" id="alterarSenha2" class="btn btn-primary" name="acao" value="alterarSenha2">Alterar Senha</button>	
 			</form>
-		<button type="submit" id="alterarSenha2" class="btn btn-primary" name="acao" value="alterarSenha2">Alterar Senha</button>	
+		
     </div>
   </div>
 </div>
